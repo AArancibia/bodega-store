@@ -1,20 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { getProducts } from '../../data/product.service';
+import React from 'react';
 import { ProductButtons, ProductCard, ProductImage, ProductTitle } from 'ajas-product-card';
 import './Shop.component.styles.scss';
-import { onChangeArgs } from 'ajas-product-card/src/interfaces/interfaces';
+import { useProduct } from '../../data/hooks/useProduct';
 
 const ShopPage = () => {
-  const [products, setProducts] = useState<Array<any>>([]);
-  useEffect(() => {
-    getProducts()
-      .then((products) => setProducts(products))
-      .catch()
-  }, []);
 
-  const onHandleChange = (changeArgs: onChangeArgs) => {
-    console.log(changeArgs);
-  }
+  const {products, onHandleChange} = useProduct();
 
   return (
     <div className="shop">
@@ -29,7 +20,7 @@ const ShopPage = () => {
               maxCount: product.quantity
             }}
              style={{
-               height: '320px',
+               height: '325px',
                margin: '5px 20px',
              }}
           >

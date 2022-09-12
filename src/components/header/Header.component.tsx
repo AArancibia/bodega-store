@@ -1,14 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Logo from '../../assets/shopping-bag.svg';
 import './Header.component.styles.scss';
+import { Layout } from 'antd';
+import CartDropDown from '../cart-dropdown/Cart-Dropdown.component';
+import CartIconComponent from '../cart-icon/CartIcon.component';
 
-const Header = () => {
+const { Header } = Layout;
+
+const HeaderComponent = () => {
+  const [showCart, setShowCart] = useState(false);
+
+  const handleClick = () => {
+    setShowCart(prev => !prev);
+  }
+
   return (
-    <div className="header flex-no-wrap justify-content-between align-items-center">
-      <div>jj</div>
-      <img width="50" className="header__logo" src={Logo} alt="SHOP ICON"/>
-    </div>
+    <>
+      <Header className="header flex-no-wrap justify-content-between align-items-center" >
+        <div>LOGO</div>
+        <CartIconComponent onClickIcon={handleClick} />
+      </Header>
+      {
+        showCart && <CartDropDown cartItems={[]} />
+      }
+    </>
   );
 };
 
-export default Header;
+export default HeaderComponent;
