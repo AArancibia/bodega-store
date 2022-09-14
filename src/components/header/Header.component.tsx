@@ -4,10 +4,19 @@ import './Header.component.styles.scss';
 import { Layout } from 'antd';
 import CartDropDown from '../cart-dropdown/Cart-Dropdown.component';
 import CartIconComponent from '../cart-icon/CartIcon.component';
+import { createStructuredSelector } from 'reselect';
+import { selectAllProducts } from '../../redux/product/product.selector';
+import { connect } from 'react-redux';
+import { Product } from '../../interfaces/Product';
 
 const { Header } = Layout;
 
-const HeaderComponent = () => {
+interface Props {
+  products: Array<Product>; //  should be cartItems with their own interface
+}
+
+const HeaderComponent = ({products}: Props) => {
+  console.log(products);
   const [showCart, setShowCart] = useState(false);
 
   const handleClick = () => {
@@ -21,10 +30,13 @@ const HeaderComponent = () => {
         <CartIconComponent onClickIcon={handleClick} />
       </Header>
       {
-        showCart && <CartDropDown cartItems={[]} />
+        showCart && <CartDropDown cartItems={products} />
       }
     </>
   );
 };
 
-export default HeaderComponent;
+const mapStateToProps = createStructuredSelector({
+  products: selectAllProducts,
+});
+export default connect(mapStateToProps)(HeaderComponent);

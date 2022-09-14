@@ -2,10 +2,18 @@ import React from 'react';
 import { ProductButtons, ProductCard, ProductImage, ProductTitle } from 'ajas-product-card';
 import './Shop.component.styles.scss';
 import { useProduct } from '../../data/hooks/useProduct';
+import { connect } from 'react-redux';
+import { setProducts } from '../../redux/product/product.actions';
+import { Product } from '../../interfaces/Product';
 
-const ShopPage = () => {
+interface Props {
+  setProducts: (products: Array<Product>) => void;
+}
+
+const ShopPage = ({setProducts}: Props) => {
 
   const {products, onHandleChange} = useProduct();
+  setProducts(products);
 
   return (
     <div className="shop">
@@ -13,7 +21,11 @@ const ShopPage = () => {
       {
         products.length && products.map(product => (
           <ProductCard
-            product={product}
+            product={({
+              title: product.name,
+              img: product.image,
+              id: product.id
+            })}
             onChange={onHandleChange}
             initialValues={{
               count: 4,
@@ -46,4 +58,8 @@ const ShopPage = () => {
   );
 };
 
-export default ShopPage;
+const mapDispatchToProps = (dispatch: any) => ({
+  setProducts: (products: Array<Product>) => dispatch(setProducts(products))
+})
+
+export default connect(null, mapDispatchToProps)(ShopPage);
