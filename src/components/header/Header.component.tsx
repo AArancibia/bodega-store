@@ -1,22 +1,21 @@
 import React, { useState } from 'react';
-import Logo from '../../assets/shopping-bag.svg';
 import './Header.component.styles.scss';
 import { Layout } from 'antd';
 import CartDropDown from '../cart-dropdown/Cart-Dropdown.component';
 import CartIconComponent from '../cart-icon/CartIcon.component';
 import { createStructuredSelector } from 'reselect';
-import { selectAllProducts } from '../../redux/product/product.selector';
 import { connect } from 'react-redux';
-import { Product } from '../../interfaces/Product';
+import { selectCartItems } from '../../redux/cart/cart.selector';
+import { CartItem } from '../../interfaces/CartItem';
 
 const { Header } = Layout;
 
 interface Props {
-  products: Array<Product>; //  should be cartItems with their own interface
+  cartItems: Array<CartItem>;
 }
 
-const HeaderComponent = ({products}: Props) => {
-  console.log(products);
+const HeaderComponent = ({cartItems}: Props) => {
+
   const [showCart, setShowCart] = useState(false);
 
   const handleClick = () => {
@@ -30,13 +29,13 @@ const HeaderComponent = ({products}: Props) => {
         <CartIconComponent onClickIcon={handleClick} />
       </Header>
       {
-        showCart && <CartDropDown cartItems={products} />
+        showCart && <CartDropDown cartItems={cartItems} />
       }
     </>
   );
 };
 
 const mapStateToProps = createStructuredSelector({
-  products: selectAllProducts,
+  cartItems: selectCartItems,
 });
 export default connect(mapStateToProps)(HeaderComponent);

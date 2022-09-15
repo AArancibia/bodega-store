@@ -1,22 +1,22 @@
 import React from 'react';
 import './CartItem.component.styles.scss';
-import { Product } from '../../interfaces/Product';
 import Image from '../../assets/img/not-image.jpg';
+import { CartItem } from '../../interfaces/CartItem';
 
 interface Props {
-  item: Partial<Product>;
+  cartItem: CartItem;
 }
 
-const CartItem = ({ item: { name, image, quantity, unitPrice } } : Props) => (
+const CartItemComponent = ({ cartItem: { product, count } } : Props) => (
   <div className="cart-item">
-    <img src={image ? image : Image} alt="item" />
+    <img src={product.image ? product.image : Image} alt="item" />
     <div className="item-details">
-      <span className="name">{name}</span>
+      <span className="name">{product.name}</span>
       <span className="price">
-        {quantity} x {unitPrice}
+        {count} x {product.unitPrice}
       </span>
     </div>
   </div>
 );
 
-export default CartItem;
+export default CartItemComponent;

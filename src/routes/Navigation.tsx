@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, NavLink, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, NavLink, Route, Routes, useLocation } from 'react-router-dom';
 import { AreaChartOutlined, ShoppingOutlined, HomeOutlined } from '@ant-design/icons';
 import ShopPage from '../pages/shop/Shop.component';
 import HeaderComponent from '../components/header/Header.component';
@@ -7,7 +7,6 @@ import { Layout, Menu, MenuProps } from 'antd';
 import Sider from 'antd/es/layout/Sider';
 import { Content, Footer } from 'antd/es/layout/layout';
 import CheckOutPage from '../pages/checkout/CheckOut.component';
-
 
 const items: MenuProps['items'] = [
   {
@@ -45,7 +44,7 @@ const Navigation = () => {
           <Menu
             theme="dark"
             mode="inline"
-            defaultSelectedKeys={['4']}
+            selectedKeys={['carrito']}
             items={items}
           />
         </Sider>
@@ -61,7 +60,7 @@ const Navigation = () => {
               </Route>
               <Route path="/carrito" element={<CheckOutPage />} />
               <Route path="/reporte" element={<ShopPage />} />
-              <Route path="/**" element={<div>Not found</div>} />
+              <Route path="/*" element={<div>Not found</div>} />
             </Routes>
           </Content>
           <Footer style={{ textAlign: 'center' }}>Copyright ©2022 Created by Bodega</Footer>

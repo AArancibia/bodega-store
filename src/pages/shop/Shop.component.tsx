@@ -5,14 +5,17 @@ import { useProduct } from '../../data/hooks/useProduct';
 import { connect } from 'react-redux';
 import { setProducts } from '../../redux/product/product.actions';
 import { Product } from '../../interfaces/Product';
+import { CartItem } from '../../interfaces/CartItem';
+import { addCartItem } from '../../redux/cart/cart.actions';
 
 interface Props {
   setProducts: (products: Array<Product>) => void;
+  addCartItem: (cartItems: CartItem) => void;
 }
 
-const ShopPage = ({setProducts}: Props) => {
+const ShopPage = ({setProducts, addCartItem}: Props) => {
 
-  const {products, onHandleChange} = useProduct();
+  const {products, onHandleChange} = useProduct({addCartItem});
   setProducts(products);
 
   return (
@@ -59,7 +62,8 @@ const ShopPage = ({setProducts}: Props) => {
 };
 
 const mapDispatchToProps = (dispatch: any) => ({
-  setProducts: (products: Array<Product>) => dispatch(setProducts(products))
+  setProducts: (products: Array<Product>) => dispatch(setProducts(products)),
+  addCartItem: (cartItem: CartItem) => dispatch(addCartItem(cartItem)),
 })
 
 export default connect(null, mapDispatchToProps)(ShopPage);
