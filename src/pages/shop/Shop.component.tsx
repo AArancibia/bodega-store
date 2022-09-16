@@ -24,6 +24,7 @@ const ShopPage = ({setProducts, addCartItem}: Props) => {
       {
         products.length && products.map(product => (
           <ProductCard
+            key={product.id}
             product={({
               title: product.name,
               img: product.image,

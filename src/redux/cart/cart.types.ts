@@ -1,3 +1,6 @@
 export const CartActionTypes = ({
   ADD_CART_ITEM: 'ADD_CART_ITEM',
+  REMOVE_CART_ITEM: 'REMOVE_CART_ITEM',
+  CLEAR_ITEM: 'CLEAR_ITEM',
+  TOGGLE_CART: 'TOGGLE_CART'
 })

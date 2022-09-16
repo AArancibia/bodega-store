@@ -11,4 +11,12 @@ export class CartUtil {
     }
     return [...state.cartItems];
   }
+
+  public static clearCartItem(state: CartState, {product}: CartItem) {
+    const currentCartItem = state.cartItems.find(x => x.product.id === product.id);
+    if (currentCartItem && currentCartItem.count === 1) {
+      return state.cartItems.filter(x => x.product.id !== currentCartItem.product.id);
+    }
+    return state.cartItems.map(cartItem => cartItem.product.id === product.id ? { count: cartItem.count - 1, product: cartItem.product } : cartItem)
+  }
 }

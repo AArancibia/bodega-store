@@ -1,7 +1,20 @@
-import React from 'react';
 import './CheckOut.component.scss';
+import { createStructuredSelector } from 'reselect';
+import { selectCartItems, selectTotalPrice } from '../../redux/cart/cart.selector';
+import { connect } from 'react-redux';
+import { CartItem } from '../../interfaces/CartItem';
+import { CheckoutItem } from '../../components/checkout-item/checkout-item.component';
+import { addCartItem, clearCartItem, removeCartItem } from '../../redux/cart/cart.actions';
 
-const CheckOutPage = () => {
+interface Props {
+  cartItems: Array<CartItem>;
+  total: number
+  removeCartItem: (id: string) => void;
+  clearItem: (cartItem: CartItem) => void;
+  addCartItem: (cartItem: CartItem) => void;
+}
+
+const CheckOutPage = ({cartItems, total, removeCartItem, clearItem, addCartItem}: Props) => {
   return (
     <div className="checkout-page">
       <div className="checkout-header">
@@ -22,12 +35,18 @@ const CheckOutPage = () => {
         </div>
       </div>
       {
-        /*cartItems.map(cartItem => (
-        <CheckoutItem key={cartItem.id} cartItem={cartItem} />
-      ))*/
+        cartItems.map(cartItem => (
+          <CheckoutItem
+            key={cartItem.product.id}
+            cartItem={cartItem}
+            removeCartItem={removeCartItem}
+            clearItem={clearItem}
+            addCartItem={addCartItem}
+          />
+        ))
       }
       <div className="total">
-        <span>TOTAL: ${0}</span>
+        <span>TOTAL: ${total}</span>
       </div>
       <div className="test-warning">
         *Please use the following test credit card for payments*
@@ -38,4 +57,15 @@ const CheckOutPage = () => {
   );
 };
 
-export default CheckOutPage;
+const mapStateToProps = createStructuredSelector({
+  cartItems: selectCartItems,
+  total: selectTotalPrice,
+});
+
+const mapDispatchToProps = (dispatch: any) => ({
+  removeCartItem: (id: string) => dispatch(removeCartItem(id)),
+  clearItem: (cartItem: CartItem) => dispatch(clearCartItem(cartItem)),
+  addCartItem: (cartItem: CartItem) => dispatch(addCartItem(cartItem)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(CheckOutPage);

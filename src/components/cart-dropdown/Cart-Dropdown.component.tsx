@@ -2,16 +2,16 @@ import React from 'react';
 import CartItemComponent from '../cart-item/CartItem.component';
 import './CartDropdown.component.scss';
 import { Button } from 'antd';
-import { Product } from '../../interfaces/Product';
 import { useNavigate } from 'react-router-dom';
 import { CartItem } from '../../interfaces/CartItem';
 
 
 interface Props {
   cartItems: CartItem[];
+  setToggleCart: () => void;
 }
 
-const CartDropDown = ({ cartItems }: Props) => {
+const CartDropDown = ({ cartItems, setToggleCart }: Props) => {
   const navigate = useNavigate();
   return (
     <div className="cart-dropdown">
@@ -34,11 +34,11 @@ const CartDropDown = ({ cartItems }: Props) => {
         className="cart-button"
         onClick={() => {
           navigate('/carrito');
-          // dispatch(toggleCartHidden());
+          setToggleCart();
         }}
       >Ir al carrito</Button>
     </div>
   );
-
 }
+
 export default CartDropDown;
