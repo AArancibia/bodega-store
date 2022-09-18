@@ -1,12 +1,13 @@
-import './Header.component.styles.scss';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 import { Layout } from 'antd';
 import CartDropDown from '../cart-dropdown/Cart-Dropdown.component';
 import CartIconComponent from '../cart-icon/CartIcon.component';
-import { createStructuredSelector } from 'reselect';
-import { connect } from 'react-redux';
 import { selectCartItems, selectToggleCart } from '../../redux/cart/cart.selector';
 import { CartItem } from '../../interfaces/CartItem';
 import { setToggleCart } from '../../redux/cart/cart.actions';
+import Logo from '../../assets/img/logo.png';
+import './Header.component.styles.scss';
 
 const { Header } = Layout;
 
@@ -21,7 +22,7 @@ const HeaderComponent = ({cartItems, toggleCart, setToggleCart}: Props) => {
   return (
     <>
       <Header className="header flex-no-wrap justify-content-between align-items-center" >
-        <div>LOGO</div>
+        <img src={Logo} alt=""/>
         <CartIconComponent onClickIcon={() => setToggleCart()} />
       </Header>
       {

@@ -1,10 +1,12 @@
 import { CartState } from './cart-state.interface';
 import { CartActionTypes } from './cart.types';
 import { CartUtil } from './cart.util';
+import { CartItem } from '../../interfaces/CartItem';
 
 const INITIAL_STATE: CartState = {
   cartItems: [],
   toggleCart: false,
+  currentItem: {} as CartItem,
 };
 
 const cartReducer = (state: CartState = INITIAL_STATE, action: {type: string; payload: any}) => {
@@ -29,6 +31,12 @@ const cartReducer = (state: CartState = INITIAL_STATE, action: {type: string; pa
       return {
         ...state,
         toggleCart: !state.toggleCart,
+      }
+    case CartActionTypes.GET_CART_ITEM:
+      console.log(action.payload);
+      return {
+        ...state,
+        currentItem: state.cartItems.find(x => x.product.id === action.payload),
       }
     default:
         return state;

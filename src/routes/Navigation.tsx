@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink, Route, Routes, useLocation } from 'react-router-dom';
 import { AreaChartOutlined, ShoppingOutlined, HomeOutlined } from '@ant-design/icons';
 import ShopPage from '../pages/shop/Shop.component';
@@ -38,6 +38,10 @@ const Navigation = () => {
   const onClick: MenuProps['onClick'] = e => {
     setCurrent(e.key);
   };
+
+  useEffect(() => {
+    setCurrent(pathname);
+  }, [pathname]);
 
   return (
     <Layout>

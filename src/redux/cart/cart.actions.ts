@@ -19,3 +19,8 @@ export const clearCartItem = (cartItem: CartItem) => ({
 export const setToggleCart = () => ({
   type: CartActionTypes.TOGGLE_CART,
 })
+
+export const getCartItem = (id: string) => ({
+  type: CartActionTypes.GET_CART_ITEM,
+  payload: id,
+})

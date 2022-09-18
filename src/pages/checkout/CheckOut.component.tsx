@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import { CartItem } from '../../interfaces/CartItem';
 import { CheckoutItem } from '../../components/checkout-item/checkout-item.component';
 import { addCartItem, clearCartItem, removeCartItem } from '../../redux/cart/cart.actions';
+import { Button } from 'antd';
+import React from 'react';
 
 interface Props {
   cartItems: Array<CartItem>;
@@ -22,16 +24,16 @@ const CheckOutPage = ({cartItems, total, removeCartItem, clearItem, addCartItem}
           <span>Product</span>
         </div>
         <div className="header-block">
-          <span>Description</span>
+          <span>Descripción</span>
         </div>
         <div className="header-block">
-          <span>Quantity</span>
+          <span>Cantidad</span>
         </div>
         <div className="header-block">
-          <span>Price</span>
+          <span>Precio</span>
         </div>
         <div className="header-block">
-          <span>Remove</span>
+          <span>Remover</span>
         </div>
       </div>
       {
@@ -46,13 +48,21 @@ const CheckOutPage = ({cartItems, total, removeCartItem, clearItem, addCartItem}
         ))
       }
       <div className="total">
-        <span>TOTAL: ${total}</span>
+        <span>TOTAL: S/. {total}</span>
       </div>
-      <div className="test-warning">
-        *Please use the following test credit card for payments*
-        <br />
-        424242424242424242 -Exp: 01/20 -CVV: 123
-      </div>
+      {
+        total > 0 && (
+          <div className="checkout-payment">
+            <Button
+              type="ghost"
+              block
+              size={'large'}
+              className="checkout-payment__button"
+              onClick={() => {}}
+            >Pagar</Button>
+          </div>
+        )
+      }
     </div>
   );
 };

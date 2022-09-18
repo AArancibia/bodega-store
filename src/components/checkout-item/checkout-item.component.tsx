@@ -12,7 +12,7 @@ interface Props {
 }
 
 export const CheckoutItem = ({ cartItem, removeCartItem, clearItem, addCartItem }: Props) => {
-  const { count, product: {name, image, unitPrice, id} } = cartItem;
+  const { count, product: {name, image, unitPrice, quantity} } = cartItem;
 
   return (
     <div className="checkout-item">
@@ -25,9 +25,13 @@ export const CheckoutItem = ({ cartItem, removeCartItem, clearItem, addCartItem 
           &#10094;
         </div>
         <span className="value">{count}</span>
-        <div className="arrow" onClick={() => addCartItem(cartItem)}>
-          &#10095;
-        </div>
+        {
+          quantity > count && (
+            <div className="arrow" onClick={() => addCartItem(cartItem)}>
+              &#10095;
+            </div>
+          )
+        }
       </span>
       <span className="price">{unitPrice}</span>
       <div className="remove-button" onClick={() => removeCartItem(cartItem.product.id)}>

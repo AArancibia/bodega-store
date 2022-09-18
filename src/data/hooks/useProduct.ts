@@ -20,6 +20,7 @@ export const useProduct = ({addCartItem}: Props) => {
   const onHandleChange = ({product: selectedProduct, count}: onChangeArgs) => {
     const product = products.find(x => x.id === selectedProduct.id);
     if (product) {
+      count--;
       const cartItem = {
         product: {
           ...product,
