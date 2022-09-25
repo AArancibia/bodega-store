@@ -4,7 +4,7 @@ import { Product } from '../../interfaces/Product';
 import { CartItem } from '../../interfaces/CartItem';
 import { useProduct } from '../../data/hooks/useProduct';
 import { setProducts } from '../../redux/product/product.actions';
-import { addCartItem } from '../../redux/cart/cart.actions';
+import { addCartItem, removeCartItem } from '../../redux/cart/cart.actions';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { selectCartItems } from '../../redux/cart/cart.selector';
@@ -13,10 +13,11 @@ import './Directory.component.scss';
 interface Props {
   cartItems: Array<CartItem>
   addCartItem: (cartItems: CartItem) => void;
+  removeCartItem: (id: string) => void;
 }
 
-const DirectoryComponent = ({cartItems, addCartItem}: Props) => {
-  const {products, onHandleChange} = useProduct({addCartItem});
+const DirectoryComponent = ({cartItems, addCartItem, removeCartItem}: Props) => {
+  const {products, onHandleChange} = useProduct({addCartItem, removeCartItem});
   setProducts(products);
   return (
     <>
@@ -70,6 +71,7 @@ const mapStateToProps = createStructuredSelector({
 const mapDispatchToProps = (dispatch: any) => ({
   setProducts: (products: Array<Product>) => dispatch(setProducts(products)),
   addCartItem: (cartItem: CartItem) => dispatch(addCartItem(cartItem)),
+  removeCartItem: (id: string) => dispatch(removeCartItem(id))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(DirectoryComponent);

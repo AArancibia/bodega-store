@@ -26,7 +26,7 @@ const CartDropDown = ({ cartItems, setToggleCart }: Props) => {
             <CartItemComponent key={cartItem.product.id} cartItem={cartItem}></CartItemComponent>
           ))
         ) : (
-          <>No hay items seleccionados</>
+          <span style={{color: 'black'}}>No hay items seleccionados</span>
         )}
       </div>
       <Button

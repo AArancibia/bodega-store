@@ -6,9 +6,10 @@ import { CartItem } from '../../interfaces/CartItem';
 
 interface Props {
   addCartItem?: (cartItem: CartItem) => void;
+  removeCartItem?: (id: string) => void;
 }
 
-export const useProduct = ({addCartItem}: Props) => {
+export const useProduct = ({addCartItem, removeCartItem}: Props) => {
   const [products, setProducts] = useState<Array<Product>>([]);
 
   useEffect(() => {
@@ -18,6 +19,10 @@ export const useProduct = ({addCartItem}: Props) => {
   }, []);
 
   const onHandleChange = ({product: selectedProduct, count}: onChangeArgs) => {
+    if (count === 0) {
+      removeCartItem && removeCartItem(selectedProduct.id);
+      return;
+    }
     const product = products.find(x => x.id === selectedProduct.id);
     if (product) {
       count--;
