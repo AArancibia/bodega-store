@@ -1,12 +1,11 @@
 import axios from 'axios';
 import { Constants } from '../../utils/constants';
 
-export const getProducts = (): Promise<Array<any>> => {
+export const userInformation = (username: string) => {
   return new Promise(((resolve, reject) => {
-    axios.get(Constants.URL + 'product', {
-    })
+    axios.get(Constants.URL + `user/${username}`)
       .then(((results) => results.data))
-      .then(products => resolve(products))
+      .then((value) => resolve(value))
       .catch(e => reject(e))
   }));
 }

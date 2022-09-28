@@ -1,12 +1,14 @@
 import { UserActionTypes } from './user.types';
+import { UserState } from './user-state.interface';
 
-const INITIAL_STATE = {
+const INITIAL_STATE: UserState = {
+  // @ts-ignore
   currentUser: null,
 }
 
-const userReducer = (state: any = INITIAL_STATE, action: any) => {
+const userReducer = (state: UserState = INITIAL_STATE, action: any) => {
   switch (action.type) {
-    case UserActionTypes.SET_CURRENT_USER:
+    case UserActionTypes.FETCH_LOGIN_SUCCESS:
       return {
         ...state,
         currentUser: action.payload,

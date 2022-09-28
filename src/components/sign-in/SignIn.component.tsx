@@ -1,9 +1,15 @@
 import React, { useState } from 'react';
-import { Button, Form, Input } from 'antd';
+import { Button, Form, Input, message } from 'antd';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import './SignIn.component.scss';
+import { fetchLoginStart } from '../../redux/user/user.actions';
+import { connect } from 'react-redux';
 
-const SignIn = () => {
+interface Props {
+  fetchLoginStart: (auth: any) => void;
+}
+
+const SignIn = ({fetchLoginStart}: Props) => {
   const [form] = Form.useForm();
   const [componentDisabled, setComponentDisabled] = useState<boolean>(false);
 
@@ -11,8 +17,13 @@ const SignIn = () => {
     setComponentDisabled(disabled);
   };
 
-  const onFinish = (values: any) => {
-    console.log(values);
+  const onFinish = ({username, password}: any) => {
+    fetchLoginStart({username, password});
+    info();
+  };
+
+  const info = () => {
+    message.info('This is a normal message');
   };
 
   const layout = {
@@ -52,4 +63,8 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+const mapDispatchToProps = (dispatch: any) => ({
+  fetchLoginStart: (auth: any) => dispatch(fetchLoginStart(auth)),
+})
+
+export default connect(null, mapDispatchToProps)(SignIn);

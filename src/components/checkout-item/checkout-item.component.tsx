@@ -1,5 +1,3 @@
-import React, { MouseEventHandler } from "react";
-import { connect } from "react-redux";
 import { CartItem } from '../../interfaces/CartItem';
 import NotFoundImage from '../../assets/img/not-image.jpg';
 import "./checkout-item.styles.scss";

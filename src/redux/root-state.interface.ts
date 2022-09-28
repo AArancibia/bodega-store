@@ -1,12 +1,9 @@
-import { Product } from '../interfaces/Product';
-import { CartItem } from '../interfaces/CartItem';
 import { CartState } from './cart/cart-state.interface';
 import { ProductState } from './product/product-state.interface';
+import { UserState } from './user/user-state.interface';
 
 export interface RootState {
-  user: {
-    currentUser: {},
-  },
+  user: UserState,
   product: ProductState,
   cart: CartState,
 }

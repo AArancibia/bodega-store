@@ -6,20 +6,21 @@ import { CartItem } from '../../interfaces/CartItem';
 import { CheckoutItem } from '../../components/checkout-item/checkout-item.component';
 import { addCartItem, clearCartItem, removeCartItem } from '../../redux/cart/cart.actions';
 import { Button } from 'antd';
-import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { selectCurrentUser } from '../../redux/user/user.selector';
+import { User } from '../../interfaces/User';
 
 interface Props {
   cartItems: Array<CartItem>;
-  total: number
+  total: number;
   removeCartItem: (id: string) => void;
   clearItem: (cartItem: CartItem) => void;
   addCartItem: (cartItem: CartItem) => void;
+  currentUser: User;
 }
 
-const CheckOutPage = ({cartItems, total, removeCartItem, clearItem, addCartItem}: Props) => {
+const CheckOutPage = ({cartItems, total, removeCartItem, clearItem, addCartItem, currentUser}: Props) => {
 
-  const [user] = useState(false);
   const navigate = useNavigate();
 
   return (
@@ -64,7 +65,7 @@ const CheckOutPage = ({cartItems, total, removeCartItem, clearItem, addCartItem}
               size={'large'}
               className="checkout-payment__button"
               onClick={() => {
-                if (!user) {
+                if (!currentUser) {
                   navigate('/login');
                 } else {
                   console.log('a comprar');
@@ -81,6 +82,7 @@ const CheckOutPage = ({cartItems, total, removeCartItem, clearItem, addCartItem}
 const mapStateToProps = createStructuredSelector({
   cartItems: selectCartItems,
   total: selectTotalPrice,
+  currentUser: selectCurrentUser,
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
