@@ -8,7 +8,7 @@ import { addCartItem, clearCartItem, removeCartItem } from '../../redux/cart/car
 import { Button } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { selectCurrentUser } from '../../redux/user/user.selector';
-import { User } from '../../interfaces/User';
+import { User } from '../../interfaces/user/User';
 
 interface Props {
   cartItems: Array<CartItem>;

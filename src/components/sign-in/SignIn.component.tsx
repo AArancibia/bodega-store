@@ -2,14 +2,22 @@ import React, { useState } from 'react';
 import { Button, Form, Input, message } from 'antd';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import './SignIn.component.scss';
-import { fetchLoginStart } from '../../redux/user/user.actions';
+import { fetchLoginSuccess } from '../../redux/user/user.actions';
 import { connect } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { createStructuredSelector } from 'reselect';
+import { selectCurrentUser } from '../../redux/user/user.selector';
+import { User } from '../../interfaces/user/User';
+import { login } from '../../data/rest/auth/auth.service';
+import { userInformation } from '../../data/rest/user.service';
 
 interface Props {
-  fetchLoginStart: (auth: any) => void;
+  fetchLoginSuccess: (auth: any) => void;
+  currentUser: User;
 }
 
-const SignIn = ({fetchLoginStart}: Props) => {
+const SignIn = ({fetchLoginSuccess, currentUser}: Props) => {
+  const navigate = useNavigate();
   const [form] = Form.useForm();
   const [componentDisabled, setComponentDisabled] = useState<boolean>(false);
 
@@ -17,13 +25,16 @@ const SignIn = ({fetchLoginStart}: Props) => {
     setComponentDisabled(disabled);
   };
 
-  const onFinish = ({username, password}: any) => {
-    fetchLoginStart({username, password});
-    info();
-  };
-
-  const info = () => {
-    message.info('This is a normal message');
+  const onFinish = async ({username, password}: any) => {
+    try {
+      await login(username, password);
+      const user: User = await userInformation(username);
+      fetchLoginSuccess(user);
+      message.info(`Bienvenido a Bodega Store`);
+      navigate('/');
+    } catch (e) {
+      message.error(`Credenciales inválidas`);
+    }
   };
 
   const layout = {
@@ -63,8 +74,12 @@ const SignIn = ({fetchLoginStart}: Props) => {
   );
 };
 
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser
+});
+
 const mapDispatchToProps = (dispatch: any) => ({
-  fetchLoginStart: (auth: any) => dispatch(fetchLoginStart(auth)),
+  fetchLoginSuccess: (auth: any) => dispatch(fetchLoginSuccess(auth)),
 })
 
-export default connect(null, mapDispatchToProps)(SignIn);
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

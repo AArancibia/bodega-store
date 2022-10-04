@@ -1,7 +1,7 @@
 import { all, call, takeLatest, put } from 'redux-saga/effects';
 import { UserActionTypes } from './user.types';
-import { fetchLoginFailed, fetchLoginSuccess } from './user.actions';
-import { login } from '../../data/rest/auth/auth.service';
+import { fetchLoginFailed, fetchLoginSuccess, fetchRegisterFailed, fetchRegisterSuccess } from './user.actions';
+import { login, register } from '../../data/rest/auth/auth.service';
 import { userInformation } from '../../data/rest/user.service';
 
 export function* fetchLoginAsync(action: any): any {
@@ -21,6 +21,22 @@ export function* fetchLoginStart() {
   );
 }
 
+export function* fetchRegisterAsync({payload}: any) {
+  try {
+    yield call(register, payload);
+    yield put(fetchRegisterSuccess());
+  } catch (e) {
+    yield put(fetchRegisterFailed('Error al registrarse'));
+  }
+}
+
+export function* fetchRegisterStart() {
+  yield takeLatest(
+    UserActionTypes.FETCH_REGISTER_START,
+    fetchRegisterAsync
+  );
+}
+
 export function* userSagas() {
-  yield all([call(fetchLoginStart)]);
+  yield all([call(fetchLoginStart), call(fetchRegisterStart)]);
 }

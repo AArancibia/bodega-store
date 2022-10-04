@@ -1,18 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './SignOut.component.scss';
 import { Button, Form, Input } from 'antd';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
+import { fetchRegisterStart } from '../../redux/user/user.actions';
+import { connect } from 'react-redux';
+import { UserRegister } from '../../interfaces/user/User';
 
-const SignOut = () => {
+interface Props {
+  fetchRegisterStart: (user: UserRegister) => void;
+}
+
+const SignOut = ({fetchRegisterStart}: Props) => {
   const [form] = Form.useForm();
+
   const layout = {
     labelCol: { span: 9 },
     wrapperCol: { span: 16 },
   };
 
-  const onFinish = (values: any) => {
-    console.log(values);
+  const onFinish = (values: UserRegister) => {
+    fetchRegisterStart(values);
   };
+
 
   return (
     <div className="sign-up">
@@ -29,12 +38,14 @@ const SignOut = () => {
         <Form.Item wrapperCol={{offset: 1}} label="Usuario" name="username">
           <Input />
         </Form.Item>
-        <Form.Item wrapperCol={{offset: 1}} label="Contraseña" name="password">
+        <Form.Item wrapperCol={{offset: 1}}
+                   label="Contraseña" name="password">
           <Input.Password
             iconRender={visible => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
           ></Input.Password>
         </Form.Item>
-        <Form.Item wrapperCol={{offset: 1}} label="Confirmar contraseña" name="password2">
+        <Form.Item wrapperCol={{offset: 1}}
+                   label="Confirmar contraseña" name="password2">
           <Input.Password
             iconRender={visible => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
           ></Input.Password>
@@ -49,4 +60,8 @@ const SignOut = () => {
   );
 };
 
-export default SignOut;
+const mapDispatchToProps = (dispatch: any) => ({
+  fetchRegisterStart: (user: UserRegister) => dispatch(fetchRegisterStart(user)),
+})
+
+export default connect(null, mapDispatchToProps)(SignOut);

@@ -2,7 +2,7 @@ import { useLocation, Navigate } from "react-router-dom";
 import { createStructuredSelector } from 'reselect';
 import { selectCurrentUser } from '../../redux/user/user.selector';
 import { connect } from 'react-redux';
-import { User } from '../../interfaces/User';
+import { User } from '../../interfaces/user/User';
 
 const RequireAuth = ({ children, currentUser}: { children: JSX.Element, currentUser: User }) => {
 

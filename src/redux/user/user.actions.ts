@@ -1,5 +1,5 @@
 import { UserActionTypes } from './user.types';
-import { User } from '../../interfaces/User';
+import { User, UserRegister } from '../../interfaces/user/User';
 
 export const fetchLoginStart = ({username, password}: {username: string, password: string}) => ({
   type: UserActionTypes.FETCH_LOGIN_START,
@@ -12,6 +12,20 @@ export const fetchLoginSuccess = (user: User) => ({
 })
 
 export const fetchLoginFailed = (errorMessage: string) => ({
+  type: UserActionTypes.FETCH_LOGIN_FAILED,
+  payload: errorMessage,
+})
+
+export const fetchRegisterStart = (user: UserRegister) => ({
+  type: UserActionTypes.FETCH_REGISTER_START,
+  payload: user,
+})
+
+export const fetchRegisterSuccess = () => ({
+  type: UserActionTypes.FETCH_REGISTER_SUCCESS,
+})
+
+export const fetchRegisterFailed = (errorMessage: string) => ({
   type: UserActionTypes.FETCH_LOGIN_FAILED,
   payload: errorMessage,
 })
