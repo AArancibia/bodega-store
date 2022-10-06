@@ -10,3 +10,12 @@ export const userInformation = (username: string): Promise<User> => {
       .catch(e => reject(e))
   }));
 }
+
+export const updateUser = (id: string, user: Partial<User>): Promise<User> => {
+  return new Promise(((resolve, reject) => {
+    axios.put(Constants.URL + `user/update/${id}`, {...user})
+        .then(((results) => results.data))
+        .then((value) => resolve(value))
+        .catch(e => reject(e))
+  }));
+}

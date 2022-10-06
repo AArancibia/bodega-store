@@ -5,6 +5,7 @@ export interface User {
   lastName: string;
   surname: string;
   telephone: string;
+  complete: boolean;
 }
 
 export interface UserRegister {

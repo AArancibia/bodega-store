@@ -13,10 +13,9 @@ import { userInformation } from '../../data/rest/user.service';
 
 interface Props {
   fetchLoginSuccess: (auth: any) => void;
-  currentUser: User;
 }
 
-const SignIn = ({fetchLoginSuccess, currentUser}: Props) => {
+const SignIn = ({fetchLoginSuccess}: Props) => {
   const navigate = useNavigate();
   const [form] = Form.useForm();
   const [componentDisabled, setComponentDisabled] = useState<boolean>(false);
@@ -31,7 +30,7 @@ const SignIn = ({fetchLoginSuccess, currentUser}: Props) => {
       const user: User = await userInformation(username);
       fetchLoginSuccess(user);
       message.info(`Bienvenido a Bodega Store`);
-      navigate('/');
+      navigate('/carrito');
     } catch (e) {
       message.error(`Credenciales inválidas`);
     }

@@ -9,6 +9,9 @@ import { setToggleCart } from '../../redux/cart/cart.actions';
 import Logo from '../../assets/img/logo.png';
 import './Header.component.styles.scss';
 import { useNavigate } from 'react-router-dom';
+import {selectCurrentUser} from "../../redux/user/user.selector";
+import {User} from "../../interfaces/user/User";
+import {Helpers} from "../../utils/helpers";
 
 const { Header } = Layout;
 
@@ -16,9 +19,10 @@ interface Props {
   cartItems: Array<CartItem>;
   toggleCart: boolean;
   setToggleCart: () => void;
+  user: User;
 }
 
-const HeaderComponent = ({cartItems, toggleCart, setToggleCart}: Props) => {
+const HeaderComponent = ({cartItems, toggleCart, setToggleCart, user}: Props) => {
 
   const navigate = useNavigate();
 
@@ -26,7 +30,10 @@ const HeaderComponent = ({cartItems, toggleCart, setToggleCart}: Props) => {
     <>
       <Header className="header flex-no-wrap justify-content-between align-items-center" >
         <img src={Logo} alt="" onClick={() => navigate('/')}/>
-        <CartIconComponent onClickIcon={() => setToggleCart()} cartItems={cartItems} />
+        <div className="header__info">
+          { user && (<span>{Helpers.fullName(user)}</span>)}
+          <CartIconComponent onClickIcon={() => setToggleCart()} cartItems={cartItems} />
+        </div>
       </Header>
       {
         toggleCart && <CartDropDown cartItems={cartItems} setToggleCart={setToggleCart} />
@@ -38,6 +45,7 @@ const HeaderComponent = ({cartItems, toggleCart, setToggleCart}: Props) => {
 const mapStateToProps = createStructuredSelector({
   cartItems: selectCartItems,
   toggleCart: selectToggleCart,
+  user: selectCurrentUser,
 });
 
 const mapDispatchToProps = (dispatch: any) => ({

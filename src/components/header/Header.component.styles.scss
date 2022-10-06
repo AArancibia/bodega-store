@@ -11,4 +11,12 @@
   &__logo {
     width: 50px;
   }
+
+  &__info {
+    display: flex;
+
+    & > *:last-child {
+      margin-left: 15px;
+    }
+  }
 }

@@ -1,16 +1,14 @@
-import React, { useState } from 'react';
 import './SignOut.component.scss';
-import { Button, Form, Input } from 'antd';
+import {Button, Form, Input, message} from 'antd';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
-import { fetchRegisterStart } from '../../redux/user/user.actions';
-import { connect } from 'react-redux';
 import { UserRegister } from '../../interfaces/user/User';
+import {register} from "../../data/rest/auth/auth.service";
 
 interface Props {
-  fetchRegisterStart: (user: UserRegister) => void;
+
 }
 
-const SignOut = ({fetchRegisterStart}: Props) => {
+const SignOut = (props: Props) => {
   const [form] = Form.useForm();
 
   const layout = {
@@ -18,8 +16,13 @@ const SignOut = ({fetchRegisterStart}: Props) => {
     wrapperCol: { span: 16 },
   };
 
-  const onFinish = (values: UserRegister) => {
-    fetchRegisterStart(values);
+  const onFinish = async (userRegister: UserRegister) => {
+    try {
+      await register(userRegister);
+      message.info(`Se registro el usuario correctamente`);
+    } catch (e) {
+      message.error(`Error al registrar usuario`);
+    }
   };
 
 
@@ -60,8 +63,4 @@ const SignOut = ({fetchRegisterStart}: Props) => {
   );
 };
 
-const mapDispatchToProps = (dispatch: any) => ({
-  fetchRegisterStart: (user: UserRegister) => dispatch(fetchRegisterStart(user)),
-})
-
-export default connect(null, mapDispatchToProps)(SignOut);
+export default SignOut;
