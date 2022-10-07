@@ -33,7 +33,6 @@ const cartReducer = (state: CartState = INITIAL_STATE, action: {type: string; pa
         toggleCart: !state.toggleCart,
       }
     case CartActionTypes.GET_CART_ITEM:
-      console.log(action.payload);
       return {
         ...state,
         currentItem: state.cartItems.find(x => x.product.id === action.payload),

@@ -8,19 +8,24 @@ interface Props {
     fetchUserInformation: (user: User) => void;
     isModalOpen: boolean;
     setIsModalOpen: (value: boolean) => void;
+    showLoader: () => void;
+    hideLoader: () => void;
 }
 
-const ModalUpdateInformation = ({currentUser, fetchUserInformation, isModalOpen, setIsModalOpen}: Props) => {
+const ModalUpdateInformation = ({currentUser, fetchUserInformation, isModalOpen, setIsModalOpen, showLoader, hideLoader}: Props) => {
 
     const [form] = Form.useForm();
 
     const onFinish = async (user: Partial<User>) => {
         try {
+            showLoader();
             await updateUser(currentUser.id, user);
             const userInfo = await userInformation(currentUser.username);
             fetchUserInformation(userInfo);
+            hideLoader();
             message.info(`Se guardaron los datos correctamente`);
         } catch (e) {
+            hideLoader();
             message.error(`Error al actualizar datos`);
         } finally {
             form.resetFields();

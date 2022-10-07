@@ -13,6 +13,7 @@ import React, {useState} from "react";
 import {fetchLoginSuccess} from "../../redux/user/user.actions";
 import ModalUpdateInformation from "../../components/user/modal-update-information/ModalUpdateInformation.component";
 import ModalCheckOutPayment from "../../components/user/modal-checkout-payment/ModalCheckOutPayment.component";
+import {hideLoader, showLoader} from "../../redux/loader/loader.actions";
 
 interface Props {
   cartItems: Array<CartItem>;
@@ -22,9 +23,11 @@ interface Props {
   addCartItem: (cartItem: CartItem) => void;
   currentUser: User;
   fetchUserInformation: (user: User) => void;
+  showLoader: () => void;
+  hideLoader: () => void;
 }
 
-const CheckOutPage = ({cartItems, total, removeCartItem, clearItem, addCartItem, currentUser, fetchUserInformation}: Props) => {
+const CheckOutPage = ({cartItems, total, removeCartItem, clearItem, addCartItem, currentUser, fetchUserInformation, showLoader, hideLoader}: Props) => {
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalPaymentOpen, setIsModalPaymentOpen] = useState(false);
@@ -92,10 +95,16 @@ const CheckOutPage = ({cartItems, total, removeCartItem, clearItem, addCartItem,
           fetchUserInformation={fetchUserInformation}
           isModalOpen={isModalOpen}
           setIsModalOpen={setIsModalOpen}
+          showLoader={showLoader}
+          hideLoader={hideLoader}
       />
       <ModalCheckOutPayment
           isModalPaymentOpen={isModalPaymentOpen}
           setIsModalPaymentOpen={setIsModalPaymentOpen}
+          showLoader={showLoader}
+          hideLoader={hideLoader}
+          cartItems={cartItems}
+          total={total}
       />
     </div>
   );
@@ -112,6 +121,8 @@ const mapDispatchToProps = (dispatch: any) => ({
   clearItem: (cartItem: CartItem) => dispatch(clearCartItem(cartItem)),
   addCartItem: (cartItem: CartItem) => dispatch(addCartItem(cartItem)),
   fetchUserInformation: (user: User) => dispatch(fetchLoginSuccess(user)),
+  showLoader: () => dispatch(showLoader()),
+  hideLoader: () => dispatch(hideLoader()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CheckOutPage);

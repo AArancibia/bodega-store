@@ -8,6 +8,7 @@ import Sider from 'antd/es/layout/Sider';
 import { Content, Footer } from 'antd/es/layout/layout';
 import CheckOutPage from '../pages/checkout/CheckOut.component';
 import ReportPage from '../pages/report/Report.component';
+import CheckOutPayment from "../pages/checkout-payment/CheckOutPayment.component";
 
 const items: MenuProps['items'] = [
   {
@@ -63,7 +64,8 @@ const Navigation = () => {
         <Content style={{ margin: '5px 0px' }}>
           <Routes>
             <Route path="/" element={<ShopPage />} />
-            <Route path="/carrito" element={<CheckOutPage />} />
+            <Route path="/carrito" element={<CheckOutPage />}></Route>
+            <Route path="/carrito/pago" element={<CheckOutPayment />}></Route>
             <Route path="/reporte" element={<ReportPage />} />
             <Route path="/*" element={<div>Not found</div>} />
           </Routes>
