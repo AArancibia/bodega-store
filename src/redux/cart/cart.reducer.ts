@@ -27,6 +27,11 @@ const cartReducer = (state: CartState = INITIAL_STATE, action: {type: string; pa
         ...state,
         cartItems: CartUtil.clearCartItem(state, action.payload),
       }
+    case CartActionTypes.CLEAR_CART:
+      return {
+        ...state,
+        cartItems: [],
+      }
     case CartActionTypes.TOGGLE_CART:
       return {
         ...state,

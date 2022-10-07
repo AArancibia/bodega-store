@@ -1,16 +1,27 @@
 import {Button, Result} from "antd";
+import {Navigate, useLocation, useNavigate} from "react-router-dom";
+import {ResultMessage} from "../../interfaces/Message";
 
 const CheckOutPayment = () => {
+
+    const location = useLocation();
+    const navigate = useNavigate();
+    const { message, order }  = location.state as {message: ResultMessage, order: any};
+
     return (
         <>
-            <Result
-                status="success"
-                title="Compró con éxito en Bodega Store! 😊🎉"
-                subTitle="Número de pedido: 2017182818828182881 La configuración del servidor en la nube demora de 1 a 5 minutos, espere."
-                extra={[
-                    <Button key="buy">Ir a comprar</Button>,
-                ]}
-            />
+            {
+                message ? (
+                    <Result
+                        status={message.STATUS}
+                        title={message.TITLE}
+                        subTitle={order ? message.SUB_TITLE.replace(':code', order.code) : message.SUB_TITLE}
+                        extra={[
+                            <Button key="buy" onClick={() => navigate('/')}>Ir a comprar</Button>,
+                        ]}
+                    />
+                ) : <Navigate to="/" />
+            }
         </>
     );
 };

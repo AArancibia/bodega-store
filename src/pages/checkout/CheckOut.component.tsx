@@ -4,7 +4,7 @@ import { selectCartItems, selectTotalPrice } from '../../redux/cart/cart.selecto
 import { connect } from 'react-redux';
 import { CartItem } from '../../interfaces/CartItem';
 import { CheckoutItem } from '../../components/checkout-item/checkout-item.component';
-import { addCartItem, clearCartItem, removeCartItem } from '../../redux/cart/cart.actions';
+import {addCartItem, clearCart, clearCartItem, removeCartItem} from '../../redux/cart/cart.actions';
 import {Button} from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { selectCurrentUser } from '../../redux/user/user.selector';
@@ -20,6 +20,7 @@ interface Props {
   total: number;
   removeCartItem: (id: string) => void;
   clearItem: (cartItem: CartItem) => void;
+  clearCart: () => void,
   addCartItem: (cartItem: CartItem) => void;
   currentUser: User;
   fetchUserInformation: (user: User) => void;
@@ -27,7 +28,7 @@ interface Props {
   hideLoader: () => void;
 }
 
-const CheckOutPage = ({cartItems, total, removeCartItem, clearItem, addCartItem, currentUser, fetchUserInformation, showLoader, hideLoader}: Props) => {
+const CheckOutPage = ({cartItems, total, removeCartItem, clearItem, clearCart, addCartItem, currentUser, fetchUserInformation, showLoader, hideLoader}: Props) => {
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalPaymentOpen, setIsModalPaymentOpen] = useState(false);
@@ -105,6 +106,7 @@ const CheckOutPage = ({cartItems, total, removeCartItem, clearItem, addCartItem,
           hideLoader={hideLoader}
           cartItems={cartItems}
           total={total}
+          clearCart={clearCart}
       />
     </div>
   );
@@ -119,6 +121,7 @@ const mapStateToProps = createStructuredSelector({
 const mapDispatchToProps = (dispatch: any) => ({
   removeCartItem: (id: string) => dispatch(removeCartItem(id)),
   clearItem: (cartItem: CartItem) => dispatch(clearCartItem(cartItem)),
+  clearCart: () => dispatch(clearCart()),
   addCartItem: (cartItem: CartItem) => dispatch(addCartItem(cartItem)),
   fetchUserInformation: (user: User) => dispatch(fetchLoginSuccess(user)),
   showLoader: () => dispatch(showLoader()),

@@ -16,6 +16,10 @@ export const clearCartItem = (cartItem: CartItem) => ({
   payload: cartItem,
 })
 
+export const clearCart = () => ({
+  type: CartActionTypes.CLEAR_CART,
+})
+
 export const setToggleCart = () => ({
   type: CartActionTypes.TOGGLE_CART,
 })

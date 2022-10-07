@@ -3,6 +3,8 @@ import {Form, Input, InputNumber, Modal} from "antd";
 import {CreditCard} from "../../../interfaces/CreditCard";
 import {saveSale} from "../../../data/rest/payment.service";
 import {CartItem} from "../../../interfaces/CartItem";
+import {useNavigate} from "react-router-dom";
+import {Constants} from "../../../utils/constants";
 
 interface Props {
     isModalPaymentOpen: boolean;
@@ -11,19 +13,24 @@ interface Props {
     hideLoader: () => void;
     cartItems: Array<CartItem>;
     total: number;
+    clearCart: () => void,
 }
 
-const ModalCheckOutPayment = ({isModalPaymentOpen, setIsModalPaymentOpen, showLoader, hideLoader, cartItems, total}: Props) => {
+const ModalCheckOutPayment = ({isModalPaymentOpen, setIsModalPaymentOpen, showLoader, hideLoader, cartItems, total, clearCart}: Props) => {
 
     const [form] = Form.useForm();
+    const navigate = useNavigate();
 
     const onFinish = async (values: CreditCard) => {
         try {
             showLoader();
-            await saveSale(cartItems, total);
+            const order = await saveSale(cartItems, total);
+            clearCart();
             hideLoader();
+            navigate('/carrito/pago', {state: {message: Constants.MESSAGES.CHECKOUT_PAYMENT.SUCCESS, order} });
         } catch (e) {
             hideLoader();
+            navigate('/carrito/pago', {state: {message: Constants.MESSAGES.CHECKOUT_PAYMENT.ERROR} });
         } finally {
             form.resetFields();
         }

@@ -30,7 +30,7 @@ const SignIn = ({fetchLoginSuccess}: Props) => {
       const user: User = await userInformation(username);
       fetchLoginSuccess(user);
       message.info(`Bienvenido a Bodega Store`);
-      navigate('/carrito');
+      navigate('/carrito', {replace: true});
     } catch (e) {
       message.error(`Credenciales inválidas`);
     }
