@@ -1,7 +1,7 @@
 import React from 'react';
 import {Form, Input, InputNumber, Modal} from "antd";
 import {CreditCard} from "../../../interfaces/CreditCard";
-import {saveSale} from "../../../data/rest/payment.service";
+import {saveSale} from "../../../data/rest/sale.service";
 import {CartItem} from "../../../interfaces/CartItem";
 import {useNavigate} from "react-router-dom";
 import {Constants} from "../../../utils/constants";

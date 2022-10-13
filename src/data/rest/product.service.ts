@@ -3,7 +3,7 @@ import { Constants } from '../../utils/constants';
 
 export const getProducts = (): Promise<Array<any>> => {
   return new Promise(((resolve, reject) => {
-    axios.get(Constants.URL + 'product', {
+    axios.get(Constants.URL + 'products', {
     })
       .then(((results) => results.data))
       .then(products => resolve(products))

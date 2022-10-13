@@ -57,3 +57,13 @@ nav li a {
   top: 45%;
   left: 50%;
 }
+
+.flex-nowrap {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.justify-content-center {
+  justify-content: center !important;
+}
