@@ -9,8 +9,12 @@ import { Content, Footer } from 'antd/es/layout/layout';
 import CheckOutPage from '../pages/checkout/CheckOut.component';
 import ReportPage from '../pages/report/Report.component';
 import CheckOutPayment from "../pages/checkout-payment/CheckOutPayment.component";
+import {createStructuredSelector} from "reselect";
+import {connect} from "react-redux";
+import {selectCurrentUser} from "../redux/user/user.selector";
+import {User} from "../interfaces/user/User";
 
-const items: MenuProps['items'] = [
+let items: MenuProps['items'] = [
   {
     description: 'Listado de productos',
     icon: HomeOutlined,
@@ -21,21 +25,26 @@ const items: MenuProps['items'] = [
     icon: ShoppingOutlined,
     url: '/carrito'
   },
-  {
-    description: 'Reporte de ventas',
-    icon: AreaChartOutlined,
-    url: '/reporte'
-  }
 ].map((item, index) => ({
   key: item.url,
   icon: React.createElement(item.icon),
   label: <NavLink to={`${item.url}`}>{item.description}</NavLink>,
 }));
 
+interface Props {
+  user: User;
+}
 
-const Navigation = () => {
+const ICONS = {
+  HomeOutlined: HomeOutlined,
+  ShoppingOutlined: ShoppingOutlined,
+  AreaChartOutlined: AreaChartOutlined,
+}
+
+const Navigation = ({user}: Props) => {
   const {pathname} = useLocation();
   const [current, setCurrent] = useState(pathname);
+  const [menuItems, setMenuItems] = useState<any>(items);
   const onClick: MenuProps['onClick'] = e => {
     setCurrent(e.key);
   };
@@ -43,6 +52,18 @@ const Navigation = () => {
   useEffect(() => {
     setCurrent(pathname);
   }, [pathname]);
+
+  useEffect(() => {
+    if (user && user.profiles && user.profiles.length) {
+      // @ts-ignore
+      items = user.profiles.map(x => ({url: x.url, icon: ICONS[x.icon], description: x.description})).map((item, index) => ({
+        key: item.url,
+        icon: React.createElement(item.icon),
+        label: <NavLink to={`${item.url}`}>{item.description}</NavLink>,
+      }));
+      setMenuItems(items);
+    }
+  }, [user])
 
   return (
     <Layout style={{minHeight: '100vh'}}>
@@ -56,7 +77,7 @@ const Navigation = () => {
           onClick={onClick}
           mode="inline"
           selectedKeys={[current]}
-          items={items}
+          items={menuItems}
         />
       </Sider>
       <Layout>
@@ -76,4 +97,8 @@ const Navigation = () => {
   );
 };
 
-export default Navigation;
+const mapStateToProps = createStructuredSelector({
+  user: selectCurrentUser,
+});
+
+export default connect(mapStateToProps)(Navigation);

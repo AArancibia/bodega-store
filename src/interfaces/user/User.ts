@@ -6,6 +6,14 @@ export interface User {
   surname: string;
   telephone: string;
   complete: boolean;
+  profiles: Array<Profile>;
+}
+
+export interface Profile {
+  id: string;
+  description: string;
+  icon: any;
+  url: string;
 }
 
 export interface UserRegister {
