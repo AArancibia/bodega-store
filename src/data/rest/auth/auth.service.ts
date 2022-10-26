@@ -5,7 +5,7 @@ import {v4 as uuidV4} from 'uuid';
 
 export const login = (username: string, password: string) => {
   return new Promise(((resolve, reject) => {
-    axios.post(Constants.URL + 'auth/login', {
+    axios.post(Constants.URL_MS_1 + 'auth/login', {
       username,
       password
     })
@@ -24,7 +24,7 @@ export const register = (user: UserRegister) => {
   };
 
   return new Promise(((resolve, reject) => {
-    axios.post(Constants.URL + 'user/register', userRequest)
+    axios.post(Constants.URL_MS_1 + 'user/register', userRequest)
       .then(((results) => results.data))
       .then((value) => resolve(value))
       .catch(e => reject(e))

@@ -4,7 +4,7 @@ import { User } from '../../interfaces/user/User';
 
 export const userInformation = (username: string): Promise<User> => {
   return new Promise(((resolve, reject) => {
-    axios.get(Constants.URL + `user/${username}`)
+    axios.get(Constants.URL_MS_1 + `user/${username}`)
       .then(((results) => results.data))
       .then((value) => resolve(value))
       .catch(e => reject(e))
@@ -13,7 +13,7 @@ export const userInformation = (username: string): Promise<User> => {
 
 export const updateUser = (id: string, user: Partial<User>): Promise<User> => {
   return new Promise(((resolve, reject) => {
-    axios.put(Constants.URL + `user/update/${id}`, {...user})
+    axios.put(Constants.URL_MS_1 + `user/update/${id}`, {...user})
         .then(((results) => results.data))
         .then((value) => resolve(value))
         .catch(e => reject(e))

@@ -19,6 +19,7 @@ const SignOut = (props: Props) => {
   const onFinish = async (userRegister: UserRegister) => {
     try {
       await register(userRegister);
+      form.resetFields();
       message.info(`Se registro el usuario correctamente`);
     } catch (e) {
       message.error(`Error al registrar usuario`);

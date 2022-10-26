@@ -3,6 +3,7 @@ import {Constants} from "../../utils/constants";
 import {CartItem} from "../../interfaces/CartItem";
 import {Sale, SaleDetail} from "../../interfaces/Sale";
 import {v4 as uuidV4} from 'uuid';
+import {ReportSale} from '../../interfaces/ReportSale';
 
 export const saveSale = (cartItems: Array<CartItem>, salePrice: number) => {
     const saleDetail: Array<SaleDetail> = cartItems.map(x => ({
@@ -17,7 +18,7 @@ export const saveSale = (cartItems: Array<CartItem>, salePrice: number) => {
         salePrice
     };
     return new Promise(((resolve, reject) => {
-        axios.post(Constants.URL + `sale`, sale)
+        axios.post(Constants.URL_MS_1 + `sale`, sale)
             .then(((results) => results.data))
             .then((value) => resolve(value))
             .catch(e => reject(e))
@@ -26,9 +27,22 @@ export const saveSale = (cartItems: Array<CartItem>, salePrice: number) => {
 
 export const saleReportAnnual = () => {
     return new Promise(((resolve, reject) => {
-        axios.post(Constants.URL + `sale/reporte`)
+        axios.post(Constants.URL_MS_1 + `sale/reporte`)
             .then(((results) => results.data))
             .then((value) => resolve(value))
             .catch(e => reject(e))
+    }));
+}
+
+export const generatePDFSale = (reportSale: ReportSale) => {
+    return new Promise(((resolve, reject) => {
+        axios.post(Constants.URL_MS_2 + `ventas/reporte`, reportSale, {
+          headers: {}, responseType: 'blob'
+        })
+          .then(((results) => results.data))
+          .then((value) => {
+              resolve(value);
+          })
+          .catch(e => reject(e))
     }));
 }

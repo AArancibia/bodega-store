@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink, Route, Routes, useLocation } from 'react-router-dom';
-import { AreaChartOutlined, ShoppingOutlined, HomeOutlined } from '@ant-design/icons';
+import { AreaChartOutlined, ShoppingOutlined, HomeOutlined, EditOutlined } from '@ant-design/icons';
 import ShopPage from '../pages/shop/Shop.component';
 import HeaderComponent from '../components/header/Header.component';
 import { Layout, Menu, MenuProps } from 'antd';
@@ -13,6 +13,7 @@ import {createStructuredSelector} from "reselect";
 import {connect} from "react-redux";
 import {selectCurrentUser} from "../redux/user/user.selector";
 import {User} from "../interfaces/user/User";
+import ProductList from '../pages/products/list-products/ProductList.component';
 
 let items: MenuProps['items'] = [
   {
@@ -39,6 +40,7 @@ const ICONS = {
   HomeOutlined: HomeOutlined,
   ShoppingOutlined: ShoppingOutlined,
   AreaChartOutlined: AreaChartOutlined,
+  EditOutlined: EditOutlined,
 }
 
 const Navigation = ({user}: Props) => {
@@ -88,6 +90,7 @@ const Navigation = ({user}: Props) => {
             <Route path="/carrito" element={<CheckOutPage />}></Route>
             <Route path="/carrito/pago" element={<CheckOutPayment />}></Route>
             <Route path="/reporte" element={<ReportPage />} />
+            <Route path="/productos" element={<ProductList />} />
             <Route path="/*" element={<div>Not found</div>} />
           </Routes>
         </Content>

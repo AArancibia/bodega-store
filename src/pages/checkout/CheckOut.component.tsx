@@ -37,11 +37,12 @@ const CheckOutPage = ({cartItems, total, removeCartItem, clearItem, clearCart, a
     if (!currentUser) {
       navigate('/login');
     } else {
-      if (currentUser.complete) {
+      setIsModalPaymentOpen(true);
+      /*if (currentUser.complete) {
         setIsModalPaymentOpen(true);
       } else {
         setIsModalOpen(true);
-      }
+      }*/
     }
   };
 
