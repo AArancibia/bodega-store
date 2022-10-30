@@ -20,3 +20,13 @@ export const saveProduct = (product: CreateProductDto): Promise<Array<any>> => {
       .catch(e => reject(e))
   }));
 }
+
+export const deleteProduct = (id: string): Promise<any> => {
+  return new Promise(((resolve, reject) => {
+    axios.delete(Constants.URL_MS_1 + `products/${id}`, {
+    })
+      .then(((results) => results.data))
+      .then(products => resolve(products))
+      .catch(e => reject(e))
+  }));
+}

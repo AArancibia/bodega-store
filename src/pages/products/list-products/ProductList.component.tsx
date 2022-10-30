@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import {PlusOutlined} from '@ant-design/icons';
-import {Button, Popconfirm, Space, Table} from 'antd';
+import {Button, message, Popconfirm, Space, Table} from 'antd';
 import {ColumnsType} from 'antd/es/table';
 import './ProductList.styles.scss';
 import ProductEdit from '../../../components/products/product-edit/ProductEdit.component';
 import {Product} from '../../../interfaces/Product';
-import {getProducts} from '../../../data/rest/product.service';
+import {deleteProduct, getProducts} from '../../../data/rest/product.service';
 
 interface DataType {
   key: string;
@@ -53,8 +53,8 @@ const ProductList = () => {
               id: record.key,
             });
           }}>Editar</a>
-          <Popconfirm title="Estas de acuerdo en eliminar el producto" >
-            <a onClick={() => {/* ToDo */}}>Eliminar</a>
+          <Popconfirm title="Estas de acuerdo en eliminar el producto" onConfirm={() => handleDelete(record.key)}>
+            <a>Eliminar</a>
           </Popconfirm>
         </Space>
       ),
@@ -69,6 +69,16 @@ const ProductList = () => {
   const getAsyncProducts = async () => {
     const products = await getProducts();
     setData(mapperProducts(products));
+  }
+
+  const handleDelete = async (id: string) => {
+    try {
+      await deleteProduct(id);
+      message.success('Producto eliminado con éxito');
+      getAsyncProducts();
+    } catch (e) {
+      message.error('No se puede eliminar el producto que ya esta asociado a una venta');
+    }
   }
 
   const mapperProducts = (products: Array<Product>) => {
