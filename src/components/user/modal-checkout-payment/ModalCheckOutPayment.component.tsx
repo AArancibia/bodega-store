@@ -5,6 +5,7 @@ import {saveSale} from "../../../data/rest/sale.service";
 import {CartItem} from "../../../interfaces/CartItem";
 import {useNavigate} from "react-router-dom";
 import {Constants} from "../../../utils/constants";
+import {User} from '../../../interfaces/user/User';
 
 interface Props {
     isModalPaymentOpen: boolean;
@@ -13,10 +14,11 @@ interface Props {
     hideLoader: () => void;
     cartItems: Array<CartItem>;
     total: number;
-    clearCart: () => void,
+    clearCart: () => void;
+    currentUser: User;
 }
 
-const ModalCheckOutPayment = ({isModalPaymentOpen, setIsModalPaymentOpen, showLoader, hideLoader, cartItems, total, clearCart}: Props) => {
+const ModalCheckOutPayment = ({isModalPaymentOpen, setIsModalPaymentOpen, showLoader, hideLoader, cartItems, total, clearCart, currentUser}: Props) => {
 
     const [form] = Form.useForm();
     const navigate = useNavigate();
@@ -24,7 +26,7 @@ const ModalCheckOutPayment = ({isModalPaymentOpen, setIsModalPaymentOpen, showLo
     const onFinish = async (values: CreditCard) => {
         try {
             showLoader();
-            const order = await saveSale(cartItems, total);
+            const order = await saveSale(cartItems, total, currentUser);
             clearCart();
             hideLoader();
             navigate('/carrito/pago', {state: {message: Constants.MESSAGES.CHECKOUT_PAYMENT.SUCCESS, order} });

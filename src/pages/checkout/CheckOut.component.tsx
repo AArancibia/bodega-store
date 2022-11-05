@@ -108,6 +108,7 @@ const CheckOutPage = ({cartItems, total, removeCartItem, clearItem, clearCart, a
           cartItems={cartItems}
           total={total}
           clearCart={clearCart}
+          currentUser={currentUser}
       />
     </div>
   );

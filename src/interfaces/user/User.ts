@@ -7,6 +7,7 @@ export interface User {
   telephone: string;
   complete: boolean;
   profiles: Array<Profile>;
+  email: string;
 }
 
 export interface Profile {

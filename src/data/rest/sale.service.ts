@@ -4,8 +4,9 @@ import {CartItem} from "../../interfaces/CartItem";
 import {Sale, SaleDetail} from "../../interfaces/Sale";
 import {v4 as uuidV4} from 'uuid';
 import {ReportSale} from '../../interfaces/ReportSale';
+import {User} from '../../interfaces/user/User';
 
-export const saveSale = (cartItems: Array<CartItem>, salePrice: number) => {
+export const saveSale = (cartItems: Array<CartItem>, salePrice: number, user: User) => {
     const saleDetail: Array<SaleDetail> = cartItems.map(x => ({
         id: uuidV4(),
         price: x.product.unitPrice,
@@ -15,7 +16,8 @@ export const saveSale = (cartItems: Array<CartItem>, salePrice: number) => {
     const sale: Sale = {
         id: uuidV4(),
         saleDetail,
-        salePrice
+        salePrice,
+        user: user
     };
     return new Promise(((resolve, reject) => {
         axios.post(Constants.URL_MS_1 + `sale`, sale)
