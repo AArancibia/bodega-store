@@ -16,6 +16,7 @@ export const saveSale = (cartItems: Array<CartItem>, salePrice: number, user: Us
     const sale: Sale = {
         id: uuidV4(),
         saleDetail,
+        dateRegister: new Date().toISOString(),
         salePrice,
         user: user
     };

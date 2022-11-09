@@ -19,3 +19,12 @@ export const updateUser = (id: string, user: Partial<User>): Promise<User> => {
         .catch(e => reject(e))
   }));
 }
+
+export const getSalesByUser = (id: string): Promise<any> => {
+  return new Promise(((resolve, reject) => {
+    axios.get(Constants.URL_MS_1 + `user/${id}/sales`, )
+      .then(((results) => results.data))
+      .then((value) => resolve(value.sales))
+      .catch(e => reject(e))
+  }));
+}

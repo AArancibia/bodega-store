@@ -8,7 +8,7 @@ import { CartItem } from '../../interfaces/CartItem';
 import { setToggleCart } from '../../redux/cart/cart.actions';
 import Logo from '../../assets/img/logo.png';
 import './Header.component.styles.scss';
-import { useNavigate } from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import {selectCurrentUser} from "../../redux/user/user.selector";
 import {User} from "../../interfaces/user/User";
 import {Helpers} from "../../utils/helpers";
@@ -31,7 +31,7 @@ const HeaderComponent = ({cartItems, toggleCart, setToggleCart, user}: Props) =>
       <Header className="header flex-no-wrap justify-content-between align-items-center" >
         <img src={Logo} alt="" onClick={() => navigate('/')}/>
         <div className="header__info">
-          { user && (<span>{Helpers.fullName(user)}</span>)}
+          { user && (<Link to="/informacion" className="color-black">{Helpers.fullName(user)}</Link>)}
           <CartIconComponent onClickIcon={() => setToggleCart()} cartItems={cartItems} />
         </div>
       </Header>

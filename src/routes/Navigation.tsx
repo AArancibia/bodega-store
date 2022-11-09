@@ -14,6 +14,7 @@ import {connect} from "react-redux";
 import {selectCurrentUser} from "../redux/user/user.selector";
 import {User} from "../interfaces/user/User";
 import ProductList from '../pages/products/list-products/ProductList.component';
+import UserInformation from '../components/user/user-information/user-information.component';
 
 let items: MenuProps['items'] = [
   {
@@ -91,6 +92,7 @@ const Navigation = ({user}: Props) => {
             <Route path="/carrito/pago" element={<CheckOutPayment />}></Route>
             <Route path="/reporte" element={<ReportPage />} />
             <Route path="/productos" element={<ProductList />} />
+            <Route path="/informacion" element={<UserInformation />} />
             <Route path="/*" element={<div>Not found</div>} />
           </Routes>
         </Content>
