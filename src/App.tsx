@@ -7,6 +7,8 @@ import Spinner from "./components/spinner/Spinner.component";
 import {createStructuredSelector} from "reselect";
 import {connect} from "react-redux";
 import {selectLoader} from "./redux/loader/loader.selector";
+import ModalLotteryNotificationComponent
+  from './components/modal-lottery-notification/modal-lottery-notification.component';
 
 interface Props {
     loader: boolean;
@@ -26,6 +28,7 @@ const App = ({loader}: Props) => {
                   </div>
               )
           }
+        <ModalLotteryNotificationComponent />
       </>
   );
 }

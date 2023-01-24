@@ -93,6 +93,18 @@ nav li a {
   margin-right: 20px;
 }
 
+.mt-20 {
+  margin-top: 20px;
+}
+
 .bold {
   font-weight: bold;
+}
+
+.btn {
+  border-radius: 10px;
+  &--default {
+    border: 1px solid black;
+    color: black;
+  }
 }

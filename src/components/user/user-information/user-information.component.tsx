@@ -30,7 +30,7 @@ const UserInformation = ({user}: Props) => {
   return (
     <>
       <Card>
-        <h1>
+        <h1 className="text-center">
           Historial de compras
         </h1>
         <hr/>

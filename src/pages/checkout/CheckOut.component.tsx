@@ -86,7 +86,7 @@ const CheckOutPage = ({cartItems, total, removeCartItem, clearItem, clearCart, a
               type="ghost"
               block
               size={'large'}
-              className="checkout-payment__button"
+              className="btn btn--default"
               onClick={onClickPayment}
             >Pagar</Button>
           </div>

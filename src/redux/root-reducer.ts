@@ -6,11 +6,12 @@ import cartReducer from './cart/cart.reducer';
 import { persistReducer } from 'redux-persist';
 import {loaderReducer} from "./loader/loader.reducer";
 import {saleReducer} from "./sale/sale.reducer";
+import {lotteryReducer} from './lottery/lottery.reducer';
 
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["cart", 'user']
+  whitelist: ["cart", 'user', 'lottery']
 };
 
 
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
   cart: cartReducer,
   loader: loaderReducer,
   sale: saleReducer,
+  lottery: lotteryReducer,
 })
 
 export default persistReducer(persistConfig, rootReducer);

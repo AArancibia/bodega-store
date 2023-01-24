@@ -8,6 +8,7 @@ export interface User {
   complete: boolean;
   profiles: Array<Profile>;
   email: string;
+  tickets: any;
 }
 
 export interface Profile {

@@ -6,6 +6,9 @@ import {CartItem} from "../../../interfaces/CartItem";
 import {useNavigate} from "react-router-dom";
 import {Constants} from "../../../utils/constants";
 import {User} from '../../../interfaces/user/User';
+import {userInformation} from '../../../data/rest/user.service';
+import {fetchLoginSuccess} from '../../../redux/user/user.actions';
+import {connect} from 'react-redux';
 
 interface Props {
     isModalPaymentOpen: boolean;
@@ -16,9 +19,10 @@ interface Props {
     total: number;
     clearCart: () => void;
     currentUser: User;
+    fetchLoginSuccess: any;
 }
 
-const ModalCheckOutPayment = ({isModalPaymentOpen, setIsModalPaymentOpen, showLoader, hideLoader, cartItems, total, clearCart, currentUser}: Props) => {
+const ModalCheckOutPayment = ({isModalPaymentOpen, setIsModalPaymentOpen, showLoader, hideLoader, cartItems, total, clearCart, currentUser, fetchLoginSuccess}: Props) => {
 
     const [form] = Form.useForm();
     const navigate = useNavigate();
@@ -28,9 +32,12 @@ const ModalCheckOutPayment = ({isModalPaymentOpen, setIsModalPaymentOpen, showLo
             showLoader();
             const order = await saveSale(cartItems, total, currentUser);
             clearCart();
+            const user: User = await userInformation(currentUser.username);
+            fetchLoginSuccess(user);
             hideLoader();
             navigate('/carrito/pago', {state: {message: Constants.MESSAGES.CHECKOUT_PAYMENT.SUCCESS, order} });
         } catch (e) {
+            console.log(e);
             hideLoader();
             navigate('/carrito/pago', {state: {message: Constants.MESSAGES.CHECKOUT_PAYMENT.ERROR} });
         } finally {
@@ -68,4 +75,8 @@ const ModalCheckOutPayment = ({isModalPaymentOpen, setIsModalPaymentOpen, showLo
     );
 };
 
-export default ModalCheckOutPayment;
+const mapDispatchToProps = (dispatch: any) => ({
+    fetchLoginSuccess: (auth: any) => dispatch(fetchLoginSuccess(auth)),
+})
+
+export default connect(null, mapDispatchToProps)(ModalCheckOutPayment);

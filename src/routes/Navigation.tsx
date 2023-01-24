@@ -15,6 +15,8 @@ import {selectCurrentUser} from "../redux/user/user.selector";
 import {User} from "../interfaces/user/User";
 import ProductList from '../pages/products/list-products/ProductList.component';
 import UserInformation from '../components/user/user-information/user-information.component';
+import Chatbot from '../components/chatbot/chatbot.component';
+import LotteryPage from '../pages/lottery/Lottery.component';
 
 let items: MenuProps['items'] = [
   {
@@ -73,6 +75,7 @@ const Navigation = ({user}: Props) => {
       <Sider
         breakpoint="lg"
         collapsedWidth="0"
+        width={250}
       >
         <div className="logo" />
         <Menu
@@ -93,9 +96,11 @@ const Navigation = ({user}: Props) => {
             <Route path="/reporte" element={<ReportPage />} />
             <Route path="/productos" element={<ProductList />} />
             <Route path="/informacion" element={<UserInformation />} />
+            <Route path="/sorteo" element={<LotteryPage />} />
             <Route path="/*" element={<div>Not found</div>} />
           </Routes>
         </Content>
+        <Chatbot/>
         <Footer style={{ textAlign: 'center' }}>Copyright ©2022 Created by Bodega</Footer>
       </Layout>
     </Layout>
