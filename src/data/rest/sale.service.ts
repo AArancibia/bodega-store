@@ -21,7 +21,7 @@ export const saveSale = (cartItems: Array<CartItem>, salePrice: number, user: Us
         user: user
     };
     return new Promise(((resolve, reject) => {
-        axios.post(Constants.URL_MS_1 + `sale`, sale)
+        axios.post(Constants.URL_MS_2 + `sale`, sale)
             .then(((results) => results.data))
             .then((value) => resolve(value))
             .catch(e => reject(e))
@@ -30,7 +30,7 @@ export const saveSale = (cartItems: Array<CartItem>, salePrice: number, user: Us
 
 export const saleReportAnnual = () => {
     return new Promise(((resolve, reject) => {
-        axios.post(Constants.URL_MS_1 + `sale/reporte`)
+        axios.post(Constants.URL_MS_2 + `sale/reporte`)
             .then(((results) => results.data))
             .then((value) => resolve(value))
             .catch(e => reject(e))
@@ -39,7 +39,7 @@ export const saleReportAnnual = () => {
 
 export const generatePDFSale = (reportSale: ReportSale) => {
     return new Promise(((resolve, reject) => {
-        axios.post(Constants.URL_MS_2 + `ventas/reporte`, reportSale, {
+        axios.post(Constants.URL_MS_2 + `sale/reporte/pdf`, reportSale, {
           headers: {}, responseType: 'blob'
         })
           .then(((results) => results.data))
