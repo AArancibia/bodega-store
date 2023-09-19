@@ -5,15 +5,12 @@ import { connect } from 'react-redux';
 import { CartItem } from '../../interfaces/CartItem';
 import { CheckoutItem } from '../../components/checkout-item/checkout-item.component';
 import {addCartItem, clearCart, clearCartItem, removeCartItem} from '../../redux/cart/cart.actions';
-import {Button} from 'antd';
-import { useNavigate } from 'react-router-dom';
 import { selectCurrentUser } from '../../redux/user/user.selector';
 import { User } from '../../interfaces/user/User';
-import React, {useState} from "react";
 import {fetchLoginSuccess} from "../../redux/user/user.actions";
-import ModalUpdateInformation from "../../components/user/modal-update-information/ModalUpdateInformation.component";
-import ModalCheckOutPayment from "../../components/user/modal-checkout-payment/ModalCheckOutPayment.component";
 import {hideLoader, showLoader} from "../../redux/loader/loader.actions";
+import {usePaypalPayment} from '../../data/hooks/usePaypalPayment';
+import SubmitPaymentComponent from '../../components/submit-payment/SubmitPayment.component';
 
 interface Props {
   cartItems: Array<CartItem>;
@@ -28,23 +25,8 @@ interface Props {
   hideLoader: () => void;
 }
 
-const CheckOutPage = ({cartItems, total, removeCartItem, clearItem, clearCart, addCartItem, currentUser, fetchUserInformation, showLoader, hideLoader}: Props) => {
-  const navigate = useNavigate();
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isModalPaymentOpen, setIsModalPaymentOpen] = useState(false);
-
-  const onClickPayment = () => {
-    if (!currentUser) {
-      navigate('/login');
-    } else {
-      setIsModalPaymentOpen(true);
-      /*if (currentUser.complete) {
-        setIsModalPaymentOpen(true);
-      } else {
-        setIsModalOpen(true);
-      }*/
-    }
-  };
+const CheckOutPage = ({cartItems, total, removeCartItem, clearItem, addCartItem}: Props) => {
+  const {token} = usePaypalPayment();
 
   return (
     <div className="checkout-page">
@@ -80,36 +62,12 @@ const CheckOutPage = ({cartItems, total, removeCartItem, clearItem, clearCart, a
         <span>TOTAL: S/. {total}</span>
       </div>
       {
-        total > 0 && (
+        total > 0 && token && (
           <div className="checkout-payment">
-            <Button
-              type="ghost"
-              block
-              size={'large'}
-              className="btn btn--default"
-              onClick={onClickPayment}
-            >Pagar</Button>
+            <SubmitPaymentComponent token={token} cartItems={cartItems} total={total}></SubmitPaymentComponent>
           </div>
         )
       }
-      <ModalUpdateInformation
-          currentUser={currentUser}
-          fetchUserInformation={fetchUserInformation}
-          isModalOpen={isModalOpen}
-          setIsModalOpen={setIsModalOpen}
-          showLoader={showLoader}
-          hideLoader={hideLoader}
-      />
-      <ModalCheckOutPayment
-          isModalPaymentOpen={isModalPaymentOpen}
-          setIsModalPaymentOpen={setIsModalPaymentOpen}
-          showLoader={showLoader}
-          hideLoader={hideLoader}
-          cartItems={cartItems}
-          total={total}
-          clearCart={clearCart}
-          currentUser={currentUser}
-      />
     </div>
   );
 };

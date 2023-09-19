@@ -1,4 +1,5 @@
 import {User} from "../interfaces/user/User";
+import { v4 as uuidv4 } from 'uuid';
 
 export class Helpers {
     public static fullName(user: User) {
@@ -6,5 +7,9 @@ export class Helpers {
             return `${user.givenName} ${user.lastName} ${user.surname}`;
         }
         return user.username;
+    }
+
+    public static generateUUID() {
+        return uuidv4();
     }
 }
