@@ -4,4 +4,5 @@ export interface Product {
   unitPrice: number;
   quantity: number;
   image: string;
+  categoryId: string;
 }

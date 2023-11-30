@@ -1,22 +1,23 @@
-import React from 'react';
 import { ProductButtons, ProductCard, ProductImage, ProductTitle } from 'ajas-product-card';
 import { Product } from '../../interfaces/Product';
 import { CartItem } from '../../interfaces/CartItem';
 import { useProduct } from '../../data/hooks/useProduct';
-import { setProducts } from '../../redux/product/product.actions';
+import {setCategories, setProducts} from '../../redux/product/product.actions';
 import { addCartItem, removeCartItem } from '../../redux/cart/cart.actions';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { selectCartItems } from '../../redux/cart/cart.selector';
 import './Directory.component.scss';
+import {Category} from '../../interfaces/Category';
 
 interface Props {
   cartItems: Array<CartItem>
   addCartItem: (cartItems: CartItem) => void;
   removeCartItem: (id: string) => void;
+  loadCategories: (categories: Array<Category>) => void;
 }
 
-const DirectoryComponent = ({cartItems, addCartItem, removeCartItem}: Props) => {
+const DirectoryComponent = ({cartItems, addCartItem, removeCartItem, loadCategories}: Props) => {
   const {products, onHandleChange} = useProduct({addCartItem, removeCartItem});
   setProducts(products);
   return (
@@ -70,6 +71,7 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = (dispatch: any) => ({
   setProducts: (products: Array<Product>) => dispatch(setProducts(products)),
+  loadCategories: (categories: Array<Category>) => dispatch(setCategories(categories)),
   addCartItem: (cartItem: CartItem) => dispatch(addCartItem(cartItem)),
   removeCartItem: (id: string) => dispatch(removeCartItem(id))
 })

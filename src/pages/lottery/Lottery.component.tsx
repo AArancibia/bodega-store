@@ -59,7 +59,7 @@ const LotteryPage = ({user, lottery, setLottery}: Props) => {
     if (ticketWinner) {
       setMessage({
         icon: <GiftOutlined />,
-        status: 'success', title: `Felicidades ${user.givenName}, eres el GANADOR 🥳`,
+        status: 'success', title: `Felicidades!! TÚ, eres el GANADOR 🥳`,
         subTitle: 'Ganaste un vale por S/ 100 💸 para tus compras en Bodega Store',
       });
     } else {

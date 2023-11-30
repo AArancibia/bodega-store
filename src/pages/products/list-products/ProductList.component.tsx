@@ -13,12 +13,13 @@ interface DataType {
   price: number;
   quantity: number;
   image: string;
+  categoryId: string;
 }
 
 const ProductList = () => {
   const columns: ColumnsType<DataType> = [
     {
-      title: 'Nombre',
+      title: 'Descripcion',
       dataIndex: 'name',
       key: 'name',
     },
@@ -51,6 +52,7 @@ const ProductList = () => {
               name: record.name,
               unitPrice: record.price,
               id: record.key,
+              categoryId: record.categoryId
             });
           }}>Editar</a>
           <Popconfirm title="Estas de acuerdo en eliminar el producto" onConfirm={() => handleDelete(record.key)}>
@@ -88,6 +90,7 @@ const ProductList = () => {
       price: x.unitPrice,
       quantity: x.quantity,
       image: x.image,
+      categoryId: x.categoryId,
     }));
   }
 

@@ -29,3 +29,7 @@ export const fetchRegisterFailed = (errorMessage: string) => ({
   type: UserActionTypes.FETCH_LOGIN_FAILED,
   payload: errorMessage,
 })
+
+export const logout = () => ({
+  type: UserActionTypes.LOGOUT,
+})

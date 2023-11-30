@@ -1,26 +1,32 @@
 import React, {useState} from 'react';
-import {Form, Input, InputNumber, message, Modal} from 'antd';
+import {Form, Input, InputNumber, message, Modal, Select} from 'antd';
 import {Product} from '../../../interfaces/Product';
 import ImagePreview from '../../image-preview/ImagePreview.component';
 import {saveProduct} from '../../../data/rest/product.service';
 import {v4 as uuid} from 'uuid';
+import {createStructuredSelector} from 'reselect';
+import {connect} from 'react-redux';
+import {selectAllCategories} from '../../../redux/product/product.selector';
+import {Category} from '../../../interfaces/Category';
+import {Helpers} from '../../../utils/helpers';
 
 interface Props {
   isOpen: boolean;
   setIsOpenEdit: (value: boolean) => void;
   setSuccess: (value: boolean) => void;
   product?: Product;
+  categories: Array<Category>;
 }
 
-const ProductEdit = ({isOpen, setIsOpenEdit, product, setSuccess}: Props) => {
+const ProductEdit = ({isOpen, setIsOpenEdit, product, setSuccess, categories}: Props) => {
   const [form] = Form.useForm();
-  const [image, setImage] = useState(product?.image || '');
+  const [image, setImage] = useState(product?.image ?? '');
 
   const onFinish = async (values: any) => {
     try {
       if (product) {
         values.id = product.id;
-        values.image = image ? image : product.image;
+        values.image = image || product.image;
         await saveProduct(values);
         message.success('Producto editado con éxito');
         setIsOpenEdit(false);
@@ -57,16 +63,21 @@ const ProductEdit = ({isOpen, setIsOpenEdit, product, setSuccess}: Props) => {
         form={form} onFinish={onFinish}
         initialValues={product}
       >
-        <Form.Item label="Nombre del producto" name="name">
+        <Form.Item label="Descripcion" name="name">
           <Input />
         </Form.Item>
-        <Form.Item label="Precio del producto" name="unitPrice">
-          <InputNumber />
+        <Form.Item label="Precio" name="unitPrice">
+          <InputNumber min={0}/>
         </Form.Item>
-        <Form.Item label="Cantidad del producto" name="quantity">
-          <InputNumber />
+        <Form.Item label="Cantidad" name="quantity">
+          <InputNumber min={0}/>
         </Form.Item>
-        <Form.Item label="Imagen del producto" name="image">
+        <Form.Item label="Categoria" name="categoryId">
+          <Select
+            options={Helpers.toSelect(categories, 'id', 'name')}
+          />
+        </Form.Item>
+        <Form.Item label="Imagen" name="image">
           <Input onChange={handleChange}/>
         </Form.Item>
         <ImagePreview src={image} />
@@ -75,4 +86,8 @@ const ProductEdit = ({isOpen, setIsOpenEdit, product, setSuccess}: Props) => {
   );
 };
 
-export default ProductEdit;
+const mapStateToProps = createStructuredSelector({
+  categories: selectAllCategories
+});
+
+export default connect(mapStateToProps)(ProductEdit);

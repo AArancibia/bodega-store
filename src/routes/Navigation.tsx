@@ -17,6 +17,9 @@ import ProductList from '../pages/products/list-products/ProductList.component';
 import UserInformation from '../components/user/user-information/user-information.component';
 import Chatbot from '../components/chatbot/chatbot.component';
 import LotteryPage from '../pages/lottery/Lottery.component';
+import {getCategories} from '../data/rest/product.service';
+import {Category} from '../interfaces/Category';
+import {setCategories} from '../redux/product/product.actions';
 
 let items: MenuProps['items'] = [
   {
@@ -37,6 +40,7 @@ let items: MenuProps['items'] = [
 
 interface Props {
   user: User;
+  loadCategories: (categories: Array<Category>) => void;
 }
 
 const ICONS = {
@@ -46,7 +50,7 @@ const ICONS = {
   EditOutlined: EditOutlined,
 }
 
-const Navigation = ({user}: Props) => {
+const Navigation = ({user, loadCategories}: Props) => {
   const {pathname} = useLocation();
   const [current, setCurrent] = useState(pathname);
   const [menuItems, setMenuItems] = useState<any>(items);
@@ -57,6 +61,13 @@ const Navigation = ({user}: Props) => {
   useEffect(() => {
     setCurrent(pathname);
   }, [pathname]);
+
+  useEffect(() => {
+    getCategories()
+      .then(categories => {
+        loadCategories(categories);
+      });
+  }, []);
 
   useEffect(() => {
     if (user && user.profiles && user.profiles.length) {
@@ -111,4 +122,8 @@ const mapStateToProps = createStructuredSelector({
   user: selectCurrentUser,
 });
 
-export default connect(mapStateToProps)(Navigation);
+const mapDispatchToProps = (dispatch: any) => ({
+  loadCategories: (categories: Array<Category>) => dispatch(setCategories(categories)),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navigation);

@@ -7,4 +7,8 @@ export class Helpers {
         }
         return user.username;
     }
+
+    public static toSelect(list: Array<any>, value: string, label: string) {
+        return list.map(item => ({value: item[value], label: item[label]}));
+    }
 }

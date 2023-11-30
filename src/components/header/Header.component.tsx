@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import {Button, Layout, Popover} from 'antd';
+import {Button, Dropdown, Layout, Popover, Space} from 'antd';
+import type { MenuProps } from 'antd';
 import CartDropDown from '../cart-dropdown/Cart-Dropdown.component';
 import CartIconComponent from '../cart-icon/CartIcon.component';
 import { selectCartItems, selectToggleCart } from '../../redux/cart/cart.selector';
@@ -12,9 +13,10 @@ import {Link, useNavigate} from 'react-router-dom';
 import {selectCurrentUser} from "../../redux/user/user.selector";
 import {User} from "../../interfaces/user/User";
 import {Helpers} from "../../utils/helpers";
-import {GiftOutlined} from '@ant-design/icons'
+import {GiftOutlined, SmileOutlined, DownOutlined} from '@ant-design/icons'
 import {selectLottery} from '../../redux/lottery/lottery.selector';
 import {Lottery} from '../../interfaces/Lottery';
+import {logout} from '../../redux/user/user.actions';
 
 const { Header } = Layout;
 
@@ -24,6 +26,7 @@ interface Props {
   setToggleCart: () => void;
   user: User;
   lottery: Lottery;
+  logout: () => void;
 }
 
 const content = (user: User, navigate: Function) => (
@@ -39,8 +42,22 @@ const content = (user: User, navigate: Function) => (
   </div>
 );
 
-const HeaderComponent = ({cartItems, toggleCart, setToggleCart, user, lottery}: Props) => {
 
+const HeaderComponent = ({cartItems, toggleCart, setToggleCart, user, lottery, logout}: Props) => {
+  const items: MenuProps['items'] = [
+    {
+      key: '1',
+      label: (
+        <Link to="/informacion" className="color-black">Compras</Link>
+      ),
+    },
+    {
+      key: '1',
+      label: (
+        <Link to="/" className="color-black" onClick={logout}>Cerrar sesión</Link>
+      ),
+    },
+  ];
   const navigate = useNavigate();
 
   return (
@@ -48,7 +65,14 @@ const HeaderComponent = ({cartItems, toggleCart, setToggleCart, user, lottery}: 
       <Header className="header flex-no-wrap justify-content-between align-items-center" >
         <img src={Logo} alt="" onClick={() => navigate('/')}/>
         <div className="header__info">
-          { user && (<Link to="/informacion" className="color-black">{Helpers.fullName(user)}</Link>)}
+          { user && (<Dropdown menu={{ items }}>
+            <a onClick={(e) => e.preventDefault()}>
+              <Space>
+                {Helpers.fullName(user)}
+                <DownOutlined />
+              </Space>
+            </a>
+          </Dropdown>)}
           {
             lottery && (
               <Popover placement="bottom" content={() => content(user, navigate)} title="Estos son tus tickets">
@@ -74,7 +98,8 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-  setToggleCart: () => dispatch(setToggleCart())
+  setToggleCart: () => dispatch(setToggleCart()),
+  logout: () => dispatch(logout()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(HeaderComponent);
