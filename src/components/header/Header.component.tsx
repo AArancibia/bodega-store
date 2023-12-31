@@ -42,8 +42,13 @@ const content = (user: User, navigate: Function) => (
   </div>
 );
 
-
 const HeaderComponent = ({cartItems, toggleCart, setToggleCart, user, lottery, logout}: Props) => {
+  const navigate = useNavigate();
+  const onLogout = () => {
+    logout();
+    navigate('/');
+  }
+
   const items: MenuProps['items'] = [
     {
       key: '1',
@@ -54,11 +59,10 @@ const HeaderComponent = ({cartItems, toggleCart, setToggleCart, user, lottery, l
     {
       key: '1',
       label: (
-        <Link to="/" className="color-black" onClick={logout}>Cerrar sesión</Link>
+        <Link to="/" className="color-black" onClick={onLogout}>Cerrar sesión</Link>
       ),
     },
   ];
-  const navigate = useNavigate();
 
   return (
     <>

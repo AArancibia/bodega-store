@@ -8,7 +8,7 @@ export interface ProductActions {
 }
 
 export const setProducts = (products: Array<Product>) => ({
-  type: 'SET_PRODUCTS',
+  type: ProductActionTypes.SET_PRODUCTS,
   payload: products,
 })
 
