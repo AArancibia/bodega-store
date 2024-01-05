@@ -21,7 +21,7 @@ interface Props {
   total: number;
 }
 
-const SubmitPaymentComponent = ({token, clearCart, cartItems, total}: Props) => {
+const SubmitPaymentComponent = ({token, clearCart, cartItems, total, currentUser}: Props) => {
   const navigate = useNavigate();
   const initialOptions = {
     clientId: "AYezhSG1lTyPxcZy2qjIf9Xvg4f8jyeFFdLpmGTyqeCxar7uyjH7LmwJKnIcYbwlJYnk6cvcu4rD9ZF3",
@@ -30,6 +30,10 @@ const SubmitPaymentComponent = ({token, clearCart, cartItems, total}: Props) => 
     enableFunding: [FUNDING.PAYPAL, FUNDING.CARD],
   } as ReactPayPalScriptOptions;
   const handleCreateOrder = async (): Promise<string> => {
+    if (!currentUser) {
+      navigate('/login');
+      return Promise.reject();
+    }
     try {
       const {id} =  await createOrder(cartItems, total);
       return id;
