@@ -1,4 +1,5 @@
 import {User} from "../interfaces/user/User";
+import { v4 as uuidv4 } from 'uuid';
 
 export class Helpers {
     public static fullName(user: User) {
@@ -10,5 +11,9 @@ export class Helpers {
 
     public static toSelect(list: Array<any>, value: string, label: string) {
         return list.map(item => ({value: item[value], label: item[label]}));
+    }
+
+    public static generateUUID() {
+        return uuidv4();
     }
 }

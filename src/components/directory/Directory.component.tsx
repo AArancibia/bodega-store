@@ -23,8 +23,8 @@ const DirectoryComponent = ({cartItems, addCartItem, removeCartItem, loadCategor
   return (
     <>
       {
-        products.length && products.map(product => {
-          const value = cartItems.find(x => x.product.id === product.id)?.count || 0;
+        !!products.length && products.map(product => {
+          const value = cartItems.find(x => x.product.id === product.id)?.count ?? 0;
           return (
             <ProductCard
               key={product.id}
