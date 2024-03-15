@@ -13,7 +13,7 @@ import {Link, useNavigate} from 'react-router-dom';
 import {selectCurrentUser} from "../../redux/user/user.selector";
 import {User} from "../../interfaces/user/User";
 import {Helpers} from "../../utils/helpers";
-import {GiftOutlined, SmileOutlined, DownOutlined} from '@ant-design/icons'
+import {GiftOutlined, SmileOutlined, DownOutlined, StepForwardOutlined} from '@ant-design/icons'
 import {selectLottery} from '../../redux/lottery/lottery.selector';
 import {Lottery} from '../../interfaces/Lottery';
 import {logout} from '../../redux/user/user.actions';
@@ -39,6 +39,7 @@ const content = (user: User, navigate: Function) => (
       )
     }
     <Button className="btn btn-default mt-20" block onClick={() => navigate('/sorteo')}>Ir al sorteo</Button>
+    <StepForwardOutlined />
   </div>
 );
 

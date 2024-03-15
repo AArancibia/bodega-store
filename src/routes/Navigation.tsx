@@ -111,7 +111,7 @@ const Navigation = ({user, loadCategories}: Props) => {
             <Route path="/*" element={<div>Not found</div>} />
           </Routes>
         </Content>
-        <Chatbot/>
+        {/*<Chatbot/>*/}
         <Footer style={{ textAlign: 'center' }}>Copyright ©2022 Created by Bodega</Footer>
       </Layout>
     </Layout>

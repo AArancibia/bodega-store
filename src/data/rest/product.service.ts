@@ -33,7 +33,7 @@ export const deleteProduct = (id: string): Promise<any> => {
 
 export const getCategories = (): Promise<Array<any>> => {
   return new Promise(((resolve, reject) => {
-    axios.get(Constants.URL_MS_2 + 'categories', {
+    axios.get(Constants.URL_MS_1 + 'categories', {
     })
       .then(((results) => results.data))
       .then(products => resolve(products))
