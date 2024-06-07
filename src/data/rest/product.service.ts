@@ -14,7 +14,7 @@ export const getProducts = (): Promise<Array<any>> => {
 
 export const saveProduct = (product: CreateProductDto): Promise<Array<any>> => {
   return new Promise(((resolve, reject) => {
-    axios.post(Constants.URL_MS_2 + 'products', product)
+    axios.post(Constants.URL_MS_1 + 'products', product)
       .then(((results) => results.data))
       .then(products => resolve(products))
       .catch(e => reject(e))
