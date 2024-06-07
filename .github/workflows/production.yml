@@ -15,7 +15,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Build project
-        run: npm build --if-present
+        run: npm run build --if-present
       - name: Install Railway
         run: npm i -g @railway/cli
       - name: Deploy
