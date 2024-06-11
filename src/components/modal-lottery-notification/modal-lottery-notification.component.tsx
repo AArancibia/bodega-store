@@ -6,7 +6,6 @@ import {connect} from 'react-redux';
 import {Lottery} from '../../interfaces/Lottery';
 import {setLottery} from '../../redux/lottery/lottery.actions';
 
-const Context = React.createContext({ name: 'Default' });
 
 interface Props {
   setLottery: (lottery: Lottery) => void;
@@ -41,7 +40,7 @@ const ModalLotteryNotification = ({setLottery}: Props) => {
           openNotification('topLeft', lottery);
         }
       });
-  }, [])
+  })
 
   return (
     <>

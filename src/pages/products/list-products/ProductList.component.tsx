@@ -36,14 +36,14 @@ const ProductList = () => {
       title: 'Imagen',
       dataIndex: 'image',
       key: 'image',
-      render: src => <img width={80} height={80} src={`${src}`}/>,
+      render: src => <img alt="product" width={80} height={80} src={`${src}`}/>,
     },
     {
       title: 'Acciones',
       key: 'action',
       render: (_, record) => (
         <Space size="middle">
-          <a onClick={() => {
+          <button onClick={() => {
             setIsOpenEdit(true);
             setProduct({
               image: record.image,
@@ -52,9 +52,9 @@ const ProductList = () => {
               unitPrice: record.price,
               id: record.key,
             });
-          }}>Editar</a>
+          }}>Editar</button>
           <Popconfirm title="Estas de acuerdo en eliminar el producto" onConfirm={() => handleDelete(record.key)}>
-            <a>Eliminar</a>
+            <button>Eliminar</button>
           </Popconfirm>
         </Space>
       ),
@@ -96,11 +96,12 @@ const ProductList = () => {
       getAsyncProducts();
       setSuccess(false);
     }
+    // eslint-disable-next-line
   }, [success]);
 
   useEffect(() => {
     getAsyncProducts();
-  }, []);
+  });
 
 
   const handleAddProduct = () => {

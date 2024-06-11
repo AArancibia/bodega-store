@@ -42,11 +42,6 @@ const LotteryPage = ({user, lottery, setLottery}: Props) => {
 
   const diff = date_future - today;
 
-  const seconds = Math.floor(diff / 1000);
-  const minutes = Math.floor(seconds / 60);
-  const hours = Math.floor(minutes / 60);
-  const days = Math.floor(hours / 24);
-
   // const deadline = Date.now() + 1000 * 60 * 60 * 24 * 2 + 1000 * 30; // Dayjs is also OK
   const deadline = date_future + 1000; // Dayjs is also OK
 
@@ -75,7 +70,7 @@ const LotteryPage = ({user, lottery, setLottery}: Props) => {
       .then((lottery: Lottery) => {
         setLottery(lottery);
       });
-  }, [])
+  })
 
   return (
     <div>

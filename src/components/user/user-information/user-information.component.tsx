@@ -21,7 +21,7 @@ const UserInformation = ({user}: Props) => {
       setSales(orderSales(salesByUser));
     }
     asyncSalesByUser();
-  }, []);
+  });
 
   const orderSales = (sales: any) => {
     return sales.sort((a: any, b: any) => new Date(a.dateRegister).getTime() > new Date(b.dateRegister).getTime() ? -1 : 1)
