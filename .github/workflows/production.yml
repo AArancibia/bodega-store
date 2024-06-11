@@ -19,8 +19,6 @@ jobs:
       - name: Install Railway
         run: npm i -g @railway/cli
       - name: Deploy
-        uses: bervProject/railway-deploy@main
+        run: railway up
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
-        with:
-          service: f2f91c8c-12bc-481b-aa20-83408822642c
