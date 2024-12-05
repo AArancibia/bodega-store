@@ -2,13 +2,13 @@ import './CheckOut.component.scss';
 import { createStructuredSelector } from 'reselect';
 import { selectCartItems, selectTotalPrice } from '../../redux/cart/cart.selector';
 import { connect } from 'react-redux';
-import { CartItem } from '../../interfaces/CartItem';
+import { CartItem } from '../../domain/interfaces/CartItem';
 import { CheckoutItem } from '../../components/checkout-item/checkout-item.component';
 import {addCartItem, clearCart, clearCartItem, removeCartItem} from '../../redux/cart/cart.actions';
 import {Button} from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { selectCurrentUser } from '../../redux/user/user.selector';
-import { User } from '../../interfaces/user/User';
+import { User } from '../../domain/interfaces/user/User';
 import React, {useState} from "react";
 import {fetchLoginSuccess} from "../../redux/user/user.actions";
 import ModalUpdateInformation from "../../components/user/modal-update-information/ModalUpdateInformation.component";
@@ -34,16 +34,17 @@ const CheckOutPage = ({cartItems, total, removeCartItem, clearItem, clearCart, a
   const [isModalPaymentOpen, setIsModalPaymentOpen] = useState(false);
 
   const onClickPayment = () => {
-    if (!currentUser) {
+    setIsModalPaymentOpen(true);
+    /*if (!currentUser) {
       navigate('/login');
     } else {
       setIsModalPaymentOpen(true);
-      /*if (currentUser.complete) {
+      if (currentUser.complete) {
         setIsModalPaymentOpen(true);
       } else {
         setIsModalOpen(true);
-      }*/
-    }
+      }
+    }*/
   };
 
   return (

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { Constants } from '../../../utils/constants';
-import { UserRegister, UserRequest } from '../../../interfaces/user/User';
+import { UserRegister, UserRequest } from '../../../domain/interfaces/user/User';
 import {v4 as uuidV4} from 'uuid';
 
 export const login = (username: string, password: string) => {

@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 import { selectCurrentUser } from '../../redux/user/user.selector';
-import { User } from '../../interfaces/user/User';
+import { User } from '../../domain/interfaces/user/User';
 import { login } from '../../data/rest/auth/auth.service';
 import { userInformation } from '../../data/rest/user.service';
 

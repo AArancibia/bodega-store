@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { getProducts } from '../rest/product.service';
 import { onChangeArgs } from 'ajas-product-card/src/interfaces/interfaces';
-import { Product } from '../../interfaces/Product';
-import { CartItem } from '../../interfaces/CartItem';
+import { Product } from '../../domain/interfaces/Product';
+import { CartItem } from '../../domain/interfaces/CartItem';
 
 interface Props {
   addCartItem?: (cartItem: CartItem) => void;

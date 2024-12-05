@@ -3,7 +3,7 @@ import CartItemComponent from '../cart-item/CartItem.component';
 import './CartDropdown.component.scss';
 import { Button } from 'antd';
 import { useNavigate } from 'react-router-dom';
-import { CartItem } from '../../interfaces/CartItem';
+import { CartItem } from '../../domain/interfaces/CartItem';
 
 
 interface Props {

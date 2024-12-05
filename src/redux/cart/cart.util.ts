@@ -1,5 +1,5 @@
 import { CartState } from './cart-state.interface';
-import { CartItem } from '../../interfaces/CartItem';
+import { CartItem } from '../../domain/interfaces/CartItem';
 
 export class CartUtil {
   public static addCartItem(state: CartState, action: {payload: CartItem}) {

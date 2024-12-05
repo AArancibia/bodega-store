@@ -4,7 +4,7 @@ import {Button, message, Popconfirm, Space, Table} from 'antd';
 import {ColumnsType} from 'antd/es/table';
 import './ProductList.styles.scss';
 import ProductEdit from '../../../components/products/product-edit/ProductEdit.component';
-import {Product} from '../../../interfaces/Product';
+import {Product} from '../../../domain/interfaces/Product';
 import {deleteProduct, getProducts} from '../../../data/rest/product.service';
 
 interface DataType {

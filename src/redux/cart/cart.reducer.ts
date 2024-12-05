@@ -1,7 +1,7 @@
 import { CartState } from './cart-state.interface';
 import { CartActionTypes } from './cart.types';
 import { CartUtil } from './cart.util';
-import { CartItem } from '../../interfaces/CartItem';
+import { CartItem } from '../../domain/interfaces/CartItem';
 
 const INITIAL_STATE: CartState = {
   cartItems: [],

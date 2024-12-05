@@ -3,9 +3,9 @@ import Countdown from 'antd/es/statistic/Countdown';
 import {connect} from 'react-redux';
 import {createStructuredSelector} from 'reselect';
 import {selectCurrentUser} from '../../redux/user/user.selector';
-import {User} from '../../interfaces/user/User';
+import {User} from '../../domain/interfaces/user/User';
 import {selectLottery} from '../../redux/lottery/lottery.selector';
-import {Lottery} from '../../interfaces/Lottery';
+import {Lottery} from '../../domain/interfaces/Lottery';
 import {Button, Result, Tag} from 'antd';
 import {useNavigate} from 'react-router-dom';
 import {getActiveLottery, getWinner} from '../../data/rest/lottery.service';
@@ -70,12 +70,12 @@ const LotteryPage = ({user, lottery, setLottery}: Props) => {
     }
   };
 
-  useEffect(() => {
+  /*useEffect(() => {
     getActiveLottery()
       .then((lottery: Lottery) => {
         setLottery(lottery);
       });
-  }, [])
+  }, [])*/
 
   return (
     <div>

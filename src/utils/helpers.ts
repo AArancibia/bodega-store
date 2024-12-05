@@ -1,4 +1,5 @@
-import {User} from "../interfaces/user/User";
+import {User} from '../domain/interfaces/user/User';
+
 
 export class Helpers {
     public static fullName(user: User) {

@@ -1,11 +1,11 @@
 import React from 'react';
 import {Form, Input, InputNumber, Modal} from "antd";
-import {CreditCard} from "../../../interfaces/CreditCard";
+import {CreditCard} from "../../../domain/interfaces/CreditCard";
 import {saveSale} from "../../../data/rest/sale.service";
-import {CartItem} from "../../../interfaces/CartItem";
+import {CartItem} from "../../../domain/interfaces/CartItem";
 import {useNavigate} from "react-router-dom";
 import {Constants} from "../../../utils/constants";
-import {User} from '../../../interfaces/user/User';
+import {User} from '../../../domain/interfaces/user/User';
 import {userInformation} from '../../../data/rest/user.service';
 import {fetchLoginSuccess} from '../../../redux/user/user.actions';
 import {connect} from 'react-redux';

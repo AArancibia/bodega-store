@@ -1,6 +1,6 @@
 import React from 'react';
 import {Form, Input, message, Modal} from "antd";
-import {User} from "../../../interfaces/user/User";
+import {User} from "../../../domain/interfaces/user/User";
 import {updateUser, userInformation} from "../../../data/rest/user.service";
 
 interface Props {

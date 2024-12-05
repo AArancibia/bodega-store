@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import { NavLink, Route, Routes, useLocation } from 'react-router-dom';
 import { AreaChartOutlined, ShoppingOutlined, HomeOutlined, EditOutlined } from '@ant-design/icons';
 import ShopPage from '../pages/shop/Shop.component';
@@ -12,28 +12,15 @@ import CheckOutPayment from "../pages/checkout-payment/CheckOutPayment.component
 import {createStructuredSelector} from "reselect";
 import {connect} from "react-redux";
 import {selectCurrentUser} from "../redux/user/user.selector";
-import {User} from "../interfaces/user/User";
+import {User} from "../domain/interfaces/user/User";
 import ProductList from '../pages/products/list-products/ProductList.component';
 import UserInformation from '../components/user/user-information/user-information.component';
 import Chatbot from '../components/chatbot/chatbot.component';
 import LotteryPage from '../pages/lottery/Lottery.component';
+import {useProfile} from '../data/hooks/useProfile';
+import type {ItemType} from 'antd/lib/menu/hooks/useItems';
 
-let items: MenuProps['items'] = [
-  {
-    description: 'Listado de productos',
-    icon: HomeOutlined,
-    url: '/'
-  },
-  {
-    description: 'Carrito de compras',
-    icon: ShoppingOutlined,
-    url: '/carrito'
-  },
-].map((item, index) => ({
-  key: item.url,
-  icon: React.createElement(item.icon),
-  label: <NavLink to={`${item.url}`}>{item.description}</NavLink>,
-}));
+import {} from '@reduxjs/toolkit';
 
 interface Props {
   user: User;
@@ -49,7 +36,8 @@ const ICONS = {
 const Navigation = ({user}: Props) => {
   const {pathname} = useLocation();
   const [current, setCurrent] = useState(pathname);
-  const [menuItems, setMenuItems] = useState<any>(items);
+  const {profiles, buildMenuItems} = useProfile();
+  let [menuItems, setMenuItems] = useState<ItemType[]>([]);
   const onClick: MenuProps['onClick'] = e => {
     setCurrent(e.key);
   };
@@ -59,9 +47,13 @@ const Navigation = ({user}: Props) => {
   }, [pathname]);
 
   useEffect(() => {
+    setMenuItems(buildMenuItems());
+  }, [profiles]);
+
+  useEffect(() => {
     if (user && user.profiles && user.profiles.length) {
       // @ts-ignore
-      items = user.profiles.map(x => ({url: x.url, icon: ICONS[x.icon], description: x.description})).map((item, index) => ({
+      const items = user.profiles.map(x => ({url: x.url, icon: ICONS[x.icon], description: x.description})).map((item, index) => ({
         key: item.url,
         icon: React.createElement(item.icon),
         label: <NavLink to={`${item.url}`}>{item.description}</NavLink>,
@@ -100,7 +92,7 @@ const Navigation = ({user}: Props) => {
             <Route path="/*" element={<div>Not found</div>} />
           </Routes>
         </Content>
-        <Chatbot/>
+        {/*<Chatbot/>*/}
         <Footer style={{ textAlign: 'center' }}>Copyright ©2022 Created by Bodega</Footer>
       </Layout>
     </Layout>

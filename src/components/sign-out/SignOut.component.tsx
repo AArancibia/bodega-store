@@ -1,7 +1,7 @@
 import './SignOut.component.scss';
 import {Button, Form, Input, message} from 'antd';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
-import { UserRegister } from '../../interfaces/user/User';
+import { UserRegister } from '../../domain/interfaces/user/User';
 import {register} from "../../data/rest/auth/auth.service";
 
 interface Props {

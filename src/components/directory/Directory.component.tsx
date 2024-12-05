@@ -1,7 +1,7 @@
 import React from 'react';
 import { ProductButtons, ProductCard, ProductImage, ProductTitle } from 'ajas-product-card';
-import { Product } from '../../interfaces/Product';
-import { CartItem } from '../../interfaces/CartItem';
+import { Product } from '../../domain/interfaces/Product';
+import { CartItem } from '../../domain/interfaces/CartItem';
 import { useProduct } from '../../data/hooks/useProduct';
 import { setProducts } from '../../redux/product/product.actions';
 import { addCartItem, removeCartItem } from '../../redux/cart/cart.actions';

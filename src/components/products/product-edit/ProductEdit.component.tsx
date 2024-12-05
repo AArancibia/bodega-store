@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Form, Input, InputNumber, message, Modal} from 'antd';
-import {Product} from '../../../interfaces/Product';
+import {Product} from '../../../domain/interfaces/Product';
 import ImagePreview from '../../image-preview/ImagePreview.component';
 import {saveProduct} from '../../../data/rest/product.service';
 import {v4 as uuid} from 'uuid';

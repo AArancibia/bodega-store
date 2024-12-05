@@ -1,6 +1,6 @@
 import {Button, Result} from "antd";
 import {Navigate, useLocation, useNavigate} from "react-router-dom";
-import {ResultMessage} from "../../interfaces/Message";
+import {ResultMessage} from "../../domain/interfaces/Message";
 
 const CheckOutPayment = () => {
 

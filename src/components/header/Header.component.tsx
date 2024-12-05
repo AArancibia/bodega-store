@@ -4,17 +4,17 @@ import {Button, Layout, Popover} from 'antd';
 import CartDropDown from '../cart-dropdown/Cart-Dropdown.component';
 import CartIconComponent from '../cart-icon/CartIcon.component';
 import { selectCartItems, selectToggleCart } from '../../redux/cart/cart.selector';
-import { CartItem } from '../../interfaces/CartItem';
+import { CartItem } from '../../domain/interfaces/CartItem';
 import { setToggleCart } from '../../redux/cart/cart.actions';
 import Logo from '../../assets/img/logo.png';
 import './Header.component.styles.scss';
 import {Link, useNavigate} from 'react-router-dom';
 import {selectCurrentUser} from "../../redux/user/user.selector";
-import {User} from "../../interfaces/user/User";
+import {User} from "../../domain/interfaces/user/User";
 import {Helpers} from "../../utils/helpers";
 import {GiftOutlined} from '@ant-design/icons'
 import {selectLottery} from '../../redux/lottery/lottery.selector';
-import {Lottery} from '../../interfaces/Lottery';
+import {Lottery} from '../../domain/interfaces/Lottery';
 
 const { Header } = Layout;
 

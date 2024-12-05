@@ -1,4 +1,4 @@
-import { CartItem } from '../../interfaces/CartItem';
+import { CartItem } from '../../domain/interfaces/CartItem';
 import NotFoundImage from '../../assets/img/not-image.jpg';
 import "./checkout-item.styles.scss";
 

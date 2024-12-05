@@ -1,5 +1,5 @@
 import { UserActionTypes } from './user.types';
-import { User, UserRegister } from '../../interfaces/user/User';
+import { User, UserRegister } from '../../domain/interfaces/user/User';
 
 export const fetchLoginStart = ({username, password}: {username: string, password: string}) => ({
   type: UserActionTypes.FETCH_LOGIN_START,

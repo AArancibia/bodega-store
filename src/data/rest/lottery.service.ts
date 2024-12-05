@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {Constants} from '../../utils/constants';
-import {Lottery} from '../../interfaces/Lottery';
+import {Lottery} from '../../domain/interfaces/Lottery';
 
 export const getActiveLottery = (): Promise<Lottery> => {
   return new Promise(((resolve, reject) => {

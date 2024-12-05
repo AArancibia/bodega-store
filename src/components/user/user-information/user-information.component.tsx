@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { Card, Timeline} from 'antd';
-import {getSalesByUser} from '../../../data/rest/user.service';
-import {User} from '../../../interfaces/user/User';
+import {getSalesByUser} from '../../../data/rest/sale.service';
+import {User} from '../../../domain/interfaces/user/User';
 import {connect} from 'react-redux';
 import {createStructuredSelector} from 'reselect';
 import {selectCurrentUser} from '../../../redux/user/user.selector';
