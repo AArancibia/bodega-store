@@ -8,7 +8,8 @@ import {Constants} from "../../../utils/constants";
 import {User} from '../../../domain/interfaces/user/User';
 import {userInformation} from '../../../data/rest/user.service';
 import {fetchLoginSuccess} from '../../../redux/user/user.actions';
-import {connect} from 'react-redux';
+import {connect, useDispatch} from 'react-redux';
+import {clearCart} from '../../../redux/cart/cartSlice';
 
 interface Props {
     isModalPaymentOpen: boolean;
@@ -17,21 +18,21 @@ interface Props {
     hideLoader: () => void;
     cartItems: Array<CartItem>;
     total: number;
-    clearCart: () => void;
     currentUser: User;
     fetchLoginSuccess: any;
 }
 
-const ModalCheckOutPayment = ({isModalPaymentOpen, setIsModalPaymentOpen, showLoader, hideLoader, cartItems, total, clearCart, currentUser, fetchLoginSuccess}: Props) => {
+const ModalCheckOutPayment = ({isModalPaymentOpen, setIsModalPaymentOpen, showLoader, hideLoader, cartItems, total, currentUser, fetchLoginSuccess}: Props) => {
 
     const [form] = Form.useForm();
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const onFinish = async (values: CreditCard) => {
         try {
             showLoader();
             const order = await saveSale(cartItems, total, currentUser);
-            clearCart();
+            dispatch(clearCart());
             const user: User = await userInformation(currentUser.username);
             fetchLoginSuccess(user);
             hideLoader();

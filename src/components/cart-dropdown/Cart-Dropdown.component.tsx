@@ -4,11 +4,12 @@ import './CartDropdown.component.scss';
 import { Button } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { CartItem } from '../../domain/interfaces/CartItem';
+import {AnyAction} from 'redux';
 
 
 interface Props {
   cartItems: CartItem[];
-  setToggleCart: () => void;
+  setToggleCart: () => AnyAction;
 }
 
 const CartDropDown = ({ cartItems, setToggleCart }: Props) => {

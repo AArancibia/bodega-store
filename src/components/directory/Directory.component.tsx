@@ -1,28 +1,22 @@
 import React from 'react';
 import { ProductButtons, ProductCard, ProductImage, ProductTitle } from 'ajas-product-card';
-import { Product } from '../../domain/interfaces/Product';
 import { CartItem } from '../../domain/interfaces/CartItem';
 import { useProduct } from '../../data/hooks/useProduct';
-import { setProducts } from '../../redux/product/product.actions';
-import { addCartItem, removeCartItem } from '../../redux/cart/cart.actions';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { selectCartItems } from '../../redux/cart/cart.selector';
 import './Directory.component.scss';
 
 interface Props {
   cartItems: Array<CartItem>
-  addCartItem: (cartItems: CartItem) => void;
-  removeCartItem: (id: string) => void;
 }
 
-const DirectoryComponent = ({cartItems, addCartItem, removeCartItem}: Props) => {
-  const {products, onHandleChange} = useProduct({addCartItem, removeCartItem});
-  setProducts(products);
+const DirectoryComponent = ({cartItems}: Props) => {
+  const {products, onHandleChange} = useProduct();
   return (
     <>
       {
-        products.length && products.map(product => {
+        products.map(product => {
           const value = cartItems.find(x => x.product.id === product.id)?.count || 0;
           return (
             <ProductCard
@@ -68,10 +62,4 @@ const mapStateToProps = createStructuredSelector({
   cartItems: selectCartItems,
 });
 
-const mapDispatchToProps = (dispatch: any) => ({
-  setProducts: (products: Array<Product>) => dispatch(setProducts(products)),
-  addCartItem: (cartItem: CartItem) => dispatch(addCartItem(cartItem)),
-  removeCartItem: (id: string) => dispatch(removeCartItem(id))
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(DirectoryComponent);
+export default connect(mapStateToProps)(DirectoryComponent);

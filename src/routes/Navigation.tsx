@@ -1,6 +1,5 @@
-import React, {useEffect, useRef, useState} from 'react';
-import { NavLink, Route, Routes, useLocation } from 'react-router-dom';
-import { AreaChartOutlined, ShoppingOutlined, HomeOutlined, EditOutlined } from '@ant-design/icons';
+import React, {useEffect, useState} from 'react';
+import {createBrowserRouter, Route, Routes, useLocation} from 'react-router-dom';
 import ShopPage from '../pages/shop/Shop.component';
 import HeaderComponent from '../components/header/Header.component';
 import { Layout, Menu, MenuProps } from 'antd';
@@ -26,13 +25,6 @@ interface Props {
   user: User;
 }
 
-const ICONS = {
-  HomeOutlined: HomeOutlined,
-  ShoppingOutlined: ShoppingOutlined,
-  AreaChartOutlined: AreaChartOutlined,
-  EditOutlined: EditOutlined,
-}
-
 const Navigation = ({user}: Props) => {
   const {pathname} = useLocation();
   const [current, setCurrent] = useState(pathname);
@@ -42,6 +34,17 @@ const Navigation = ({user}: Props) => {
     setCurrent(e.key);
   };
 
+  const routes = createBrowserRouter([
+    {path: '/', element: <ShopPage />},
+    {path: '/carrito', element: <CheckOutPage />},
+    {path: '/carrito/pago', element: <CheckOutPayment />},
+    {path: '/reporte', element: <ReportPage />},
+    {path: '/productos', element: <ProductList />},
+    {path: '/informacion', element: <UserInformation />},
+    {path: '/sorteo', element: <LotteryPage />},
+    {path: '/*', element: <div>Not Found</div>},
+  ]);
+
   useEffect(() => {
     setCurrent(pathname);
   }, [pathname]);
@@ -49,18 +52,6 @@ const Navigation = ({user}: Props) => {
   useEffect(() => {
     setMenuItems(buildMenuItems());
   }, [profiles]);
-
-  useEffect(() => {
-    if (user && user.profiles && user.profiles.length) {
-      // @ts-ignore
-      const items = user.profiles.map(x => ({url: x.url, icon: ICONS[x.icon], description: x.description})).map((item, index) => ({
-        key: item.url,
-        icon: React.createElement(item.icon),
-        label: <NavLink to={`${item.url}`}>{item.description}</NavLink>,
-      }));
-      setMenuItems(items);
-    }
-  }, [user])
 
   return (
     <Layout style={{minHeight: '100vh'}}>
@@ -93,7 +84,7 @@ const Navigation = ({user}: Props) => {
           </Routes>
         </Content>
         {/*<Chatbot/>*/}
-        <Footer style={{ textAlign: 'center' }}>Copyright ©2022 Created by Bodega</Footer>
+        <Footer style={{ textAlign: 'center' }}>Copyright ©2022 Created by Arancibia Alexis</Footer>
       </Layout>
     </Layout>
   );

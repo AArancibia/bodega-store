@@ -3,14 +3,12 @@ import { getProducts } from '../rest/product.service';
 import { onChangeArgs } from 'ajas-product-card/src/interfaces/interfaces';
 import { Product } from '../../domain/interfaces/Product';
 import { CartItem } from '../../domain/interfaces/CartItem';
+import {useDispatch} from 'react-redux';
+import {addCartItem, removeCartItem} from '../../redux/cart/cartSlice';
 
-interface Props {
-  addCartItem?: (cartItem: CartItem) => void;
-  removeCartItem?: (id: string) => void;
-}
-
-export const useProduct = ({addCartItem, removeCartItem}: Props) => {
+export const useProduct = () => {
   const [products, setProducts] = useState<Array<Product>>([]);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     getProducts()
@@ -20,7 +18,7 @@ export const useProduct = ({addCartItem, removeCartItem}: Props) => {
 
   const onHandleChange = ({product: selectedProduct, count}: onChangeArgs) => {
     if (count === 0) {
-      removeCartItem && removeCartItem(selectedProduct.id);
+      dispatch(removeCartItem(selectedProduct.id));
       return;
     }
     const product = products.find(x => x.id === selectedProduct.id);
@@ -32,7 +30,7 @@ export const useProduct = ({addCartItem, removeCartItem}: Props) => {
         },
         count,
       } as CartItem;
-      addCartItem && addCartItem(cartItem);
+      dispatch(addCartItem(cartItem));
     }
   }
 

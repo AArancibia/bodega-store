@@ -1,11 +1,10 @@
-import { connect } from 'react-redux';
+import {connect, useDispatch} from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import {Button, Layout, Popover} from 'antd';
 import CartDropDown from '../cart-dropdown/Cart-Dropdown.component';
 import CartIconComponent from '../cart-icon/CartIcon.component';
 import { selectCartItems, selectToggleCart } from '../../redux/cart/cart.selector';
 import { CartItem } from '../../domain/interfaces/CartItem';
-import { setToggleCart } from '../../redux/cart/cart.actions';
 import Logo from '../../assets/img/logo.png';
 import './Header.component.styles.scss';
 import {Link, useNavigate} from 'react-router-dom';
@@ -15,13 +14,13 @@ import {Helpers} from "../../utils/helpers";
 import {GiftOutlined} from '@ant-design/icons'
 import {selectLottery} from '../../redux/lottery/lottery.selector';
 import {Lottery} from '../../domain/interfaces/Lottery';
+import {toggle} from '../../redux/cart/cartSlice';
 
 const { Header } = Layout;
 
 interface Props {
   cartItems: Array<CartItem>;
   toggleCart: boolean;
-  setToggleCart: () => void;
   user: User;
   lottery: Lottery;
 }
@@ -39,9 +38,10 @@ const content = (user: User, navigate: Function) => (
   </div>
 );
 
-const HeaderComponent = ({cartItems, toggleCart, setToggleCart, user, lottery}: Props) => {
+const HeaderComponent = ({cartItems, toggleCart, user, lottery}: Props) => {
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   return (
     <>
@@ -56,11 +56,11 @@ const HeaderComponent = ({cartItems, toggleCart, setToggleCart, user, lottery}: 
               </Popover>
             )
           }
-          <CartIconComponent onClickIcon={() => setToggleCart()} cartItems={cartItems} />
+          <CartIconComponent onClickIcon={() => dispatch(toggle())} cartItems={cartItems} />
         </div>
       </Header>
       {
-        toggleCart && <CartDropDown cartItems={cartItems} setToggleCart={setToggleCart} />
+        toggleCart && <CartDropDown cartItems={cartItems} setToggleCart={() => dispatch(toggle())} />
       }
     </>
   );
@@ -73,8 +73,4 @@ const mapStateToProps = createStructuredSelector({
   lottery: selectLottery,
 });
 
-const mapDispatchToProps = (dispatch: any) => ({
-  setToggleCart: () => dispatch(setToggleCart())
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(HeaderComponent);
+export default connect(mapStateToProps)(HeaderComponent);
