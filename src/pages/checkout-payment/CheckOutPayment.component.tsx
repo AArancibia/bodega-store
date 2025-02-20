@@ -15,7 +15,7 @@ const CheckOutPayment = () => {
                     <Result
                         status={message.STATUS}
                         title={message.TITLE}
-                        subTitle={order ? message.SUB_TITLE.replace(':code', order.code) : message.SUB_TITLE}
+                        subTitle={order ? message.SUB_TITLE.replace(':code', order.id) : message.SUB_TITLE}
                         extra={[
                             <Button key="buy" onClick={() => navigate('/')}>Ir a comprar</Button>,
                         ]}

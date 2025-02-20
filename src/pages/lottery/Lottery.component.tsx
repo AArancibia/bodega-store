@@ -30,7 +30,7 @@ const LotteryPage = ({user, lottery, setLottery}: Props) => {
 
   const navigate = useNavigate();
   const [message, setMessage] = useState<Message>({
-    icon: <GiftOutlined />,
+    icon: <GiftOutlined rev={undefined}/>,
     status: 'info', title: `No hay un sorteo en curso por el momento`,
     subTitle: 'Te notificaremos cuando se realize un nuevo sorteo',
   });
@@ -58,13 +58,13 @@ const LotteryPage = ({user, lottery, setLottery}: Props) => {
     const ticketWinner = user.tickets.find((x: any) => x.lotteryId === lottery.id && lottery.ticketWinner === x.code);
     if (ticketWinner) {
       setMessage({
-        icon: <GiftOutlined />,
-        status: 'success', title: `Felicidades ${user.givenName}, eres el GANADOR 🥳`,
+        icon: <GiftOutlined rev={undefined} />,
+        status: 'success', title: `Felicidades!! TÚ, eres el GANADOR 🥳`,
         subTitle: 'Ganaste un vale por S/ 100 💸 para tus compras en Bodega Store',
       });
     } else {
       setMessage({
-        icon: <SmileOutlined />, title: `No fuiste el ganador por esta vez 🥹`,
+        icon: <SmileOutlined rev={undefined} />, title: `No fuiste el ganador por esta vez 🥹`,
         subTitle: 'Te pedimos seguir intentando y disfrutando de tus compras',
       });
     }

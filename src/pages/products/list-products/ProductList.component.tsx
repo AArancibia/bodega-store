@@ -6,6 +6,8 @@ import './ProductList.styles.scss';
 import ProductEdit from '../../../components/products/product-edit/ProductEdit.component';
 import {Product} from '../../../domain/interfaces/Product';
 import {deleteProduct, getProducts} from '../../../data/rest/product.service';
+import {connect} from 'react-redux';
+import {setProducts} from '../../../redux/product/product.actions';
 
 interface DataType {
   key: string;
@@ -13,12 +15,17 @@ interface DataType {
   price: number;
   quantity: number;
   image: string;
+  categoryId: string;
 }
 
-const ProductList = () => {
+interface Props {
+  setProducts: (products: Array<Product>) => void
+}
+
+const ProductList = ({setProducts}: Props) => {
   const columns: ColumnsType<DataType> = [
     {
-      title: 'Nombre',
+      title: 'Descripcion',
       dataIndex: 'name',
       key: 'name',
     },
@@ -51,6 +58,7 @@ const ProductList = () => {
               name: record.name,
               unitPrice: record.price,
               id: record.key,
+              categoryId: record.categoryId
             });
           }}>Editar</a>
           <Popconfirm title="Estas de acuerdo en eliminar el producto" onConfirm={() => handleDelete(record.key)}>
@@ -68,6 +76,7 @@ const ProductList = () => {
 
   const getAsyncProducts = async () => {
     const products = await getProducts();
+    setProducts(products);
     setData(mapperProducts(products));
   }
 
@@ -88,6 +97,7 @@ const ProductList = () => {
       price: x.unitPrice,
       quantity: x.quantity,
       image: x.image,
+      categoryId: x.categoryId,
     }));
   }
 
@@ -135,4 +145,8 @@ const ProductList = () => {
   );
 };
 
-export default ProductList;
+const mapDispatchToProps = (dispatch: Function) => ({
+  setProducts: (products: Array<Product>) => dispatch(setProducts(products))
+})
+
+export default connect(null, mapDispatchToProps)(ProductList);

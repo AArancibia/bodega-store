@@ -1,6 +1,6 @@
 export class Constants {
-  public static URL_MS_1 = 'http://localhost:4000/api/';
-  public static URL_MS_2 = 'http://localhost:8020/api/';
+  public static URL_MS_1 = 'http://localhost:8020/api/';
+  public static URL_PAYPAL_V1 = 'https://api-m.sandbox.paypal.com/v1';
 
   public static MESSAGES = {
     CHECKOUT_PAYMENT: {

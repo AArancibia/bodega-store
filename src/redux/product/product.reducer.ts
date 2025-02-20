@@ -3,7 +3,8 @@ import { ProductActionTypes } from './product.types';
 import { ProductState } from './product-state.interface';
 
 const INITIAL_STATE: ProductState = {
-  products: []
+  products: [],
+  categories: [],
 }
 
 const productReducer = (state = INITIAL_STATE, action: ProductActions) => {
@@ -12,6 +13,11 @@ const productReducer = (state = INITIAL_STATE, action: ProductActions) => {
       return {
         ...state,
         products: action.payload,
+      };
+    case ProductActionTypes.SET_CATEGORIES:
+      return {
+        ...state,
+        categories: action.payload,
       }
     default:
       return state;
