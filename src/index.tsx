@@ -1,24 +1,22 @@
-import React from 'react';
 import ReactDOM from 'react-dom/client';
-import {BrowserRouter as Router} from 'react-router-dom';
+import {RouterProvider} from 'react-router-dom';
 import './index.scss';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import { store, persistor } from './redux/store';
 import { PersistGate } from "redux-persist/integration/react";
+import router from './routes/Routes';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
 root.render(
-    <Router>
       <Provider store={store}>
         <PersistGate persistor={persistor} >
-          <App />
+          <RouterProvider router={router} />
         </PersistGate>
       </Provider>
-    </Router>
 );
 
 // If you want to start measuring performance in your app, pass a function

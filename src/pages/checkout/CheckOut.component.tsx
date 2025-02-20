@@ -1,8 +1,6 @@
 import './CheckOut.component.scss';
-import { createStructuredSelector } from 'reselect';
 import { selectCartItems, selectTotalPrice } from '../../redux/cart/cart.selector';
-import { connect } from 'react-redux';
-import { CartItem } from '../../domain/interfaces/CartItem';
+import {connect, useSelector} from 'react-redux';
 import { CheckoutItem } from '../../components/checkout-item/checkout-item.component';
 import {Button} from 'antd';
 import { selectCurrentUser } from '../../redux/user/user.selector';
@@ -12,32 +10,29 @@ import {fetchLoginSuccess} from "../../redux/user/user.actions";
 import ModalUpdateInformation from "../../components/user/modal-update-information/ModalUpdateInformation.component";
 import ModalCheckOutPayment from "../../components/user/modal-checkout-payment/ModalCheckOutPayment.component";
 import {hideLoader, showLoader} from "../../redux/loader/loader.actions";
+import {createQr} from '../../data/rest/payment.service';
+import {useQuery} from '@tanstack/react-query';
 
 interface Props {
-  cartItems: Array<CartItem>;
-  total: number;
-  currentUser: User;
   fetchUserInformation: (user: User) => void;
   showLoader: () => void;
   hideLoader: () => void;
 }
 
-const CheckOutPage = ({cartItems, total, currentUser, fetchUserInformation, showLoader, hideLoader}: Props) => {
+const CheckOutPage = ({fetchUserInformation, showLoader, hideLoader}: Props) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalPaymentOpen, setIsModalPaymentOpen] = useState(false);
+  const cartItems = useSelector(selectCartItems);
+  const total = useSelector(selectTotalPrice);
+  const currentUser = useSelector(selectCurrentUser);
+  const {data: qrCode} = useQuery({queryKey: ['payPayQrCode'], queryFn: createQr});
 
   const onClickPayment = () => {
-    setIsModalPaymentOpen(true);
-    /*if (!currentUser) {
-      navigate('/login');
-    } else {
-      setIsModalPaymentOpen(true);
-      if (currentUser.complete) {
-        setIsModalPaymentOpen(true);
-      } else {
-        setIsModalOpen(true);
-      }
-    }*/
+    const link = document.createElement('a');
+    link.setAttribute('href', qrCode.data.url);
+    link.setAttribute('target', '_blank');
+    document.body.appendChild(link);
+    link.click();
   };
 
   return (
@@ -104,16 +99,10 @@ const CheckOutPage = ({cartItems, total, currentUser, fetchUserInformation, show
   );
 };
 
-const mapStateToProps = createStructuredSelector({
-  cartItems: selectCartItems,
-  total: selectTotalPrice,
-  currentUser: selectCurrentUser,
-});
-
 const mapDispatchToProps = (dispatch: any) => ({
   fetchUserInformation: (user: User) => dispatch(fetchLoginSuccess(user)),
   showLoader: () => dispatch(showLoader()),
   hideLoader: () => dispatch(hideLoader()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(CheckOutPage);
+export default connect(null, mapDispatchToProps)(CheckOutPage);

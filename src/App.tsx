@@ -1,26 +1,27 @@
 import React from 'react';
 import './App.scss';
-import Navigation from './routes/Navigation';
-import { Route, Routes } from 'react-router-dom';
-import SignInSignOutPage from './pages/sign-in-sign-out/SignInSignOut.component';
+import {Outlet} from 'react-router-dom';
 import Spinner from "./components/spinner/Spinner.component";
 import {createStructuredSelector} from "reselect";
 import {connect} from "react-redux";
 import {selectLoader} from "./redux/loader/loader.selector";
 import ModalLotteryNotificationComponent
   from './components/modal-lottery-notification/modal-lottery-notification.component';
+import {QueryClientProvider} from '@tanstack/react-query';
+import {ReactQueryDevtools} from '@tanstack/react-query-devtools';
+import {queryClient} from './data/rest/query-client.config';
 
 interface Props {
     loader: boolean;
 }
 
 const App = ({loader}: Props) => {
+
   return (
       <>
-          <Routes>
-              <Route path="/login" element={<SignInSignOutPage />} />
-              <Route path="*" element={<Navigation />}></Route>
-          </Routes>
+        <QueryClientProvider client={queryClient}>
+          <ReactQueryDevtools initialIsOpen={false}></ReactQueryDevtools>
+        <Outlet />
           {
               loader && (
                   <div className="spinner">
@@ -29,6 +30,7 @@ const App = ({loader}: Props) => {
               )
           }
         <ModalLotteryNotificationComponent />
+        </QueryClientProvider>
       </>
   );
 }
