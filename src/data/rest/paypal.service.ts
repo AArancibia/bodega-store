@@ -1,10 +1,10 @@
 import axios from 'axios';
 import {Constants} from '../../utils/constants';
-import {IdentityPayPalToken, PayPalToken} from '../../interfaces/PayPalToken';
-import {Order} from '../../interfaces/Order';
-import {CartItem} from '../../interfaces/CartItem';
-import {Sale, SaleDetail} from '../../interfaces/Sale';
+import {IdentityPayPalToken, PayPalToken} from '../../domain/interfaces/PayPalToken';
+import {Order} from '../../domain/interfaces/Order';
 import {v4 as uuidV4} from 'uuid';
+import {CartItem} from '../../domain/interfaces/CartItem';
+import {Sale, SaleDetail} from '../../domain/interfaces/Sale';
 
 export const createPaypalToken = (): Promise<PayPalToken> => {
   const params = new URLSearchParams();

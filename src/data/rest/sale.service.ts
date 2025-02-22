@@ -6,7 +6,7 @@ import {v4 as uuidV4} from 'uuid';
 import {ReportSale} from '../../domain/interfaces/ReportSale';
 import {User} from '../../domain/interfaces/user/User';
 
-const SALE_URL = Constants.URL_MS_2 + `sale`;
+const SALE_URL = Constants.URL_MS_1 + `sale`;
 
 export const saveSale = (cartItems: Array<CartItem>, salePrice: number, user: User) => {
     const saleDetail: Array<SaleDetail> = cartItems.map(x => ({

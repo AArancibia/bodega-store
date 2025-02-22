@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
 import {createPaypalToken, generateIdentityPaypalToken} from '../rest/paypal.service';
-import {IdentityPayPalToken, PayPalToken} from '../../interfaces/PayPalToken';
+import {IdentityPayPalToken, PayPalToken} from '../../domain/interfaces/PayPalToken';
 
 export const usePaypalPayment = () => {
   const [paypalToken, setPaypalToken] = useState<PayPalToken>();

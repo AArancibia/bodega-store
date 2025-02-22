@@ -11,7 +11,9 @@ import ModalUpdateInformation from "../../components/user/modal-update-informati
 import ModalCheckOutPayment from "../../components/user/modal-checkout-payment/ModalCheckOutPayment.component";
 import {hideLoader, showLoader} from "../../redux/loader/loader.actions";
 import {createQr} from '../../data/rest/payment.service';
+import {usePaypalPayment} from '../../data/hooks/usePaypalPayment';
 import {useQuery} from '@tanstack/react-query';
+import SubmitPaymentComponent from '../../components/submit-payment/SubmitPayment.component';
 
 interface Props {
   fetchUserInformation: (user: User) => void;
@@ -20,6 +22,7 @@ interface Props {
 }
 
 const CheckOutPage = ({fetchUserInformation, showLoader, hideLoader}: Props) => {
+  const {token} = usePaypalPayment();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalPaymentOpen, setIsModalPaymentOpen] = useState(false);
   const cartItems = useSelector(selectCartItems);
@@ -68,6 +71,7 @@ const CheckOutPage = ({fetchUserInformation, showLoader, hideLoader}: Props) => 
       {
         total > 0 && (
           <div className="checkout-payment">
+            !!token ? <SubmitPaymentComponent token={token} cartItems={cartItems} total={total}></SubmitPaymentComponent> : null
             <Button
               type="ghost"
               block
