@@ -1,21 +1,20 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import { Button, Form, Input, message } from 'antd';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import './SignIn.component.scss';
 import { fetchLoginSuccess } from '../../redux/user/user.actions';
-import { connect } from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { createStructuredSelector } from 'reselect';
 import { selectCurrentUser } from '../../redux/user/user.selector';
 import { User } from '../../domain/interfaces/user/User';
-import { login } from '../../data/rest/auth/auth.service';
+import {login, register} from '../../data/rest/auth/auth.service';
 import { userInformation } from '../../data/rest/user.service';
+import {CredentialResponse, GoogleLogin} from '@react-oauth/google';
+import {Helpers} from '../../utils/helpers';
 
-interface Props {
-  fetchLoginSuccess: (auth: any) => void;
-}
-
-const SignIn = ({fetchLoginSuccess}: Props) => {
+const SignIn = () => {
+  const signedUser  = useSelector(selectCurrentUser);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [form] = Form.useForm();
   const [componentDisabled, setComponentDisabled] = useState<boolean>(false);
@@ -28,7 +27,7 @@ const SignIn = ({fetchLoginSuccess}: Props) => {
     try {
       await login(username, password);
       const user: User = await userInformation(username);
-      fetchLoginSuccess(user);
+      dispatch(fetchLoginSuccess(user))
       message.info(`Bienvenido a Bodega Store`);
       navigate('/carrito', {replace: true});
     } catch (e) {
@@ -41,16 +40,45 @@ const SignIn = ({fetchLoginSuccess}: Props) => {
     wrapperCol: { span: 16 },
   };
 
+  const onGoogleSignInSuccess = (credentials: CredentialResponse) => {
+    const userDetails = Helpers.decodeJwt(credentials.credential);
+    message.info(`Bienvenido ${userDetails.given_name} a Bodega Store`);
+    userInformation(userDetails.email)
+      .then(userInfo => {
+        fetchLoginSuccess(userInfo);
+      })
+      .catch(async () => {
+        const user = {
+          email: userDetails.email,
+          givenName: userDetails.given_name,
+          lastName: userDetails.family_name,
+          username: userDetails.email,
+          isGoogleAccount: true,
+        } as User;
+        await register(user);
+        dispatch(fetchLoginSuccess(user))
+      })
+      .finally(() => navigate('/carrito', {replace: true}));
+  }
+
+  const onGoogleSignInError = () => {
+    message.error(`Credenciales inválidas`);
+  }
+
+  useEffect(() => {
+    if (signedUser) {
+      navigate('/', {replace: true});
+    }
+  }, [])
+
   return (
     <div className="sign-in">
       <h2 className="text-center">Ya tengo una cuenta</h2>
-      <span className="text-center" style={{padding: '10px'}}>Inia sesión con tu usuario y contraseña</span>
+      <span className="text-center" style={{padding: '10px'}}>Inicia sesión con tu usuario y contraseña</span>
       <Form
         {...layout}
         layout="horizontal"
-        style={{
-          float: 'left',
-        }}
+        className="sign-in-form"
         onValuesChange={onFormLayoutChange}
         disabled={componentDisabled}
         form={form} onFinish={onFinish}
@@ -69,16 +97,11 @@ const SignIn = ({fetchLoginSuccess}: Props) => {
           </Button>
         </Form.Item>
       </Form>
+      <div className="sign-in-google">
+        <GoogleLogin onSuccess={onGoogleSignInSuccess} onError={onGoogleSignInError} />
+      </div>
     </div>
   );
 };
 
-const mapStateToProps = createStructuredSelector({
-  currentUser: selectCurrentUser
-});
-
-const mapDispatchToProps = (dispatch: any) => ({
-  fetchLoginSuccess: (auth: any) => dispatch(fetchLoginSuccess(auth)),
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
+export default SignIn;

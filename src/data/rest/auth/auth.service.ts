@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { Constants } from '../../../utils/constants';
-import { UserRegister, UserRequest } from '../../../domain/interfaces/user/User';
+import {User} from '../../../domain/interfaces/user/User';
 import {v4 as uuidV4} from 'uuid';
 
 export const login = (username: string, password: string) => {
@@ -15,16 +15,12 @@ export const login = (username: string, password: string) => {
   }));
 }
 
-export const register = (user: UserRegister) => {
+export const register = (user: Partial<User>) => {
 
-  const userRequest: UserRequest = {
-    id: uuidV4(),
-    username: user.username,
-    password: user.password,
-  };
+  user.id = uuidV4();
 
   return new Promise(((resolve, reject) => {
-    axios.post(Constants.URL_MS_1 + 'user/register', userRequest)
+    axios.post(Constants.URL_MS_1 + 'user/register', user)
       .then(((results) => results.data))
       .then((value) => resolve(value))
       .catch(e => reject(e))

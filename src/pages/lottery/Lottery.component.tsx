@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import Countdown from 'antd/es/statistic/Countdown';
 import {connect} from 'react-redux';
 import {createStructuredSelector} from 'reselect';
@@ -8,7 +8,7 @@ import {selectLottery} from '../../redux/lottery/lottery.selector';
 import {Lottery} from '../../domain/interfaces/Lottery';
 import {Button, Result, Tag} from 'antd';
 import {useNavigate} from 'react-router-dom';
-import {getActiveLottery, getWinner} from '../../data/rest/lottery.service';
+import {getWinner} from '../../data/rest/lottery.service';
 import {SmileOutlined, GiftOutlined} from '@ant-design/icons';
 import {ResultStatusType} from 'antd/es/result';
 import {setLottery} from '../../redux/lottery/lottery.actions';
@@ -51,9 +51,8 @@ const LotteryPage = ({user, lottery, setLottery}: Props) => {
   const deadline = date_future + 1000; // Dayjs is also OK
 
   const onFinish = async () => {
-    console.log('finished!');
     const lottery: any = await getWinner();
-    console.log(lottery, user);
+    console.log(lottery, user, days);
 
     const ticketWinner = user.tickets.find((x: any) => x.lotteryId === lottery.id && lottery.ticketWinner === x.code);
     if (ticketWinner) {

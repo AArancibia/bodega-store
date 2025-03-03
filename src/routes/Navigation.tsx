@@ -4,18 +4,10 @@ import HeaderComponent from '../components/header/Header.component';
 import { Layout, Menu, MenuProps } from 'antd';
 import Sider from 'antd/es/layout/Sider';
 import { Content, Footer } from 'antd/es/layout/layout';
-import {createStructuredSelector} from "reselect";
-import {connect} from "react-redux";
-import {selectCurrentUser} from "../redux/user/user.selector";
-import {User} from "../domain/interfaces/user/User";
 import {useProfile} from '../data/hooks/useProfile';
 import type {ItemType} from 'antd/lib/menu/hooks/useItems';
 
-interface Props {
-  user: User;
-}
-
-const Navigation = (_: Props) => {
+const Navigation = () => {
   const {pathname} = useLocation();
   const [current, setCurrent] = useState(pathname);
   const {profiles, buildMenuItems} = useProfile();
@@ -53,15 +45,10 @@ const Navigation = (_: Props) => {
         <Content style={{ margin: '5px 0px' }}>
           <Outlet />
         </Content>
-        {/*<Chatbot/>*/}
         <Footer style={{ textAlign: 'center' }}>Copyright ©2022 Created by Arancibia Alexis</Footer>
       </Layout>
     </Layout>
   );
 };
 
-const mapStateToProps = createStructuredSelector({
-  user: selectCurrentUser,
-});
-
-export default connect(mapStateToProps)(Navigation);
+export default Navigation;

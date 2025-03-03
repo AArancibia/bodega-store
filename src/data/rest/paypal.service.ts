@@ -15,8 +15,8 @@ export const createPaypalToken = (): Promise<PayPalToken> => {
         'Content-Type': 'application/x-www-form-urlencoded'
       },
       auth: {
-        username: 'AYezhSG1lTyPxcZy2qjIf9Xvg4f8jyeFFdLpmGTyqeCxar7uyjH7LmwJKnIcYbwlJYnk6cvcu4rD9ZF3',
-        password: 'EG9S3bS-zmUJFy33iTXucZdVdOOesZNAGZG1BswlxV14qKrWogDgTxSj_lhhcu7ew5pivqxafDdryboT'
+        username: process.env.REACT_APP_PAYPAL_CLIENT_ID!,
+        password: process.env.REACT_APP_API_URL_PAYPAL_PASSWORD!,
       },
     })
       .then(((results) => results.data))
@@ -29,8 +29,8 @@ export const generateIdentityPaypalToken = (): Promise<IdentityPayPalToken> => {
   return new Promise(((resolve, reject) => {
     axios.post(Constants.URL_PAYPAL_V1 + '/identity/generate-token', {}, {
       auth: {
-        username: 'AYezhSG1lTyPxcZy2qjIf9Xvg4f8jyeFFdLpmGTyqeCxar7uyjH7LmwJKnIcYbwlJYnk6cvcu4rD9ZF3',
-        password: 'EG9S3bS-zmUJFy33iTXucZdVdOOesZNAGZG1BswlxV14qKrWogDgTxSj_lhhcu7ew5pivqxafDdryboT'
+        username: process.env.REACT_APP_PAYPAL_CLIENT_ID!,
+        password: process.env.REACT_APP_API_URL_PAYPAL_PASSWORD!,
       },
     })
       .then(((results) => results.data))

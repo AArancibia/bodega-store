@@ -1,10 +1,8 @@
-import {connect, useDispatch} from 'react-redux';
-import { createStructuredSelector } from 'reselect';
+import {useDispatch, useSelector} from 'react-redux';
 import {Button, Layout, Popover} from 'antd';
 import CartDropDown from '../cart-dropdown/Cart-Dropdown.component';
 import CartIconComponent from '../cart-icon/CartIcon.component';
 import { selectCartItems, selectToggleCart } from '../../redux/cart/cart.selector';
-import { CartItem } from '../../domain/interfaces/CartItem';
 import Logo from '../../assets/img/logo.png';
 import './Header.component.styles.scss';
 import {Link, useNavigate} from 'react-router-dom';
@@ -13,17 +11,9 @@ import {User} from "../../domain/interfaces/user/User";
 import {Helpers} from "../../utils/helpers";
 import {GiftOutlined} from '@ant-design/icons'
 import {selectLottery} from '../../redux/lottery/lottery.selector';
-import {Lottery} from '../../domain/interfaces/Lottery';
 import {toggle} from '../../redux/cart/cartSlice';
 
 const { Header } = Layout;
-
-interface Props {
-  cartItems: Array<CartItem>;
-  toggleCart: boolean;
-  user: User;
-  lottery: Lottery;
-}
 
 const content = (user: User, navigate: Function) => (
   <div>
@@ -38,8 +28,11 @@ const content = (user: User, navigate: Function) => (
   </div>
 );
 
-const HeaderComponent = ({cartItems, toggleCart, user, lottery}: Props) => {
-
+const HeaderComponent = () => {
+  const cartItems = useSelector(selectCartItems);
+  const toggleCart = useSelector(selectToggleCart);
+  const user = useSelector(selectCurrentUser);
+  const lottery = useSelector(selectLottery);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -66,11 +59,4 @@ const HeaderComponent = ({cartItems, toggleCart, user, lottery}: Props) => {
   );
 };
 
-const mapStateToProps = createStructuredSelector({
-  cartItems: selectCartItems,
-  toggleCart: selectToggleCart,
-  user: selectCurrentUser,
-  lottery: selectLottery,
-});
-
-export default connect(mapStateToProps)(HeaderComponent);
+export default HeaderComponent;

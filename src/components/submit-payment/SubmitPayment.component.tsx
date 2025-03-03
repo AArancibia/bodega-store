@@ -4,10 +4,8 @@ import {IdentityPayPalToken} from '../../domain/interfaces/PayPalToken';
 import {approveOrder, createOrder} from '../../data/rest/paypal.service';
 import {useNavigate} from 'react-router-dom';
 import {Constants} from '../../utils/constants';
-import {connect} from 'react-redux';
-import {createStructuredSelector} from 'reselect';
+import {connect, useSelector} from 'react-redux';
 import {selectCurrentUser} from '../../redux/user/user.selector';
-import {User} from '../../domain/interfaces/user/User';
 import {CartItem} from '../../domain/interfaces/CartItem';
 import './SubmitPayment.component.scss';
 import {ApprovedOrder} from '../../domain/interfaces/ApprovedOrder';
@@ -16,16 +14,16 @@ import {clearCart} from '../../redux/cart/cartSlice';
 
 interface Props {
   token?: IdentityPayPalToken;
-  currentUser: User;
   clearCart: () => void;
   cartItems: Array<CartItem>;
   total: number;
 }
 
-const SubmitPaymentComponent = ({token, clearCart, cartItems, total, currentUser}: Props) => {
+const SubmitPaymentComponent = ({token, clearCart, cartItems, total}: Props) => {
+  const currentUser = useSelector(selectCurrentUser);
   const navigate = useNavigate();
   const initialOptions = {
-    clientId: "AYezhSG1lTyPxcZy2qjIf9Xvg4f8jyeFFdLpmGTyqeCxar7uyjH7LmwJKnIcYbwlJYnk6cvcu4rD9ZF3",
+    clientId: process.env.REACT_APP_PAYPAL_CLIENT_ID,
     dataClientToken: token ? token.client_token : null,
     components: "hosted-fields,buttons,funding-eligibility",
     enableFunding: [FUNDING.PAYPAL, FUNDING.CARD],
@@ -65,12 +63,8 @@ const SubmitPaymentComponent = ({token, clearCart, cartItems, total, currentUser
   </>
 }
 
-const mapStateToProps = createStructuredSelector({
-  currentUser: selectCurrentUser,
-});
-
 const mapDispatchToProps = (dispatch: any) => ({
   clearCart: () => dispatch(clearCart()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(SubmitPaymentComponent);
+export default connect(null, mapDispatchToProps)(SubmitPaymentComponent);

@@ -1,3 +1,5 @@
+import {JwtPayload} from 'jwt-decode';
+
 export interface User {
   id: string;
   username: string;
@@ -9,6 +11,16 @@ export interface User {
   profiles: Array<Profile>;
   email: string;
   tickets: any;
+  isGoogleAccount?: boolean;
+}
+
+export interface UserGoogle extends JwtPayload {
+  email: string;
+  email_verified: string;
+  family_name: string;
+  given_name: string;
+  name: string;
+  picture: string;
 }
 
 export interface Profile {

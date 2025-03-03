@@ -14,6 +14,7 @@ import {createQr} from '../../data/rest/payment.service';
 import {usePaypalPayment} from '../../data/hooks/usePaypalPayment';
 import {useQuery} from '@tanstack/react-query';
 import SubmitPaymentComponent from '../../components/submit-payment/SubmitPayment.component';
+import {useNavigate} from 'react-router-dom';
 
 interface Props {
   fetchUserInformation: (user: User) => void;
@@ -22,6 +23,7 @@ interface Props {
 }
 
 const CheckOutPage = ({fetchUserInformation, showLoader, hideLoader}: Props) => {
+  const navigate = useNavigate();
   const {token} = usePaypalPayment();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalPaymentOpen, setIsModalPaymentOpen] = useState(false);
@@ -31,11 +33,15 @@ const CheckOutPage = ({fetchUserInformation, showLoader, hideLoader}: Props) => 
   const {data: qrCode} = useQuery({queryKey: ['payPayQrCode'], queryFn: createQr});
 
   const onClickPayment = () => {
-    const link = document.createElement('a');
-    link.setAttribute('href', qrCode.data.url);
-    link.setAttribute('target', '_blank');
-    document.body.appendChild(link);
-    link.click();
+    if (currentUser) {
+      const link = document.createElement('a');
+      link.setAttribute('href', qrCode.data.url);
+      link.setAttribute('target', '_blank');
+      document.body.appendChild(link);
+      link.click();
+    } else {
+      navigate('/login');
+    }
   };
 
   return (
