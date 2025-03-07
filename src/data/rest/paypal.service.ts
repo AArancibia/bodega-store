@@ -5,6 +5,7 @@ import {Order} from '../../domain/interfaces/Order';
 import {v4 as uuidV4} from 'uuid';
 import {CartItem} from '../../domain/interfaces/CartItem';
 import {Sale, SaleDetail} from '../../domain/interfaces/Sale';
+import {User} from '../../domain/interfaces/user/User';
 
 export const createPaypalToken = (): Promise<PayPalToken> => {
   const params = new URLSearchParams();
@@ -79,7 +80,7 @@ export const createOrder = (cartItems: Array<CartItem>, total: number): Promise<
   }));
 }
 
-export const approveOrder = (orderId: string, cartItems: Array<CartItem>, total: number) => {
+export const approveOrder = (orderId: string, cartItems: Array<CartItem>, total: number, user: User) => {
   const saleDetail: Array<SaleDetail> = cartItems.map(x => ({
     id: uuidV4(),
     price: x.product.unitPrice,
@@ -91,6 +92,8 @@ export const approveOrder = (orderId: string, cartItems: Array<CartItem>, total:
     saleDetail,
     dateRegister: new Date().toISOString(),
     salePrice: total,
+    code: String(new Date().getTime()),
+    userId: user.id,
   } as Sale;
   return new Promise(((resolve, reject) => {
     axios.post(Constants.URL_MS_1 + `sale/order/${orderId}/capture`, sale)

@@ -45,7 +45,7 @@ const SignIn = () => {
     message.info(`Bienvenido ${userDetails.given_name} a Bodega Store`);
     userInformation(userDetails.email)
       .then(userInfo => {
-        fetchLoginSuccess(userInfo);
+        dispatch(fetchLoginSuccess(userInfo));
       })
       .catch(async () => {
         const user = {

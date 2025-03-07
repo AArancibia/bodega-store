@@ -20,7 +20,8 @@ export const saveSale = (cartItems: Array<CartItem>, salePrice: number, user: Us
         saleDetail,
         dateRegister: new Date().toISOString(),
         salePrice,
-        user: user
+        userId: user.id,
+        code: String(new Date().getTime()),
     };
     return new Promise(((resolve, reject) => {
         axios.post(SALE_URL, sale)

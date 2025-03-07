@@ -4,6 +4,8 @@ import {Profile} from '../../domain/model/Profile';
 import {AreaChartOutlined, EditOutlined, HomeOutlined, ShoppingOutlined} from '@ant-design/icons';
 import {NavLink} from 'react-router-dom';
 import type {ItemType} from 'antd/lib/menu/hooks/useItems';
+import {useSelector} from 'react-redux';
+import {selectCurrentUser} from '../../redux/user/user.selector';
 
 const equivalents = Object.create(
   {
@@ -14,9 +16,10 @@ const equivalents = Object.create(
 
 export const useProfile = () => {
   const [profiles, setProfiles] = useState<Array<Profile>>([]);
+  const user = useSelector(selectCurrentUser);
 
   useEffect(() => {
-    getProfiles()
+    getProfiles(user)
       .then((profiles: Array<Profile>) => setProfiles(profiles))
       .catch()
   }, []);

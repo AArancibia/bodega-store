@@ -1,28 +1,21 @@
 import './CheckOut.component.scss';
 import { selectCartItems, selectTotalPrice } from '../../redux/cart/cart.selector';
-import {connect, useSelector} from 'react-redux';
+import { useSelector} from 'react-redux';
 import { CheckoutItem } from '../../components/checkout-item/checkout-item.component';
-import {Button} from 'antd';
+import {Button, message} from 'antd';
 import { selectCurrentUser } from '../../redux/user/user.selector';
-import { User } from '../../domain/interfaces/user/User';
-import React, {useState} from "react";
-import {fetchLoginSuccess} from "../../redux/user/user.actions";
+import React, {useState} from 'react';
 import ModalUpdateInformation from "../../components/user/modal-update-information/ModalUpdateInformation.component";
 import ModalCheckOutPayment from "../../components/user/modal-checkout-payment/ModalCheckOutPayment.component";
-import {hideLoader, showLoader} from "../../redux/loader/loader.actions";
 import {createQr} from '../../data/rest/payment.service';
 import {usePaypalPayment} from '../../data/hooks/usePaypalPayment';
-import {useQuery} from '@tanstack/react-query';
+import {useMutation} from '@tanstack/react-query';
 import SubmitPaymentComponent from '../../components/submit-payment/SubmitPayment.component';
 import {useNavigate} from 'react-router-dom';
+import {CartItem} from '../../domain/interfaces/CartItem';
+import {QRCode} from '../../domain/interfaces/QRCode';
 
-interface Props {
-  fetchUserInformation: (user: User) => void;
-  showLoader: () => void;
-  hideLoader: () => void;
-}
-
-const CheckOutPage = ({fetchUserInformation, showLoader, hideLoader}: Props) => {
+const CheckOutPage = () => {
   const navigate = useNavigate();
   const {token} = usePaypalPayment();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -30,19 +23,30 @@ const CheckOutPage = ({fetchUserInformation, showLoader, hideLoader}: Props) => 
   const cartItems = useSelector(selectCartItems);
   const total = useSelector(selectTotalPrice);
   const currentUser = useSelector(selectCurrentUser);
-  const {data: qrCode} = useQuery({queryKey: ['payPayQrCode'], queryFn: createQr});
+  const {mutate} = useMutation<QRCode, Error, {cartItems: CartItem[], total: number}>({
+    mutationFn: () => createQr(cartItems, total),
+    onSuccess: qrCode => onClickPayment(qrCode)
+  });
 
-  const onClickPayment = () => {
-    if (currentUser) {
+  const onClickPayment = (qrCode: QRCode) => {
+    if (qrCode) {
       const link = document.createElement('a');
       link.setAttribute('href', qrCode.data.url);
       link.setAttribute('target', '_blank');
       document.body.appendChild(link);
       link.click();
     } else {
-      navigate('/login');
+      message.error(`No se puede realizar el pago con PayPay, porfavor escoga otra metódo de pago`);
     }
   };
+
+  const executePayment = () => {
+    if (!currentUser) {
+      navigate('/login');
+      return;
+    }
+    mutate({cartItems, total});
+  }
 
   return (
     <div className="checkout-page">
@@ -72,35 +76,31 @@ const CheckOutPage = ({fetchUserInformation, showLoader, hideLoader}: Props) => 
         ))
       }
       <div className="total">
-        <span>TOTAL: S/. {total}</span>
+        <span>TOTAL: {total} yen</span>
       </div>
       {
         total > 0 && (
           <div className="checkout-payment">
-            !!token ? <SubmitPaymentComponent token={token} cartItems={cartItems} total={total}></SubmitPaymentComponent> : null
+            {!!token ? <SubmitPaymentComponent token={token} cartItems={cartItems}
+                                               total={total}></SubmitPaymentComponent> : null}
             <Button
               type="ghost"
               block
               size={'large'}
               className="btn btn--default"
-              onClick={onClickPayment}
+              onClick={executePayment}
             >Pagar</Button>
           </div>
         )
       }
       <ModalUpdateInformation
           currentUser={currentUser}
-          fetchUserInformation={fetchUserInformation}
           isModalOpen={isModalOpen}
           setIsModalOpen={setIsModalOpen}
-          showLoader={showLoader}
-          hideLoader={hideLoader}
       />
       <ModalCheckOutPayment
           isModalPaymentOpen={isModalPaymentOpen}
           setIsModalPaymentOpen={setIsModalPaymentOpen}
-          showLoader={showLoader}
-          hideLoader={hideLoader}
           cartItems={cartItems}
           total={total}
           currentUser={currentUser}
@@ -109,10 +109,4 @@ const CheckOutPage = ({fetchUserInformation, showLoader, hideLoader}: Props) => 
   );
 };
 
-const mapDispatchToProps = (dispatch: any) => ({
-  fetchUserInformation: (user: User) => dispatch(fetchLoginSuccess(user)),
-  showLoader: () => dispatch(showLoader()),
-  hideLoader: () => dispatch(hideLoader()),
-});
-
-export default connect(null, mapDispatchToProps)(CheckOutPage);
+export default CheckOutPage;

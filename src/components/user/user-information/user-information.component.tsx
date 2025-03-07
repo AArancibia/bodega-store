@@ -1,29 +1,18 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import { Card, Timeline} from 'antd';
 import {getSalesByUser} from '../../../data/rest/sale.service';
-import {User} from '../../../domain/interfaces/user/User';
-import {connect} from 'react-redux';
-import {createStructuredSelector} from 'reselect';
+import {useSelector} from 'react-redux';
 import {selectCurrentUser} from '../../../redux/user/user.selector';
 import './user-information.component.scss';
+import {useQuery} from '@tanstack/react-query';
 
-interface Props {
-  user: User;
-}
+const UserInformation = () => {
 
-const UserInformation = ({user}: Props) => {
+  const user = useSelector(selectCurrentUser);
+  const {data: salesByUser, isSuccess} = useQuery({queryKey: ['salesByUser'], queryFn: () => getSalesByUser(user.id)});
+  const [sales] = useState(salesByUser);
 
-  const [sales, setSales] = useState([]);
-
-  useEffect(() => {
-    const asyncSalesByUser = async () => {
-      const salesByUser = await getSalesByUser(user.id);
-      setSales(orderSales(salesByUser));
-    }
-    asyncSalesByUser();
-  }, []);
-
-  const orderSales = (sales: any) => {
+  const orderSales = () => {
     return sales.sort((a: any, b: any) => new Date(a.dateRegister).getTime() > new Date(b.dateRegister).getTime() ? -1 : 1)
   };
 
@@ -36,7 +25,8 @@ const UserInformation = ({user}: Props) => {
         <hr/>
         <Timeline style={{marginTop: '30px'}} mode="left">
           {
-            sales.map((sale: any) => (
+            isSuccess ? orderSales()
+              .map((sale: any) => (
               <Timeline.Item label={new Date(sale.dateRegister).toLocaleString()}>
                 <div className="flex-wrap justify-content-between">
                   <span className="mr-20"><span className="bold">Código: </span> {sale.code}</span>
@@ -62,7 +52,7 @@ const UserInformation = ({user}: Props) => {
                   ))
                 }
               </Timeline.Item>
-            ))
+            )) : null
           }
         </Timeline>
       </Card>
@@ -70,8 +60,4 @@ const UserInformation = ({user}: Props) => {
   );
 };
 
-const mapStateToProps = createStructuredSelector({
-  user: selectCurrentUser,
-})
-
-export default connect(mapStateToProps)(UserInformation);
+export default UserInformation;

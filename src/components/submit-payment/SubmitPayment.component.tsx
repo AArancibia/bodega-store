@@ -43,7 +43,7 @@ const SubmitPaymentComponent = ({token, clearCart, cartItems, total}: Props) => 
 
   const handleApprove = async ({orderID}: ApprovedOrder, actions: any): Promise<void> => {
     try {
-      const order = await approveOrder(orderID, cartItems, total);
+      const order = await approveOrder(orderID, cartItems, total, currentUser);
       clearCart();
       navigate('/carrito/pago', {state: {message: Constants.MESSAGES.CHECKOUT_PAYMENT.SUCCESS, order} });
     } catch (e) {

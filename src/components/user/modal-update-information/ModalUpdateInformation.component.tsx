@@ -2,30 +2,30 @@ import React from 'react';
 import {Form, Input, message, Modal} from "antd";
 import {User} from "../../../domain/interfaces/user/User";
 import {updateUser, userInformation} from "../../../data/rest/user.service";
+import {fetchLoginSuccess} from '../../../redux/user/user.actions';
+import {useDispatch} from 'react-redux';
+import {hideLoader, showLoader} from '../../../redux/loader/loader.actions';
 
 interface Props {
     currentUser: User;
-    fetchUserInformation: (user: User) => void;
     isModalOpen: boolean;
     setIsModalOpen: (value: boolean) => void;
-    showLoader: () => void;
-    hideLoader: () => void;
 }
 
-const ModalUpdateInformation = ({currentUser, fetchUserInformation, isModalOpen, setIsModalOpen, showLoader, hideLoader}: Props) => {
-
+const ModalUpdateInformation = ({currentUser, isModalOpen, setIsModalOpen}: Props) => {
+    const dispatch = useDispatch();
     const [form] = Form.useForm();
 
     const onFinish = async (user: Partial<User>) => {
         try {
-            showLoader();
+            dispatch(showLoader());
             await updateUser(currentUser.id, user);
             const userInfo = await userInformation(currentUser.username);
-            fetchUserInformation(userInfo);
-            hideLoader();
+            dispatch(fetchLoginSuccess(userInfo));
+            dispatch(hideLoader());
             message.info(`Se guardaron los datos correctamente`);
         } catch (e) {
-            hideLoader();
+            dispatch(hideLoader());
             message.error(`Error al actualizar datos`);
         } finally {
             form.resetFields();

@@ -4,30 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a83c99df-765f-46bd-bb71-bacf7ba9173b" name="Changes" comment="feature/app-v2&#10;- merge with develop">
-      <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="a83c99df-765f-46bd-bb71-bacf7ba9173b" name="Changes" comment="develop&#10;- deleted .htaccess">
+      <change afterPath="$PROJECT_DIR$/src/domain/interfaces/QRCode.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/header/Header.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/header/Header.component.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/sign-in/SignIn.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/sign-in/SignIn.component.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/sign-in/SignIn.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/sign-in/SignIn.component.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/sign-out/SignOut.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/sign-out/SignOut.component.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/submit-payment/SubmitPayment.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/submit-payment/SubmitPayment.component.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/rest/auth/auth.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/rest/auth/auth.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/user/modal-checkout-payment/ModalCheckOutPayment.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/user/modal-checkout-payment/ModalCheckOutPayment.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/user/modal-update-information/ModalUpdateInformation.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/user/modal-update-information/ModalUpdateInformation.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/user/user-information/user-information.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/user/user-information/user-information.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/hooks/useProfile.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/hooks/useProfile.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/rest/payment.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/rest/payment.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/rest/paypal.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/rest/paypal.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/rest/query-client.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/rest/query-client.config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domain/interfaces/user/User.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/interfaces/user/User.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/rest/profiles.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/rest/profiles.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/rest/sale.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/rest/sale.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domain/interfaces/Sale.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/interfaces/Sale.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/checkout-payment/CheckOutPayment.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/checkout-payment/CheckOutPayment.component.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/checkout/CheckOut.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/checkout/CheckOut.component.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/lottery/Lottery.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/lottery/Lottery.component.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/Navigation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/Navigation.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/constants.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/constants.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/helpers.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/helpers.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/Routes.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/Routes.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,7 +44,7 @@
     </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="develop" />
+        <entry key="$PROJECT_DIR$" value="feature/google-auth" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -108,7 +102,8 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;feature/google-auth&quot;,
+    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;develop&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -175,7 +170,32 @@
       <workItem from="1740658335673" duration="11410000" />
       <workItem from="1740703952004" duration="2680000" />
       <workItem from="1741039032889" duration="3368000" />
+      <workItem from="1741078163519" duration="2863000" />
+      <workItem from="1741133335571" duration="6367000" />
+      <workItem from="1741173868668" duration="8461000" />
+      <workItem from="1741233484986" duration="3890000" />
+      <workItem from="1741254016558" duration="2505000" />
+      <workItem from="1741268370669" duration="1339000" />
+      <workItem from="1741295525594" duration="4441000" />
+      <workItem from="1741318134958" duration="521000" />
     </task>
+    <task id="LOCAL-00001" summary="develop&#10;- added .htaccess">
+      <option name="closed" value="true" />
+      <created>1741050018786</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1741050018786</updated>
+    </task>
+    <task id="LOCAL-00002" summary="develop&#10;- deleted .htaccess">
+      <option name="closed" value="true" />
+      <created>1741050476992</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1741050476992</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -183,6 +203,9 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="feature/app-v2&#10;- feature: cart feature in redux" />
-    <option name="LAST_COMMIT_MESSAGE" value="feature/app-v2&#10;- feature: cart feature in redux" />
+    <MESSAGE value="feature/google-auth&#10;- feature: added google sign in method&#10;- feature: added paypay and paypal payment" />
+    <MESSAGE value="develop&#10;- added .htaccess" />
+    <MESSAGE value="develop&#10;- deleted .htaccess" />
+    <option name="LAST_COMMIT_MESSAGE" value="develop&#10;- deleted .htaccess" />
   </component>
 </project>

@@ -9,22 +9,17 @@ import ProductList from '../pages/products/list-products/ProductList.component';
 import UserInformation from '../components/user/user-information/user-information.component';
 import LotteryPage from '../pages/lottery/Lottery.component';
 import SignInSignOutPage from '../pages/sign-in-sign-out/SignInSignOut.component';
-import Navigation from '../routes/Navigation';
 
 const routes = createBrowserRouter([
     {
       path: '/', element: <App />, children: [
-        {
-          path: '/', element: <Navigation />, children: [
-            {path: '/', element: <ShopPage />},
-            {path: '/carrito', element: <CheckOutPage />},
-            {path: '/carrito/pago', element: <CheckOutPayment />},
-            {path: '/reporte', element: <ReportPage />},
-            {path: '/productos', element: <ProductList />},
-            {path: '/informacion', element: <UserInformation />},
-            {path: '/sorteo', element: <LotteryPage />},
-          ]
-        }
+        {path: '/', element: <ShopPage />},
+        {path: '/carrito', element: <CheckOutPage />},
+        {path: '/carrito/pago', element: <CheckOutPayment />},
+        {path: '/reporte', element: <ReportPage />},
+        {path: '/productos', element: <ProductList />},
+        {path: '/informacion', element: <UserInformation />},
+        {path: '/sorteo', element: <LotteryPage />},
       ]
     },
     {path: '/login', element: <SignInSignOutPage />},

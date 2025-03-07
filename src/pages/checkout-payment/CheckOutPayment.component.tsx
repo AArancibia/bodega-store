@@ -17,7 +17,7 @@ const CheckOutPayment = () => {
                         title={message.TITLE}
                         subTitle={order ? message.SUB_TITLE.replace(':code', order.id) : message.SUB_TITLE}
                         extra={[
-                            <Button key="buy" onClick={() => navigate('/')}>Ir a comprar</Button>,
+                            <Button key="buy" onClick={() => navigate('/')}>Seguir comprando</Button>,
                         ]}
                     />
                 ) : <Navigate to="/" />
