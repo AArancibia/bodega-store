@@ -1,7 +1,6 @@
 import axios from 'axios';
 import {Constants} from '../../utils/constants';
 import {IdentityPayPalToken, PayPalToken} from '../../domain/interfaces/PayPalToken';
-import {Order} from '../../domain/interfaces/Order';
 import {v4 as uuidV4} from 'uuid';
 import {CartItem} from '../../domain/interfaces/CartItem';
 import {Sale, SaleDetail} from '../../domain/interfaces/Sale';
@@ -40,13 +39,13 @@ export const generateIdentityPaypalToken = (): Promise<IdentityPayPalToken> => {
   }));
 }
 
-export const createOrder = (cartItems: Array<CartItem>, total: number): Promise<Order> => {
+export const createOrder = (cartItems: Array<CartItem>, total: number): Promise<any> => {
   const items = cartItems.map((cartItem) => ({
     name: cartItem.product.name,
     description: cartItem.product.name,
     quantity: cartItem.count,
     unit_amount: {
-      currency_code: "USD",
+      currency_code: "JPY",
       value: cartItem.product.unitPrice,
     }
   }));
@@ -56,12 +55,12 @@ export const createOrder = (cartItems: Array<CartItem>, total: number): Promise<
       {
         items,
         amount: {
-          currency_code: "USD",
+          currency_code: "JPY",
           value: total,
           breakdown: {
             item_total: {
-              currency_code: "USD",
-              value: total
+              currency_code: "JPY",
+              value: total,
             }
           }
         }

@@ -5,6 +5,7 @@ import {Sale, SaleDetail} from "../../domain/interfaces/Sale";
 import {v4 as uuidV4} from 'uuid';
 import {ReportSale} from '../../domain/interfaces/ReportSale';
 import {User} from '../../domain/interfaces/user/User';
+import {Order} from '../../domain/interfaces/Order';
 
 const SALE_URL = Constants.URL_MS_1 + `sale`;
 
@@ -54,11 +55,11 @@ export const generatePDFSale = (reportSale: ReportSale) => {
     }));
 }
 
-export const getSalesByUser = (id: string): Promise<any> => {
+export const getSalesByUser = (id: string): Promise<Array<Order>> => {
     return new Promise(((resolve, reject) => {
         axios.get(SALE_URL + `/user/${id}`, )
           .then(((results) => results.data))
-          .then((value) => resolve(value.sales))
+          .then((value) => resolve(value))
           .catch(e => reject(e))
     }));
 }

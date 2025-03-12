@@ -4,24 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a83c99df-765f-46bd-bb71-bacf7ba9173b" name="Changes" comment="develop&#10;- deleted .htaccess">
-      <change afterPath="$PROJECT_DIR$/src/domain/interfaces/QRCode.ts" afterDir="false" />
+    <list default="true" id="a83c99df-765f-46bd-bb71-bacf7ba9173b" name="Changes" comment="develop&#10;- feature: added PayPal functionalities&#10;- feature: added profile functionalities">
+      <change afterPath="$PROJECT_DIR$/src/data/rest/currency-convert.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/sign-in/SignIn.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/sign-in/SignIn.component.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/submit-payment/SubmitPayment.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/submit-payment/SubmitPayment.component.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/user/modal-checkout-payment/ModalCheckOutPayment.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/user/modal-checkout-payment/ModalCheckOutPayment.component.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/user/modal-update-information/ModalUpdateInformation.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/user/modal-update-information/ModalUpdateInformation.component.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/user/user-information/user-information.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/user/user-information/user-information.component.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/hooks/useProfile.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/hooks/useProfile.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/rest/payment.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/rest/payment.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/rest/paypal.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/rest/paypal.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/rest/profiles.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/rest/profiles.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/rest/sale.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/rest/sale.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domain/interfaces/Sale.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/interfaces/Sale.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domain/interfaces/Order.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/interfaces/Order.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/checkout-payment/CheckOutPayment.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/checkout-payment/CheckOutPayment.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/checkout/CheckOut.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/checkout/CheckOut.component.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/checkout/CheckOut.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/checkout/CheckOut.component.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/Routes.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/Routes.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -177,7 +170,11 @@
       <workItem from="1741254016558" duration="2505000" />
       <workItem from="1741268370669" duration="1339000" />
       <workItem from="1741295525594" duration="4441000" />
-      <workItem from="1741318134958" duration="521000" />
+      <workItem from="1741318134958" duration="1397000" />
+      <workItem from="1741330720813" duration="889000" />
+      <workItem from="1741618185062" duration="2853000" />
+      <workItem from="1741685223692" duration="6512000" />
+      <workItem from="1741766355482" duration="3713000" />
     </task>
     <task id="LOCAL-00001" summary="develop&#10;- added .htaccess">
       <option name="closed" value="true" />
@@ -195,7 +192,15 @@
       <option name="project" value="LOCAL" />
       <updated>1741050476992</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="develop&#10;- feature: added PayPal functionalities&#10;- feature: added profile functionalities">
+      <option name="closed" value="true" />
+      <created>1741318741197</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1741318741197</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -206,6 +211,7 @@
     <MESSAGE value="feature/google-auth&#10;- feature: added google sign in method&#10;- feature: added paypay and paypal payment" />
     <MESSAGE value="develop&#10;- added .htaccess" />
     <MESSAGE value="develop&#10;- deleted .htaccess" />
-    <option name="LAST_COMMIT_MESSAGE" value="develop&#10;- deleted .htaccess" />
+    <MESSAGE value="develop&#10;- feature: added PayPal functionalities&#10;- feature: added profile functionalities" />
+    <option name="LAST_COMMIT_MESSAGE" value="develop&#10;- feature: added PayPal functionalities&#10;- feature: added profile functionalities" />
   </component>
 </project>

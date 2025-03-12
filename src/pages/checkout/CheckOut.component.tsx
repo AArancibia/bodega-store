@@ -2,7 +2,7 @@ import './CheckOut.component.scss';
 import { selectCartItems, selectTotalPrice } from '../../redux/cart/cart.selector';
 import { useSelector} from 'react-redux';
 import { CheckoutItem } from '../../components/checkout-item/checkout-item.component';
-import {Button, message} from 'antd';
+import {message} from 'antd';
 import { selectCurrentUser } from '../../redux/user/user.selector';
 import React, {useState} from 'react';
 import ModalUpdateInformation from "../../components/user/modal-update-information/ModalUpdateInformation.component";
@@ -14,6 +14,7 @@ import SubmitPaymentComponent from '../../components/submit-payment/SubmitPaymen
 import {useNavigate} from 'react-router-dom';
 import {CartItem} from '../../domain/interfaces/CartItem';
 import {QRCode} from '../../domain/interfaces/QRCode';
+import PayPayLogo from '../../assets/img/logo_paypay.svg';
 
 const CheckOutPage = () => {
   const navigate = useNavigate();
@@ -81,29 +82,28 @@ const CheckOutPage = () => {
       {
         total > 0 && (
           <div className="checkout-payment">
-            {!!token ? <SubmitPaymentComponent token={token} cartItems={cartItems}
-                                               total={total}></SubmitPaymentComponent> : null}
-            <Button
-              type="ghost"
-              block
-              size={'large'}
-              className="btn btn--default"
-              onClick={executePayment}
-            >Pagar</Button>
+            <div className="flex-wrap">
+              {!!token ? <SubmitPaymentComponent
+                token={token} cartItems={cartItems}
+                total={total}></SubmitPaymentComponent> : null}
+              <button onClick={executePayment} className="checkout-payment--button-paypal">
+                <img src={PayPayLogo} alt="PayPay"/>
+              </button>
+            </div>
           </div>
         )
       }
       <ModalUpdateInformation
-          currentUser={currentUser}
-          isModalOpen={isModalOpen}
-          setIsModalOpen={setIsModalOpen}
+        currentUser={currentUser}
+        isModalOpen={isModalOpen}
+        setIsModalOpen={setIsModalOpen}
       />
       <ModalCheckOutPayment
-          isModalPaymentOpen={isModalPaymentOpen}
-          setIsModalPaymentOpen={setIsModalPaymentOpen}
-          cartItems={cartItems}
-          total={total}
-          currentUser={currentUser}
+        isModalPaymentOpen={isModalPaymentOpen}
+        setIsModalPaymentOpen={setIsModalPaymentOpen}
+        cartItems={cartItems}
+        total={total}
+        currentUser={currentUser}
       />
     </div>
   );

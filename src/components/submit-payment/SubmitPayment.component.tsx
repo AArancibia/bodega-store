@@ -27,7 +27,9 @@ const SubmitPaymentComponent = ({token, clearCart, cartItems, total}: Props) => 
     dataClientToken: token ? token.client_token : null,
     components: "hosted-fields,buttons,funding-eligibility",
     enableFunding: [FUNDING.PAYPAL, FUNDING.CARD],
+    currency: "JPY"
   } as ReactPayPalScriptOptions;
+
   const handleCreateOrder = async (): Promise<string> => {
     if (!currentUser) {
       navigate('/login');
