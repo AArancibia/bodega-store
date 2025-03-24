@@ -1,5 +1,5 @@
 .checkout-page {
-  width: 55%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -57,9 +57,9 @@
     }
 
     &--button {
+      flex: 1;
 
       &-paypal {
-        flex: 1;
         cursor: pointer;
         width: 100%;
         border: none;
@@ -70,4 +70,14 @@
       }
     }
   }
+}
+
+.google-pay-button-container {
+  width: 100% !important;
+}
+
+.checkout-page button#gpay-button-online-api-id {
+  width: 100% !important;
+  margin-top: 15px !important;
+  height: 45px;
 }

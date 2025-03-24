@@ -34,7 +34,7 @@ const UserInformation = () => {
           {
             sales.length ? orderSales()
               .map((sale: Order) => (
-              <Timeline.Item label={new Date(sale.dateRegister).toLocaleString()}>
+              <Timeline.Item label={new Date(sale.dateRegister).toLocaleString()} key={sale.id}>
                 <div className="flex-wrap justify-content-between">
                   <span className="mr-20"><span className="bold">Código: </span> {sale.code}</span>
                   <span><span className="bold">Precio total: </span>  {sale.salePrice} 円</span>
@@ -42,7 +42,7 @@ const UserInformation = () => {
                 <hr/>
                 {
                   sale.saleDetail?.map((detail: any) => (
-                    <div className="sale-detail" >
+                    <div className="sale-detail" key={detail.id}>
                       <div className="flex-column">
                         <span className="bold">Producto </span>
                         <span className="">{detail.product?.name}</span>

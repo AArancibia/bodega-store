@@ -108,3 +108,14 @@ nav li a {
     color: black;
   }
 }
+
+.sidebar {
+  position: relative;
+
+  &__logout {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+}

@@ -6,9 +6,7 @@ const ShopPage = () => {
 
   return (
     <div className="shop">
-      <div className="product__item">
-        <DirectoryComponent></DirectoryComponent>
-      </div>
+      <DirectoryComponent></DirectoryComponent>
     </div>
   );
 };
