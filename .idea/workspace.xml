@@ -4,24 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a83c99df-765f-46bd-bb71-bacf7ba9173b" name="Changes" comment="develop&#10;- feature: added google payment method">
-      <change afterPath="$PROJECT_DIR$/src/components/google-pay-button/GooglePayButton.component.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data/rest/create-body-sale.request.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/utils/requests/create-google-payment.request.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/utils/types.ts" afterDir="false" />
+    <list default="true" id="a83c99df-765f-46bd-bb71-bacf7ba9173b" name="Changes" comment="develop&#10;- feature: added logout menu in sidebar with functionality &#10;- fix: validate user already logged in before pay with Google&#10;- feature: improvement in responsive design in checkout and user information component">
+      <change afterPath="$PROJECT_DIR$/src/redux/user/userSlice.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/checkout-item/checkout-item.styles.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/checkout-item/checkout-item.styles.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/directory/Directory.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/directory/Directory.component.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/user/user-information/user-information.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/user/user-information/user-information.component.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/rest/payment.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/rest/payment.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/rest/paypal.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/rest/paypal.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/checkout/CheckOut.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/checkout/CheckOut.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/checkout/CheckOut.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/checkout/CheckOut.component.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/shop/Shop.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/shop/Shop.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/sign-in/SignIn.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/sign-in/SignIn.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/hooks/useProfile.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/root-reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/root-reducer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/user/user-state.interface.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/user/user-state.interface.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/user/user.reducer.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/user/user.types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/user/user.types.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/Navigation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/Navigation.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/Routes.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/Routes.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/constants.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/constants.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/helpers.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/helpers.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -188,7 +183,8 @@
       <workItem from="1742342683845" duration="1922000" />
       <workItem from="1742369393197" duration="5317000" />
       <workItem from="1742779365225" duration="5037000" />
-      <workItem from="1742826909520" duration="6181000" />
+      <workItem from="1742826909520" duration="11173000" />
+      <workItem from="1742869153043" duration="3150000" />
     </task>
     <task id="LOCAL-00001" summary="develop&#10;- added .htaccess">
       <option name="closed" value="true" />
@@ -222,7 +218,15 @@
       <option name="project" value="LOCAL" />
       <updated>1741772980290</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="develop&#10;- feature: added logout menu in sidebar with functionality &#10;- fix: validate user already logged in before pay with Google&#10;- feature: improvement in responsive design in checkout and user information component">
+      <option name="closed" value="true" />
+      <created>1742833526305</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1742833526305</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -235,6 +239,7 @@
     <MESSAGE value="develop&#10;- deleted .htaccess" />
     <MESSAGE value="develop&#10;- feature: added PayPal functionalities&#10;- feature: added profile functionalities" />
     <MESSAGE value="develop&#10;- feature: added PayPay logo to PayPay button&#10;- feature: refactor styles for checkout pay buttons&#10;- fix: change JPY currency to PayPal payment&#10;- fix: set correctly sales variable with rest data" />
-    <option name="LAST_COMMIT_MESSAGE" value="develop&#10;- feature: added PayPay logo to PayPay button&#10;- feature: refactor styles for checkout pay buttons&#10;- fix: change JPY currency to PayPal payment&#10;- fix: set correctly sales variable with rest data" />
+    <MESSAGE value="develop&#10;- feature: added logout menu in sidebar with functionality &#10;- fix: validate user already logged in before pay with Google&#10;- feature: improvement in responsive design in checkout and user information component" />
+    <option name="LAST_COMMIT_MESSAGE" value="develop&#10;- feature: added logout menu in sidebar with functionality &#10;- fix: validate user already logged in before pay with Google&#10;- feature: improvement in responsive design in checkout and user information component" />
   </component>
 </project>

@@ -4,18 +4,28 @@ import HeaderComponent from '../components/header/Header.component';
 import { Layout, Menu, MenuProps } from 'antd';
 import Sider from 'antd/es/layout/Sider';
 import { Content, Footer } from 'antd/es/layout/layout';
-import {useProfile} from '../data/hooks/useProfile';
 import type {ItemType} from 'antd/lib/menu/hooks/useItems';
 import {LogoutOutlined} from '@ant-design/icons';
 import {selectCurrentUser} from '../redux/user/user.selector';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
+import {logout} from '../redux/user/userSlice';
+import {clearCart} from '../redux/cart/cartSlice';
+import {useMutation} from '@tanstack/react-query';
+import {Profile} from '../domain/model/Profile';
+import {User} from '../domain/interfaces/user/User';
+import {getProfiles} from '../data/rest/profiles.service';
+import {Helpers} from '../utils/helpers';
 
 const Navigation = () => {
   const {pathname} = useLocation();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const user = useSelector(selectCurrentUser);
   const [current, setCurrent] = useState(pathname);
-  const {profiles, buildMenuItems} = useProfile();
+  const mutation = useMutation<Profile[], Error, {user: User}>({
+    mutationFn: () => getProfiles(user),
+    onSuccess: (profiles) => setMenuItems(Helpers.buildMenuItems(profiles)),
+  });
   let [menuItems, setMenuItems] = useState<ItemType[]>([]);
   const onClick: MenuProps['onClick'] = e => {
     setCurrent(e.key);
@@ -26,12 +36,13 @@ const Navigation = () => {
   }, [pathname]);
 
   useEffect(() => {
-    setMenuItems(buildMenuItems());
-  }, [profiles]);
+    mutation.mutate({user});
+  }, [user]);
 
   const onLogoutClick = () => {
-    localStorage.clear();
-    navigate('/')
+    dispatch(logout());
+    dispatch(clearCart());
+    navigate('/');
   }
 
   return (

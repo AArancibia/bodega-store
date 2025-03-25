@@ -23,7 +23,7 @@ const routes = createBrowserRouter([
       ]
     },
     {path: '/login', element: <SignInSignOutPage />},
-    {path: '/**', element: <div>Pagina no encontrada</div>},
+    {path: '/*', element: <div>Pagina no encontrada</div>},
   ]);
 
   export default routes;

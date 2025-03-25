@@ -11,6 +11,7 @@ import {login, register} from '../../data/rest/auth/auth.service';
 import { userInformation } from '../../data/rest/user.service';
 import {CredentialResponse, GoogleLogin} from '@react-oauth/google';
 import {Helpers} from '../../utils/helpers';
+import {login as loginSlice} from '../../redux/user/userSlice';
 
 const SignIn = () => {
   const signedUser  = useSelector(selectCurrentUser);
@@ -45,7 +46,7 @@ const SignIn = () => {
     message.info(`Bienvenido ${userDetails.given_name} a Bodega Store`);
     userInformation(userDetails.email)
       .then(userInfo => {
-        dispatch(fetchLoginSuccess(userInfo));
+        dispatch(loginSlice(userInfo));
       })
       .catch(async () => {
         const user = {
@@ -56,7 +57,7 @@ const SignIn = () => {
           isGoogleAccount: true,
         } as User;
         await register(user);
-        dispatch(fetchLoginSuccess(user))
+        dispatch(loginSlice(user))
       })
       .finally(() => navigate('/carrito', {replace: true}));
   }

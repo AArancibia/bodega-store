@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import storage from "redux-persist/lib/storage";
-import userReducer from './user/user.reducer';
+import userReducer from './user/userSlice';
 import productReducer from './product/product.reducer';
 import { persistReducer } from 'redux-persist';
 import {loaderReducer} from "./loader/loader.reducer";
