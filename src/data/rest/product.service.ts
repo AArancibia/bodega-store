@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { Constants } from '../../utils/constants';
-import {CreateProductDto} from '../dto/create-product.dto';
+import {Product} from '../../domain/interfaces/Product';
 
 export const getProducts = (): Promise<Array<any>> => {
   return new Promise(((resolve, reject) => {
@@ -12,7 +12,7 @@ export const getProducts = (): Promise<Array<any>> => {
   }));
 }
 
-export const saveProduct = (product: CreateProductDto): Promise<Array<any>> => {
+export const saveProduct = (product: Partial<Product>): Promise<Array<any>> => {
   return new Promise(((resolve, reject) => {
     axios.post(Constants.URL_MS_1 + 'products', product)
       .then(((results) => results.data))

@@ -6,7 +6,7 @@ import './ProductList.styles.scss';
 import ProductEdit from '../../../components/products/product-edit/ProductEdit.component';
 import {Product} from '../../../domain/interfaces/Product';
 import {deleteProduct, getProducts} from '../../../data/rest/product.service';
-import {connect} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {setProducts} from '../../../redux/product/product.actions';
 
 interface DataType {
@@ -18,11 +18,9 @@ interface DataType {
   categoryId: string;
 }
 
-interface Props {
-  setProducts: (products: Array<Product>) => void
-}
 
-const ProductList = ({setProducts}: Props) => {
+const ProductList = () => {
+  const dispatch = useDispatch();
   const columns: ColumnsType<DataType> = [
     {
       title: 'Descripcion',
@@ -76,7 +74,7 @@ const ProductList = ({setProducts}: Props) => {
 
   const getAsyncProducts = async () => {
     const products = await getProducts();
-    setProducts(products);
+    dispatch(setProducts(products));
     setData(mapperProducts(products));
   }
 
@@ -145,8 +143,4 @@ const ProductList = ({setProducts}: Props) => {
   );
 };
 
-const mapDispatchToProps = (dispatch: Function) => ({
-  setProducts: (products: Array<Product>) => dispatch(setProducts(products))
-})
-
-export default connect(null, mapDispatchToProps)(ProductList);
+export default ProductList;
