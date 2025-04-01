@@ -4,13 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a83c99df-765f-46bd-bb71-bacf7ba9173b" name="Changes" comment="develop&#10;- feature: added user slice in redux&#10;- fix: regenerate sidebar items after logout&#10;- feature: remove not needed files (userProfile and userReducer legacy)">
+    <list default="true" id="a83c99df-765f-46bd-bb71-bacf7ba9173b" name="Changes" comment="develop&#10;- feature: using formik-antd and yup validation for forms">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/products/product-edit/ProductEdit.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/products/product-edit/ProductEdit.component.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/rest/product.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/rest/product.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/products/list-products/ProductList.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/products/list-products/ProductList.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -181,7 +177,9 @@
       <workItem from="1742869153043" duration="3978000" />
       <workItem from="1742947613779" duration="1453000" />
       <workItem from="1742976312718" duration="1207000" />
-      <workItem from="1743056675603" duration="8774000" />
+      <workItem from="1743056675603" duration="9722000" />
+      <workItem from="1743123706149" duration="1314000" />
+      <workItem from="1743495234475" duration="1614000" />
     </task>
     <task id="LOCAL-00001" summary="develop&#10;- added .htaccess">
       <option name="closed" value="true" />
@@ -231,11 +229,30 @@
       <option name="project" value="LOCAL" />
       <updated>1742872533215</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="develop&#10;- feature: using formik-antd and yup validation for forms">
+      <option name="closed" value="true" />
+      <created>1743065580730</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1743065580730</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="feature/app-v2&#10;- feature: cart feature in redux" />
@@ -246,6 +263,7 @@
     <MESSAGE value="develop&#10;- feature: added PayPay logo to PayPay button&#10;- feature: refactor styles for checkout pay buttons&#10;- fix: change JPY currency to PayPal payment&#10;- fix: set correctly sales variable with rest data" />
     <MESSAGE value="develop&#10;- feature: added logout menu in sidebar with functionality &#10;- fix: validate user already logged in before pay with Google&#10;- feature: improvement in responsive design in checkout and user information component" />
     <MESSAGE value="develop&#10;- feature: added user slice in redux&#10;- fix: regenerate sidebar items after logout&#10;- feature: remove not needed files (userProfile and userReducer legacy)" />
-    <option name="LAST_COMMIT_MESSAGE" value="develop&#10;- feature: added user slice in redux&#10;- fix: regenerate sidebar items after logout&#10;- feature: remove not needed files (userProfile and userReducer legacy)" />
+    <MESSAGE value="develop&#10;- feature: using formik-antd and yup validation for forms" />
+    <option name="LAST_COMMIT_MESSAGE" value="develop&#10;- feature: using formik-antd and yup validation for forms" />
   </component>
 </project>
