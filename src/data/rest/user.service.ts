@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { Constants } from '../../utils/constants';
-import { User } from '../../interfaces/user/User';
+import { User } from '../../domain/interfaces/user/User';
 
 export const userInformation = (username: string): Promise<User> => {
   return new Promise(((resolve, reject) => {
@@ -20,11 +20,3 @@ export const updateUser = (id: string, user: Partial<User>): Promise<User> => {
   }));
 }
 
-export const getSalesByUser = (id: string): Promise<any> => {
-  return new Promise(((resolve, reject) => {
-    axios.get(Constants.URL_MS_1 + `user/${id}/sales`, )
-      .then(((results) => results.data))
-      .then((value) => resolve(value.sales))
-      .catch(e => reject(e))
-  }));
-}

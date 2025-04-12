@@ -1,5 +1,5 @@
 import {AreaChart, XAxis, YAxis, CartesianGrid, Tooltip, Area, Label} from 'recharts';
-import {ReportSale} from "../../../interfaces/ReportSale";
+import {ReportSale} from "../../../domain/interfaces/ReportSale";
 
 interface Props {
   report: Array<ReportSale>;

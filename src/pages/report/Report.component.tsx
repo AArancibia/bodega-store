@@ -6,7 +6,7 @@ import {connect} from "react-redux";
 import {fetchSaleReportStart} from "../../redux/sale/sale.actions";
 import {createStructuredSelector} from "reselect";
 import {selectAnnualSaleReport} from "../../redux/sale/sale.selector";
-import {ReportSale} from "../../interfaces/ReportSale";
+import {ReportSale} from "../../domain/interfaces/ReportSale";
 import {generatePDFSale, saleReportAnnual} from '../../data/rest/sale.service';
 
 interface Props {

@@ -1,13 +1,14 @@
 import { CartState } from './cart-state.interface';
-import { CartItem } from '../../interfaces/CartItem';
+import { CartItem } from '../../domain/interfaces/CartItem';
 
 export class CartUtil {
-  public static addCartItem(state: CartState, action: {payload: CartItem}) {
-    const cartItemIndex = state.cartItems.findIndex(x => x.product.id === action.payload.product.id);
+  public static addCartItem(state: CartState, cartItem: CartItem) {
+    const cartItemIndex = state.cartItems.findIndex(cartItemState => cartItemState.product.id === cartItem.product.id);
+    const newCartItem: CartItem = {product: cartItem.product, count: cartItem.count + 1};
     if (cartItemIndex !== -1) {
-      state.cartItems.splice(cartItemIndex, 1, action.payload);
+      state.cartItems.splice(cartItemIndex, 1, newCartItem);
     } else {
-      state.cartItems.push(action.payload);
+      state.cartItems.push(newCartItem);
     }
     return [...state.cartItems];
   }

@@ -1,77 +1,59 @@
 import React from 'react';
 import { ProductButtons, ProductCard, ProductImage, ProductTitle } from 'ajas-product-card';
-import { Product } from '../../interfaces/Product';
-import { CartItem } from '../../interfaces/CartItem';
 import { useProduct } from '../../data/hooks/useProduct';
-import { setProducts } from '../../redux/product/product.actions';
-import { addCartItem, removeCartItem } from '../../redux/cart/cart.actions';
-import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
+import {useSelector} from 'react-redux';
 import { selectCartItems } from '../../redux/cart/cart.selector';
 import './Directory.component.scss';
+import {Col, Row} from 'antd';
 
-interface Props {
-  cartItems: Array<CartItem>
-  addCartItem: (cartItems: CartItem) => void;
-  removeCartItem: (id: string) => void;
-}
-
-const DirectoryComponent = ({cartItems, addCartItem, removeCartItem}: Props) => {
-  const {products, onHandleChange} = useProduct({addCartItem, removeCartItem});
-  setProducts(products);
+const DirectoryComponent = () => {
+  const {products, onHandleChange} = useProduct();
+  const cartItems = useSelector(selectCartItems);
   return (
-    <>
+    <Row>
       {
-        products.length && products.map(product => {
+        products.map(product => {
           const value = cartItems.find(x => x.product.id === product.id)?.count || 0;
           return (
-            <ProductCard
-              key={product.id}
-              product={({
-                title: product.name,
-                img: product.image,
-                id: product.id
-              })}
-              onChange={onHandleChange}
-              initialValues={{
-                maxCount: product.quantity
-              }}
-              value={value}
-              style={{
-                height: '325px',
-                margin: '5px 20px',
-              }}
-            >
-              {({
-                  reset,
-                  increaseBy,
-                  count,
-                  isMaxCountReached,
-                  product: modified,
-                  maxCount,
-                }) => (
-                <>
-                  <ProductImage img={product.image}></ProductImage>
-                  <ProductTitle title={product.name}></ProductTitle>
-                  <ProductButtons className="product_button"></ProductButtons>
-                </>
-              )}
-            </ProductCard>
+            <Col className="flex-wrap justify-content-center" xs={24} sm={10} md={12} lg={10} xl={8} xxl={6} key={product.id}>
+              <ProductCard
+                key={product.id}
+                product={({
+                  title: product.name,
+                  img: product.image,
+                  id: product.id
+                })}
+                onChange={onHandleChange}
+                initialValues={{
+                  maxCount: product.quantity
+                }}
+                value={value}
+                style={{
+                  height: '325px',
+                  margin: '5px 20px',
+                }}
+              >
+                {({
+                    reset,
+                    increaseBy,
+                    count,
+                    isMaxCountReached,
+                    product: modified,
+                    maxCount,
+                  }) => (
+                  <>
+                    <ProductImage img={product.image}></ProductImage>
+                    <ProductTitle title={product.name}></ProductTitle>
+                    <ProductButtons className="product_button"></ProductButtons>
+                  </>
+                )}
+              </ProductCard>
+            </Col>
           )
         })
       }
-    </>
+    </Row>
   );
 };
 
-const mapStateToProps = createStructuredSelector({
-  cartItems: selectCartItems,
-});
-
-const mapDispatchToProps = (dispatch: any) => ({
-  setProducts: (products: Array<Product>) => dispatch(setProducts(products)),
-  addCartItem: (cartItem: CartItem) => dispatch(addCartItem(cartItem)),
-  removeCartItem: (id: string) => dispatch(removeCartItem(id))
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(DirectoryComponent);
+export default DirectoryComponent;

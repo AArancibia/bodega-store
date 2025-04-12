@@ -1,6 +1,16 @@
+import {AreaChartOutlined, EditOutlined, HomeOutlined, ShoppingOutlined} from '@ant-design/icons';
+
 export class Constants {
-  public static URL_MS_1 = 'http://localhost:4000/api/';
-  public static URL_MS_2 = 'http://localhost:8020/api/';
+  public static URL_MS_1 = process.env.REACT_APP_API_URL_MS;
+  public static URL_PAYPAL_V1 = process.env.REACT_APP_API_URL_PAYPAL;
+
+  public static ICONS = Object.create(
+    {
+      'HomeOutlined': HomeOutlined, 'ShoppingOutlined': ShoppingOutlined,
+      'AreaChartOutlined': AreaChartOutlined, 'EditOutlined': EditOutlined
+    },
+  );
+
 
   public static MESSAGES = {
     CHECKOUT_PAYMENT: {

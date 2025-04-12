@@ -1,23 +1,21 @@
-import {Button, Result} from "antd";
+import {Button, Result} from 'antd';
 import {Navigate, useLocation, useNavigate} from "react-router-dom";
-import {ResultMessage} from "../../interfaces/Message";
 
 const CheckOutPayment = () => {
 
-    const location = useLocation();
+    const { state } = useLocation();
     const navigate = useNavigate();
-    const { message, order }  = location.state as {message: ResultMessage, order: any};
 
     return (
         <>
             {
-                message ? (
+                state && state.message ? (
                     <Result
-                        status={message.STATUS}
-                        title={message.TITLE}
-                        subTitle={order ? message.SUB_TITLE.replace(':code', order.code) : message.SUB_TITLE}
+                        status={state.message.STATUS}
+                        title={state.message.TITLE}
+                        subTitle={state.order ? state.message.SUB_TITLE.replace(':code', state.order.id) : state.message.SUB_TITLE}
                         extra={[
-                            <Button key="buy" onClick={() => navigate('/')}>Ir a comprar</Button>,
+                            <Button key="buy" onClick={() => navigate('/')}>Seguir comprando</Button>,
                         ]}
                     />
                 ) : <Navigate to="/" />

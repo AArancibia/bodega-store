@@ -1,6 +1,6 @@
 import { RootState } from '../root-state.interface';
 import { createSelector } from 'reselect';
-import { CartItem } from '../../interfaces/CartItem';
+import { CartItem } from '../../domain/interfaces/CartItem';
 
 const cartSelector = (state: RootState) => state.cart;
 

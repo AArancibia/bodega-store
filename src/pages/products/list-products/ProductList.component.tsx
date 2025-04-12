@@ -4,8 +4,10 @@ import {Button, message, Popconfirm, Space, Table} from 'antd';
 import {ColumnsType} from 'antd/es/table';
 import './ProductList.styles.scss';
 import ProductEdit from '../../../components/products/product-edit/ProductEdit.component';
-import {Product} from '../../../interfaces/Product';
+import {Product} from '../../../domain/interfaces/Product';
 import {deleteProduct, getProducts} from '../../../data/rest/product.service';
+import {useDispatch} from 'react-redux';
+import {setProducts} from '../../../redux/product/product.actions';
 
 interface DataType {
   key: string;
@@ -13,12 +15,15 @@ interface DataType {
   price: number;
   quantity: number;
   image: string;
+  categoryId: string;
 }
 
+
 const ProductList = () => {
+  const dispatch = useDispatch();
   const columns: ColumnsType<DataType> = [
     {
-      title: 'Nombre',
+      title: 'Descripcion',
       dataIndex: 'name',
       key: 'name',
     },
@@ -51,6 +56,7 @@ const ProductList = () => {
               name: record.name,
               unitPrice: record.price,
               id: record.key,
+              categoryId: record.categoryId
             });
           }}>Editar</button>
           <Popconfirm title="Estas de acuerdo en eliminar el producto" onConfirm={() => handleDelete(record.key)}>
@@ -68,6 +74,7 @@ const ProductList = () => {
 
   const getAsyncProducts = async () => {
     const products = await getProducts();
+    dispatch(setProducts(products));
     setData(mapperProducts(products));
   }
 
@@ -88,6 +95,7 @@ const ProductList = () => {
       price: x.unitPrice,
       quantity: x.quantity,
       image: x.image,
+      categoryId: x.categoryId,
     }));
   }
 

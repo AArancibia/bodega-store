@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="a83c99df-765f-46bd-bb71-bacf7ba9173b" name="Changes" comment="merge develop">
+      <change afterPath="$PROJECT_DIR$/.idea/git_toolbox_blame.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/logo_paypay.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/google-pay-button/GooglePayButton.component.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/products/product-edit/ProductEdit.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/submit-payment/SubmitPayment.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/submit-payment/SubmitPayment.component.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/data/hooks/usePaypalPayment.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/data/rest/create-body-sale.request.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/data/rest/payment.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/data/rest/paypal.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/data/rest/profiles.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/data/rest/query-client.config.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/domain/interfaces/ApprovedOrder.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/domain/interfaces/CartItem.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/domain/interfaces/Category.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/domain/interfaces/Order.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/domain/interfaces/PayPalToken.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/domain/interfaces/QRCode.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/domain/model/Profile.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/redux/cart/cartSlice.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/redux/user/userSlice.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routes/Routes.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/requests/create-google-payment.request.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/auth/auth.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/auth/auth.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/cart-dropdown/Cart-Dropdown.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/cart-dropdown/Cart-Dropdown.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/cart-dropdown/CartDropdown.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/cart-dropdown/CartDropdown.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/cart-icon/CartIcon.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/cart-icon/CartIcon.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/cart-item/CartItem.component.styles.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/cart-item/CartItem.component.styles.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/cart-item/CartItem.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/cart-item/CartItem.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/chart/area-chart/area-chart.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/chart/area-chart/area-chart.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/checkout-item/checkout-item.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/checkout-item/checkout-item.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/checkout-item/checkout-item.styles.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/checkout-item/checkout-item.styles.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/directory/Directory.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/directory/Directory.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/header/Header.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/header/Header.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/modal-lottery-notification/modal-lottery-notification.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/modal-lottery-notification/modal-lottery-notification.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/products/product-edit/ProductEdit.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/products/product-edit/ProductEdit.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/sign-in/SignIn.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/sign-in/SignIn.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/sign-in/SignIn.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/sign-in/SignIn.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/sign-out/SignOut.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/sign-out/SignOut.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/user/modal-checkout-payment/ModalCheckOutPayment.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/user/modal-checkout-payment/ModalCheckOutPayment.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/user/modal-update-information/ModalUpdateInformation.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/user/modal-update-information/ModalUpdateInformation.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/user/user-information/user-information.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/user/user-information/user-information.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/hooks/useProduct.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/hooks/useProduct.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/rest/auth/auth.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/rest/auth/auth.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/rest/lottery.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/rest/lottery.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/rest/product.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/rest/product.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/rest/sale.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/rest/sale.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/rest/user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/rest/user.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/CartItem.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/CreditCard.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/interfaces/CreditCard.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/Lottery.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/interfaces/Lottery.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/Message.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/interfaces/Message.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/Product.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/interfaces/Product.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/ReportSale.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/interfaces/ReportSale.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/Sale.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/interfaces/Sale.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/Ticket.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/interfaces/Ticket.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/user/User.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/interfaces/user/User.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/checkout-payment/CheckOutPayment.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/checkout-payment/CheckOutPayment.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/checkout/CheckOut.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/checkout/CheckOut.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/checkout/CheckOut.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/checkout/CheckOut.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/lottery/Lottery.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/lottery/Lottery.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/products/list-products/ProductList.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/products/list-products/ProductList.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/report/Report.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/report/Report.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/shop/Shop.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/shop/Shop.component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/cart/cart-state.interface.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/cart/cart-state.interface.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/cart/cart.actions.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/cart/cart.reducer.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/cart/cart.selector.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/cart/cart.selector.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/cart/cart.types.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/cart/cart.util.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/cart/cart.util.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/lottery/lottery-state.interface.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/lottery/lottery-state.interface.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/product/product-state.interface.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/product/product-state.interface.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/product/product.actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/product/product.actions.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/product/product.reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/product/product.reducer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/product/product.sagas.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/product/product.sagas.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/product/product.selector.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/product/product.selector.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/product/product.types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/product/product.types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/root-reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/root-reducer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/sale/sale-state.interface.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/sale/sale-state.interface.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/store.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/user/user-state.interface.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/user/user-state.interface.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/user/user.actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/user/user.actions.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/user/user.reducer.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/user/user.types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/user/user.types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/Navigation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/Navigation.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/constants.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/constants.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/helpers.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/helpers.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="PUSH_TAGS">
+      <GitPushTagMode>
+        <option name="argument" value="--tags" />
+        <option name="title" value="All" />
+      </GitPushTagMode>
+    </option>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="feature/google-auth" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;AArancibia&quot;
+  }
+}</component>
+  <component name="GitToolBoxStore">
+    <option name="recentBranches">
+      <RecentBranches>
+        <option name="branchesForRepo">
+          <list>
+            <RecentBranchesForRepo>
+              <option name="branches">
+                <list>
+                  <RecentBranch>
+                    <option name="branchName" value="feature/google-auth" />
+                    <option name="lastUsedInstant" value="1740650318" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="feature/app-v2" />
+                    <option name="lastUsedInstant" value="1733477216" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="master" />
+                    <option name="lastUsedInstant" value="1733476796" />
+                  </RecentBranch>
+                </list>
+              </option>
+              <option name="repositoryRootUrl" value="file://$PROJECT_DIR$" />
+            </RecentBranchesForRepo>
+          </list>
+        </option>
+      </RecentBranches>
+    </option>
+  </component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/AArancibia/bodega-store.git&quot;,
+    &quot;accountId&quot;: &quot;667c2a07-c5db-421d-94f8-e0fa3b997ec2&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="2q1mCb2lHFxOgOt9k4oacYrH8Z2" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
+    "git-widget-placeholder": "Merging master",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "npm.BODEGA.executor": "Run",
+    "ts.external.directory.path": "/Applications/WebStorm.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/domain/interfaces" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="BODEGA" type="js.build_tools.npm">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-WS-242.23339.15" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a83c99df-765f-46bd-bb71-bacf7ba9173b" name="Changes" comment="feature/app-v2&#10;- feature: cart feature in redux" />
+      <created>1733838329733</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1733838329733</updated>
+      <workItem from="1733838332507" duration="1867000" />
+      <workItem from="1734056728535" duration="104000" />
+      <workItem from="1734357215215" duration="643000" />
+      <workItem from="1734523255754" duration="661000" />
+      <workItem from="1734531143725" duration="547000" />
+      <workItem from="1734531698624" duration="46000" />
+      <workItem from="1736932245803" duration="7000" />
+      <workItem from="1737047206146" duration="1744000" />
+      <workItem from="1737536382698" duration="465000" />
+      <workItem from="1738742218311" duration="87000" />
+      <workItem from="1738746329992" duration="1503000" />
+      <workItem from="1738849468403" duration="3467000" />
+      <workItem from="1739350505824" duration="4521000" />
+      <workItem from="1739365592979" duration="4661000" />
+      <workItem from="1739841740038" duration="1691000" />
+      <workItem from="1739928381857" duration="851000" />
+      <workItem from="1739956074519" duration="4710000" />
+      <workItem from="1740010818306" duration="1290000" />
+      <workItem from="1740227253327" duration="2366000" />
+      <workItem from="1740409442514" duration="1343000" />
+      <workItem from="1740648348691" duration="2744000" />
+      <workItem from="1740658335673" duration="11410000" />
+      <workItem from="1740703952004" duration="2680000" />
+      <workItem from="1741039032889" duration="3368000" />
+      <workItem from="1741078163519" duration="2863000" />
+      <workItem from="1741133335571" duration="6367000" />
+      <workItem from="1741173868668" duration="8461000" />
+      <workItem from="1741233484986" duration="3890000" />
+      <workItem from="1741254016558" duration="2505000" />
+      <workItem from="1741268370669" duration="1339000" />
+      <workItem from="1741295525594" duration="4441000" />
+      <workItem from="1741318134958" duration="1397000" />
+      <workItem from="1741330720813" duration="889000" />
+      <workItem from="1741618185062" duration="2853000" />
+      <workItem from="1741685223692" duration="6512000" />
+      <workItem from="1741766355482" duration="5060000" />
+      <workItem from="1742009048595" duration="606000" />
+      <workItem from="1742048057283" duration="1312000" />
+      <workItem from="1742172434241" duration="1034000" />
+      <workItem from="1742342683845" duration="1922000" />
+      <workItem from="1742369393197" duration="5317000" />
+      <workItem from="1742779365225" duration="5037000" />
+      <workItem from="1742826909520" duration="11173000" />
+      <workItem from="1742869153043" duration="3978000" />
+      <workItem from="1742947613779" duration="1453000" />
+      <workItem from="1742976312718" duration="1207000" />
+      <workItem from="1743056675603" duration="9722000" />
+      <workItem from="1743123706149" duration="1314000" />
+      <workItem from="1743495234475" duration="1614000" />
+    </task>
+    <task id="LOCAL-00001" summary="develop&#10;- added .htaccess">
+      <option name="closed" value="true" />
+      <created>1741050018786</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1741050018786</updated>
+    </task>
+    <task id="LOCAL-00002" summary="develop&#10;- deleted .htaccess">
+      <option name="closed" value="true" />
+      <created>1741050476992</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1741050476992</updated>
+    </task>
+    <task id="LOCAL-00003" summary="develop&#10;- feature: added PayPal functionalities&#10;- feature: added profile functionalities">
+      <option name="closed" value="true" />
+      <created>1741318741197</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1741318741197</updated>
+    </task>
+    <task id="LOCAL-00004" summary="develop&#10;- feature: added PayPay logo to PayPay button&#10;- feature: refactor styles for checkout pay buttons&#10;- fix: change JPY currency to PayPal payment&#10;- fix: set correctly sales variable with rest data">
+      <option name="closed" value="true" />
+      <created>1741772980290</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1741772980290</updated>
+    </task>
+    <task id="LOCAL-00005" summary="develop&#10;- feature: added logout menu in sidebar with functionality &#10;- fix: validate user already logged in before pay with Google&#10;- feature: improvement in responsive design in checkout and user information component">
+      <option name="closed" value="true" />
+      <created>1742833526305</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1742833526305</updated>
+    </task>
+    <task id="LOCAL-00006" summary="develop&#10;- feature: added user slice in redux&#10;- fix: regenerate sidebar items after logout&#10;- feature: remove not needed files (userProfile and userReducer legacy)">
+      <option name="closed" value="true" />
+      <created>1742872533215</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1742872533215</updated>
+    </task>
+    <task id="LOCAL-00007" summary="develop&#10;- feature: using formik-antd and yup validation for forms">
+      <option name="closed" value="true" />
+      <created>1743065580730</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1743065580730</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <MESSAGE value="feature/app-v2&#10;- feature: cart feature in redux" />
+    <MESSAGE value="feature/google-auth&#10;- feature: added google sign in method&#10;- feature: added paypay and paypal payment" />
+    <MESSAGE value="develop&#10;- added .htaccess" />
+    <MESSAGE value="develop&#10;- deleted .htaccess" />
+    <MESSAGE value="develop&#10;- feature: added PayPal functionalities&#10;- feature: added profile functionalities" />
+    <MESSAGE value="develop&#10;- feature: added PayPay logo to PayPay button&#10;- feature: refactor styles for checkout pay buttons&#10;- fix: change JPY currency to PayPal payment&#10;- fix: set correctly sales variable with rest data" />
+    <MESSAGE value="develop&#10;- feature: added logout menu in sidebar with functionality &#10;- fix: validate user already logged in before pay with Google&#10;- feature: improvement in responsive design in checkout and user information component" />
+    <MESSAGE value="develop&#10;- feature: added user slice in redux&#10;- fix: regenerate sidebar items after logout&#10;- feature: remove not needed files (userProfile and userReducer legacy)" />
+    <MESSAGE value="develop&#10;- feature: using formik-antd and yup validation for forms" />
+    <MESSAGE value="merge develop" />
+    <option name="LAST_COMMIT_MESSAGE" value="merge develop" />
+  </component>
+</project>

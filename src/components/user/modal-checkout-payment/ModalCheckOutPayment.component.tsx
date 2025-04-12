@@ -1,44 +1,42 @@
 import React from 'react';
 import {Form, Input, InputNumber, Modal} from "antd";
-import {CreditCard} from "../../../interfaces/CreditCard";
+import {CreditCard} from "../../../domain/interfaces/CreditCard";
 import {saveSale} from "../../../data/rest/sale.service";
-import {CartItem} from "../../../interfaces/CartItem";
+import {CartItem} from "../../../domain/interfaces/CartItem";
 import {useNavigate} from "react-router-dom";
 import {Constants} from "../../../utils/constants";
-import {User} from '../../../interfaces/user/User';
+import {User} from '../../../domain/interfaces/user/User';
 import {userInformation} from '../../../data/rest/user.service';
 import {fetchLoginSuccess} from '../../../redux/user/user.actions';
-import {connect} from 'react-redux';
+import {useDispatch} from 'react-redux';
+import {clearCart} from '../../../redux/cart/cartSlice';
+import {hideLoader, showLoader} from '../../../redux/loader/loader.actions';
 
 interface Props {
     isModalPaymentOpen: boolean;
     setIsModalPaymentOpen: (value: boolean) => void;
-    showLoader: () => void;
-    hideLoader: () => void;
     cartItems: Array<CartItem>;
     total: number;
-    clearCart: () => void;
     currentUser: User;
-    fetchLoginSuccess: any;
 }
 
-const ModalCheckOutPayment = ({isModalPaymentOpen, setIsModalPaymentOpen, showLoader, hideLoader, cartItems, total, clearCart, currentUser, fetchLoginSuccess}: Props) => {
+const ModalCheckOutPayment = ({isModalPaymentOpen, setIsModalPaymentOpen, cartItems, total, currentUser}: Props) => {
 
     const [form] = Form.useForm();
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const onFinish = async (values: CreditCard) => {
         try {
-            showLoader();
+            dispatch(showLoader());
             const order = await saveSale(cartItems, total, currentUser);
-            clearCart();
+            dispatch(clearCart());
             const user: User = await userInformation(currentUser.username);
-            fetchLoginSuccess(user);
-            hideLoader();
+            dispatch(fetchLoginSuccess(user));
+            dispatch(hideLoader());
             navigate('/carrito/pago', {state: {message: Constants.MESSAGES.CHECKOUT_PAYMENT.SUCCESS, order} });
         } catch (e) {
-            console.log(e);
-            hideLoader();
+            dispatch(hideLoader());
             navigate('/carrito/pago', {state: {message: Constants.MESSAGES.CHECKOUT_PAYMENT.ERROR} });
         } finally {
             form.resetFields();
@@ -75,8 +73,4 @@ const ModalCheckOutPayment = ({isModalPaymentOpen, setIsModalPaymentOpen, showLo
     );
 };
 
-const mapDispatchToProps = (dispatch: any) => ({
-    fetchLoginSuccess: (auth: any) => dispatch(fetchLoginSuccess(auth)),
-})
-
-export default connect(null, mapDispatchToProps)(ModalCheckOutPayment);
+export default ModalCheckOutPayment;

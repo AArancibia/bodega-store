@@ -3,9 +3,10 @@ import {notification} from 'antd';
 import {NotificationPlacement} from 'antd/es/notification';
 import {getActiveLottery} from '../../data/rest/lottery.service';
 import {connect} from 'react-redux';
-import {Lottery} from '../../interfaces/Lottery';
+import {Lottery} from '../../domain/interfaces/Lottery';
 import {setLottery} from '../../redux/lottery/lottery.actions';
 
+const Context = React.createContext({ name: 'Default' });
 
 interface Props {
   setLottery: (lottery: Lottery) => void;
@@ -32,7 +33,7 @@ const ModalLotteryNotification = ({setLottery}: Props) => {
     });
   };
 
-  useEffect(() => {
+  /*useEffect(() => {
     getActiveLottery()
       .then((lottery: Lottery) => {
         setLottery(lottery);
@@ -40,7 +41,7 @@ const ModalLotteryNotification = ({setLottery}: Props) => {
           openNotification('topLeft', lottery);
         }
       });
-  })
+  }, [])*/
 
   return (
     <>

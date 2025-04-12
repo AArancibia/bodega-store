@@ -1,14 +1,14 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import Countdown from 'antd/es/statistic/Countdown';
 import {connect} from 'react-redux';
 import {createStructuredSelector} from 'reselect';
 import {selectCurrentUser} from '../../redux/user/user.selector';
-import {User} from '../../interfaces/user/User';
+import {User} from '../../domain/interfaces/user/User';
 import {selectLottery} from '../../redux/lottery/lottery.selector';
-import {Lottery} from '../../interfaces/Lottery';
+import {Lottery} from '../../domain/interfaces/Lottery';
 import {Button, Result, Tag} from 'antd';
 import {useNavigate} from 'react-router-dom';
-import {getActiveLottery, getWinner} from '../../data/rest/lottery.service';
+import {getWinner} from '../../data/rest/lottery.service';
 import {SmileOutlined, GiftOutlined} from '@ant-design/icons';
 import {ResultStatusType} from 'antd/es/result';
 import {setLottery} from '../../redux/lottery/lottery.actions';
@@ -30,7 +30,7 @@ const LotteryPage = ({user, lottery, setLottery}: Props) => {
 
   const navigate = useNavigate();
   const [message, setMessage] = useState<Message>({
-    icon: <GiftOutlined />,
+    icon: <GiftOutlined rev={undefined}/>,
     status: 'info', title: `No hay un sorteo en curso por el momento`,
     subTitle: 'Te notificaremos cuando se realize un nuevo sorteo',
   });
@@ -42,35 +42,39 @@ const LotteryPage = ({user, lottery, setLottery}: Props) => {
 
   const diff = date_future - today;
 
+  const seconds = Math.floor(diff / 1000);
+  const minutes = Math.floor(seconds / 60);
+  const hours = Math.floor(minutes / 60);
+  const days = Math.floor(hours / 24);
+
   // const deadline = Date.now() + 1000 * 60 * 60 * 24 * 2 + 1000 * 30; // Dayjs is also OK
   const deadline = date_future + 1000; // Dayjs is also OK
 
   const onFinish = async () => {
-    console.log('finished!');
     const lottery: any = await getWinner();
-    console.log(lottery, user);
+    console.log(lottery, user, days);
 
     const ticketWinner = user.tickets.find((x: any) => x.lotteryId === lottery.id && lottery.ticketWinner === x.code);
     if (ticketWinner) {
       setMessage({
-        icon: <GiftOutlined />,
-        status: 'success', title: `Felicidades ${user.givenName}, eres el GANADOR 🥳`,
+        icon: <GiftOutlined rev={undefined} />,
+        status: 'success', title: `Felicidades!! TÚ, eres el GANADOR 🥳`,
         subTitle: 'Ganaste un vale por S/ 100 💸 para tus compras en Bodega Store',
       });
     } else {
       setMessage({
-        icon: <SmileOutlined />, title: `No fuiste el ganador por esta vez 🥹`,
+        icon: <SmileOutlined rev={undefined} />, title: `No fuiste el ganador por esta vez 🥹`,
         subTitle: 'Te pedimos seguir intentando y disfrutando de tus compras',
       });
     }
   };
 
-  useEffect(() => {
+  /*useEffect(() => {
     getActiveLottery()
       .then((lottery: Lottery) => {
         setLottery(lottery);
       });
-  })
+  }, [])*/
 
   return (
     <div>

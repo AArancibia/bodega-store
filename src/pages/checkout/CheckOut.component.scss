@@ -1,5 +1,5 @@
 .checkout-page {
-  width: 55%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -47,5 +47,37 @@
 
   .checkout-payment {
     width: 100%;
+    margin-top: 20px;
+
+    div {
+      flex: 1;
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: 20px;
+    }
+
+    &--button {
+      flex: 1;
+
+      &-paypal {
+        cursor: pointer;
+        width: 100%;
+        border: none;
+        background-color: red;
+        border-radius: 5px;
+        margin-top: 0;
+        height: 45px;
+      }
+    }
   }
+}
+
+.google-pay-button-container {
+  width: 100% !important;
+}
+
+.checkout-page button#gpay-button-online-api-id {
+  width: 100% !important;
+  margin-top: 15px !important;
+  height: 45px;
 }

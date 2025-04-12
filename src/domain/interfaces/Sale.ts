@@ -1,11 +1,11 @@
-import {User} from './user/User';
 
 export interface Sale {
     id: string;
+    code: string;
     salePrice: number;
     dateRegister: string;
     saleDetail: Array<SaleDetail>;
-    user: User;
+    userId?: string;
 }
 
 export interface SaleDetail {

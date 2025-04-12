@@ -1,4 +1,4 @@
-import { CartItem } from '../../interfaces/CartItem';
+import { CartItem } from '../../domain/interfaces/CartItem';
 
 export interface CartState {
   cartItems: Array<CartItem>;

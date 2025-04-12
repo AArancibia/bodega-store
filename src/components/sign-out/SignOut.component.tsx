@@ -1,14 +1,10 @@
 import './SignOut.component.scss';
 import {Button, Form, Input, message} from 'antd';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
-import { UserRegister } from '../../interfaces/user/User';
+import { UserRegister } from '../../domain/interfaces/user/User';
 import {register} from "../../data/rest/auth/auth.service";
 
-interface Props {
-
-}
-
-const SignOut = (props: Props) => {
+const SignOut = () => {
   const [form] = Form.useForm();
 
   const layout = {
@@ -18,7 +14,7 @@ const SignOut = (props: Props) => {
 
   const onFinish = async (userRegister: UserRegister) => {
     try {
-      await register(userRegister);
+      await register({username: userRegister.username});
       form.resetFields();
       message.info(`Se registro el usuario correctamente`);
     } catch (e) {

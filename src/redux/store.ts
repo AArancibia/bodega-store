@@ -1,17 +1,16 @@
-import { applyMiddleware, createStore } from 'redux';
 import { persistStore } from "redux-persist";
 import createSagaMiddleware from 'redux-saga';
 import logger from 'redux-logger';
 import rootReducer from './root-reducer';
 import rootSaga from './root-saga';
-
-const middlewares = [logger];
+import {configureStore, Tuple} from '@reduxjs/toolkit';
 
 const sagaMiddleware = createSagaMiddleware();
 
-middlewares.push(sagaMiddleware);
-
-export const store = createStore(rootReducer, applyMiddleware(...middlewares));
+export const store = configureStore({
+  reducer: rootReducer,
+  middleware: () => new Tuple(sagaMiddleware, logger),
+});
 
 export const persistor = persistStore(store);
 

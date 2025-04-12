@@ -1,7 +1,7 @@
 import React from 'react';
 import './CartItem.component.styles.scss';
 import Image from '../../assets/img/not-image.jpg';
-import { CartItem } from '../../interfaces/CartItem';
+import { CartItem } from '../../domain/interfaces/CartItem';
 
 interface Props {
   cartItem: CartItem;
